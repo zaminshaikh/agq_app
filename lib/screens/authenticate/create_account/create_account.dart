@@ -508,12 +508,7 @@ class CreateAccountPageState extends State<CreateAccountPage> {
                     context,
                     AppContent.text(
                         'text.screens.authenticate.create_account.create_account.client_id_a766cd'),
-                    AppContent.text(
-                        'text.screens.authenticate.create_account.create_account.your_client_id_number_cid_is_an_8_digi_1450b8',
-                        {
-                          'supportEmail':
-                              AppContent.text('contact.support_email')
-                        }),
+                    AppContent.text('signup.cid_help'),
                     icon: const Icon(Icons.numbers_rounded,
                         color: Color(0xFF3199DD)),
                   ),

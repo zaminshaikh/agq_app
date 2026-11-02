@@ -7,15 +7,15 @@ import 'package:flutter_test/flutter_test.dart';
 void main() {
   test('defaults survive missing, blank, and malformed overrides', () {
     final content = AppContent();
-    expect(content.resolveText('contact.support_email'),
-        'carter@agqconsulting.com');
+    expect(content.resolveText('signup.cid_help'),
+        defaultAppText['signup.cid_help']);
     expect(content.applyDocument({'version': 'bad'}), false);
     content.applyDocument({
       'version': 1,
-      'texts': {'contact.support_email': ''}
+      'texts': {'signup.cid_help': ''}
     });
-    expect(content.resolveText('contact.support_email'),
-        'carter@agqconsulting.com');
+    expect(content.resolveText('signup.cid_help'),
+        defaultAppText['signup.cid_help']);
   });
   test('templates preserve dynamic values and reject missing or extra tokens',
       () {
@@ -47,13 +47,37 @@ void main() {
     final content = AppContent();
     content.applyDocument({
       'version': 2,
-      'texts': {'contact.support_email': 'new@example.com'}
+      'texts': {'signup.cid_help': 'new@example.com'}
     });
     expect(content.applyDocument({'version': 1, 'texts': {}}), false);
-    expect(content.resolveText('contact.support_email'), 'new@example.com');
+    expect(content.resolveText('signup.cid_help'), 'new@example.com');
     content.applyDocument({'version': 3, 'texts': {}});
-    expect(content.resolveText('contact.support_email'),
-        'carter@agqconsulting.com');
+    expect(content.resolveText('signup.cid_help'),
+        defaultAppText['signup.cid_help']);
+  });
+  test(
+      'legacy split contact resolves into complete text and new text takes precedence',
+      () {
+    final content = AppContent();
+    content.applyDocument({
+      'version': 1,
+      'texts': {
+        'text.screens.authenticate.create_account.create_account.your_client_id_number_cid_is_an_8_digi_1450b8':
+            'Please contact {supportEmail} for your code.',
+        'contact.support_email': 'custom@example.com'
+      }
+    });
+    expect(content.resolveText('signup.cid_help'),
+        'Please contact custom@example.com for your code.');
+    content.applyDocument({
+      'version': 2,
+      'texts': {
+        'signup.cid_help': 'Contact the team at next@example.com.',
+        'contact.support_email': 'old@example.com'
+      }
+    });
+    expect(content.resolveText('signup.cid_help'),
+        'Contact the team at next@example.com.');
   });
   test(
       'images accept published storage URLs and reject unknown or unsafe sources',
@@ -85,12 +109,12 @@ void main() {
       (tester) async {
     await tester.pumpWidget(
         AppContentScope(child: const MaterialApp(home: _CopyScreen())));
-    expect(find.text('carter@agqconsulting.com'), findsOneWidget);
+    expect(find.text(defaultAppText['signup.cid_help']!), findsOneWidget);
     await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
     AppContent.instance.applyDocument({
       'version': 100,
-      'texts': {'contact.support_email': 'changed@example.com'}
+      'texts': {'signup.cid_help': 'changed@example.com'}
     });
     await tester.pump();
     expect(find.text('changed@example.com'), findsOneWidget);
@@ -122,7 +146,7 @@ class _CopyScreenState extends State<_CopyScreen> {
     AppContent.watch(context);
     return Scaffold(
         body: Column(children: [
-      Text(AppContent.text('contact.support_email')),
+      Text(AppContent.text('signup.cid_help')),
       Text('$count'),
       ElevatedButton(
           onPressed: () => setState(() => count++),

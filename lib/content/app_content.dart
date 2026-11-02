@@ -79,7 +79,20 @@ class AppContent extends ChangeNotifier {
       return false;
     }
     final texts = <String, String>{};
-    final rawTexts = data['texts'];
+    final rawTexts =
+        data['texts'] is Map ? Map<dynamic, dynamic>.from(data['texts']) : null;
+    if (rawTexts is Map && !rawTexts.containsKey('signup.cid_help')) {
+      // Preserve previously published wording/contact details during rollout.
+      final legacy = rawTexts[
+          'text.screens.authenticate.create_account.create_account.your_client_id_number_cid_is_an_8_digi_1450b8'];
+      final email = rawTexts['contact.support_email'];
+      final template = legacy is String
+          ? legacy
+          : defaultAppText['signup.cid_help']!
+              .replaceAll('carter@agqconsulting.com', '{supportEmail}');
+      rawTexts['signup.cid_help'] = template.replaceAll('{supportEmail}',
+          email is String ? email : 'carter@agqconsulting.com');
+    }
     if (rawTexts is Map) {
       for (final entry in rawTexts.entries) {
         final fallback = defaultAppText[entry.key];

@@ -131,8 +131,8 @@ const defaultAppText = <String, String>{
       'Client ID',
   'text.screens.authenticate.create_account.create_account.what_is_my_client_id_bd1e22':
       'What is my Client ID?',
-  'text.screens.authenticate.create_account.create_account.your_client_id_number_cid_is_an_8_digi_1450b8':
-      'Your Client ID Number (CID) is an 8 digit numeric identification code. You will receive an email containing your CID that is specific to your account. Do not share it with anyone. If you have yet to receive your CID, please reach out to {supportEmail} for assistance.',
+  'signup.cid_help':
+      'Your Client ID Number (CID) is an 8 digit numeric identification code. You will receive an email containing your CID that is specific to your account. Do not share it with anyone. If you have yet to receive your CID, please reach out to carter@agqconsulting.com for assistance.',
   'text.screens.authenticate.create_account.create_account.enter_your_client_id_c015bb':
       'Enter your client ID',
   'text.screens.authenticate.create_account.create_account.please_enter_your_cid_a9ada6':
@@ -566,7 +566,6 @@ const defaultAppText = <String, String>{
   'text.components.no_connection.please_connect_to_wi_fi_first_bfd20c':
       'Please connect to Wi-Fi first',
   'text.components.no_connection.reload_cce715': 'Reload',
-  'contact.support_email': 'carter@agqconsulting.com',
   'contact.email_subject': 'Your Subject Here',
 };
 
