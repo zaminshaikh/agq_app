@@ -123,18 +123,12 @@ class _HelpPageState extends State<HelpPage> {
                         Row(
                           mainAxisAlignment: MainAxisAlignment.start,
                           children: [
-                            Container(
-                              width: 50, // Set desired width
-                              height: 50, // Set desired height
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle, // Circular border
-                                image: DecorationImage(
-                                  image: AppContent.imageProvider(
-                                      'assets/icons/sonny_headshot.png'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                            const ClipOval(
+                                child: AppContentImage(
+                                    'assets/icons/sonny_headshot.png',
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover)),
                             const SizedBox(width: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,
@@ -276,18 +270,12 @@ class _HelpPageState extends State<HelpPage> {
                         // name and icon
                         Row(
                           children: [
-                            Container(
-                              width: 50, // Set desired width
-                              height: 50, // Set desired height
-                              decoration: BoxDecoration(
-                                shape: BoxShape.circle, // Circular border
-                                image: DecorationImage(
-                                  image: AppContent.imageProvider(
-                                      'assets/icons/kash_headshot.png'),
-                                  fit: BoxFit.cover,
-                                ),
-                              ),
-                            ),
+                            const ClipOval(
+                                child: AppContentImage(
+                                    'assets/icons/kash_headshot.png',
+                                    width: 50,
+                                    height: 50,
+                                    fit: BoxFit.cover)),
                             const SizedBox(width: 10),
                             Column(
                               crossAxisAlignment: CrossAxisAlignment.start,

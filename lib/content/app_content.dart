@@ -5,7 +5,6 @@ import 'package:flutter/foundation.dart';
 import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'content_defaults.dart';
-import 'content_image.dart';
 import 'inline_contacts.dart';
 
 /// Public app copy and artwork only. Never stores client or account data.
@@ -54,9 +53,6 @@ class AppContent extends ChangeNotifier {
     if (digits.length < 7 || digits.length > 15) return null;
     return value.startsWith('+') ? '+$digits' : digits;
   }
-
-  static ImageProvider imageProvider(String asset) =>
-      ContentImageProvider(asset: asset, url: instance.imageFor(asset)?['url']);
 
   Map<String, String>? imageFor(String asset) =>
       _images[defaultAppImages[asset]];
@@ -126,7 +122,8 @@ class AppContent extends ChangeNotifier {
       for (final entry in rawTexts.entries) {
         final fallback = defaultAppText[entry.key];
         final value = entry.value;
-        if (fallback == null ||
+        if (!configurableAppText.contains(entry.key) ||
+            fallback == null ||
             value is! String ||
             value.trim().isEmpty ||
             value.length > 12000) {
@@ -138,7 +135,9 @@ class AppContent extends ChangeNotifier {
         final key = entry.key as String;
         if ((key.endsWith('_email_message') ||
                 key.endsWith('_phone_message')) &&
-            _contactValue(key, value) == null) continue;
+            _contactValue(key, value) == null) {
+          continue;
+        }
         if (setEquals(required, actual)) texts[key] = value;
       }
     }

@@ -13,6 +13,7 @@ text = '// Generated from catalog.json. Keep the portal catalog in sync.\nconst 
 text += ''.join(f'  {quote(e["id"])}: {quote(e["defaultValue"])},\n' for e in catalog if e['kind'] != 'image')
 text += '};\n\nconst defaultAppImages = <String, String>{\n'
 text += ''.join(f'  {quote(e["defaultValue"])}: {quote(e["id"])},\n' for e in catalog if e['kind'] == 'image') + '};\n'
+text += '\nconst configurableAppText = <String>{\n' + ''.join(f'  {quote(e["id"])},\n' for e in catalog if e['kind'] != 'image' and e.get('editable', True)) + '};\n'
 (root / 'lib/content/content_defaults.dart').write_text(text)
 if args.portal:
     for directory in ['src/content', 'functions/src/content']:

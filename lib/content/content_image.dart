@@ -1,12 +1,10 @@
-import 'dart:ui' as ui;
-import 'package:flutter/foundation.dart';
+import 'dart:typed_data';
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_svg/flutter_svg.dart';
-import 'package:http/http.dart' as http;
 import 'app_content.dart';
+import 'profile_photo_cache.dart';
 
-/// Resolves both raster and SVG defaults; every failed replacement falls back.
+/// Only the two team portraits can use remote content. All artwork stays bundled.
 class AppContentImage extends StatelessWidget {
   final String asset;
   final double? width, height;
@@ -27,8 +25,6 @@ class AppContentImage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
-    final replacement = AppContent.instance.imageFor(asset);
     Widget fallback() => asset.endsWith('.svg')
         ? SvgPicture.asset(asset,
             width: width,
@@ -47,81 +43,32 @@ class AppContentImage extends StatelessWidget {
             alignment: alignment,
             color: color,
             semanticLabel: semanticsLabel);
-    if (replacement == null) return fallback();
-    Widget image;
-    if (replacement['contentType'] == 'image/svg+xml') {
-      image = _RemoteSvg(
-          url: replacement['url']!,
-          fallback: fallback,
-          width: width,
-          height: height,
-          fit: fit,
-          alignment: alignment,
-          semanticsLabel: semanticsLabel);
-    } else {
-      image = Image.network(replacement['url']!,
-          width: width,
-          height: height,
-          fit: fit,
-          alignment: alignment,
-          semanticLabel: semanticsLabel,
-          errorBuilder: (_, __, ___) => fallback(),
-          loadingBuilder: (_, child, progress) =>
-              progress == null ? child : fallback());
-    }
-    final filter = colorFilter ??
-        (color == null ? null : ColorFilter.mode(color!, BlendMode.srcIn));
-    return filter == null
-        ? image
-        : ColorFiltered(colorFilter: filter, child: image);
+    if (!ProfilePhotoCache.assets.contains(asset)) return fallback();
+    AppContent.watch(context);
+    final url = AppContent.instance.imageFor(asset)?['url'];
+    if (url == null) return fallback();
+    return _CachedPortrait(
+        asset: asset,
+        url: url,
+        fallback: fallback,
+        width: width,
+        height: height,
+        fit: fit,
+        alignment: alignment,
+        semanticsLabel: semanticsLabel);
   }
 }
 
-/// DecorationImage/portrait support, including network and decode fallback.
-class ContentImageProvider extends ImageProvider<ContentImageProvider> {
-  final String asset;
-  final String? url;
-  const ContentImageProvider({required this.asset, this.url});
-  @override
-  Future<ContentImageProvider> obtainKey(ImageConfiguration configuration) =>
-      SynchronousFuture(this);
-  @override
-  ImageStreamCompleter loadImage(
-          ContentImageProvider key, ImageDecoderCallback decode) =>
-      MultiFrameImageStreamCompleter(codec: _load(decode), scale: 1);
-  Future<ui.Codec> _load(ImageDecoderCallback decode) async {
-    if (url != null) {
-      try {
-        final response =
-            await http.get(Uri.parse(url!)).timeout(const Duration(seconds: 8));
-        if (response.statusCode == 200 &&
-            response.bodyBytes.length <= 5 * 1024 * 1024) {
-          return await decode(
-              await ui.ImmutableBuffer.fromUint8List(response.bodyBytes));
-        }
-      } catch (_) {
-        /* Keep the bundled portrait if loading or decoding fails. */
-      }
-    }
-    return decode(await ui.ImmutableBuffer.fromAsset(asset));
-  }
-
-  @override
-  bool operator ==(Object other) =>
-      other is ContentImageProvider && other.asset == asset && other.url == url;
-  @override
-  int get hashCode => Object.hash(asset, url);
-}
-
-class _RemoteSvg extends StatefulWidget {
-  final String url;
+class _CachedPortrait extends StatefulWidget {
+  final String asset, url;
   final Widget Function() fallback;
   final double? width, height;
   final BoxFit fit;
   final AlignmentGeometry alignment;
   final String? semanticsLabel;
-  const _RemoteSvg(
-      {required this.url,
+  const _CachedPortrait(
+      {required this.asset,
+      required this.url,
       required this.fallback,
       this.width,
       this.height,
@@ -129,43 +76,38 @@ class _RemoteSvg extends StatefulWidget {
       required this.alignment,
       this.semanticsLabel});
   @override
-  State<_RemoteSvg> createState() => _RemoteSvgState();
+  State<_CachedPortrait> createState() => _CachedPortraitState();
 }
 
-class _RemoteSvgState extends State<_RemoteSvg> {
-  late Future<Uint8List> _bytes;
-  Future<Uint8List> _load() async {
-    final result = await http
-        .get(Uri.parse(widget.url))
-        .timeout(const Duration(seconds: 8));
-    if (result.statusCode != 200 || result.bodyBytes.length > 5 * 1024 * 1024) {
-      throw StateError('Image unavailable');
-    }
-    return result.bodyBytes;
-  }
-
+class _CachedPortraitState extends State<_CachedPortrait> {
+  late Stream<Uint8List> _photos;
+  void _load() =>
+      _photos = ProfilePhotoCache.instance.watch(widget.asset, widget.url);
   @override
   void initState() {
     super.initState();
-    _bytes = _load();
+    _load();
   }
 
   @override
-  void didUpdateWidget(covariant _RemoteSvg oldWidget) {
+  void didUpdateWidget(covariant _CachedPortrait oldWidget) {
     super.didUpdateWidget(oldWidget);
-    if (widget.url != oldWidget.url) _bytes = _load();
+    if (oldWidget.url != widget.url || oldWidget.asset != widget.asset) _load();
   }
 
   @override
-  Widget build(BuildContext context) => FutureBuilder<Uint8List>(
-        future: _bytes,
-        builder: (context, snapshot) => snapshot.hasData
-            ? SvgPicture.memory(snapshot.data!,
-                width: widget.width,
-                height: widget.height,
-                fit: widget.fit,
-                alignment: widget.alignment,
-                semanticsLabel: widget.semanticsLabel)
-            : widget.fallback(),
-      );
+  Widget build(BuildContext context) => StreamBuilder<Uint8List>(
+      stream: _photos,
+      initialData: ProfilePhotoCache.instance.peek(widget.asset),
+      builder: (context, snapshot) => snapshot.hasData
+          ? Image.memory(snapshot.data!,
+              width: widget.width,
+              height: widget.height,
+              fit: widget.fit,
+              alignment: widget.alignment,
+              cacheWidth: 512,
+              gaplessPlayback: true,
+              semanticLabel: widget.semanticsLabel,
+              errorBuilder: (_, __, ___) => widget.fallback())
+          : widget.fallback());
 }

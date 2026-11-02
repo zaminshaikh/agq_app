@@ -39,9 +39,8 @@ class TotalAssetsSection extends StatelessWidget {
               end: Alignment.bottomRight,
             ),
             borderRadius: BorderRadius.circular(15),
-            image: DecorationImage(
-              image: AppContent.imageProvider(
-                  'assets/icons/total_assets_gradient.png'),
+            image: const DecorationImage(
+              image: AssetImage('assets/icons/total_assets_gradient.png'),
               fit: BoxFit.cover,
               alignment: Alignment.centerRight,
             ),

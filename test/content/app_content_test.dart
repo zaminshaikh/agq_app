@@ -144,6 +144,41 @@ void main() {
     content.applyDocument({'version': 3, 'images': {}});
     expect(content.imageFor('assets/icons/sonny_headshot.png'), null);
   });
+  test('fixed buttons, chart labels and logos ignore old remote overrides', () {
+    final content = AppContent();
+    final fixedLabels = [
+      'Logout',
+      'No accounts',
+      'No clients available',
+      'Asset Timeline',
+      'Last Week',
+      'Last Month',
+      'Last Year'
+    ];
+    final keys = defaultAppText.keys
+        .where((key) => fixedLabels.contains(defaultAppText[key]))
+        .toList();
+    expect(keys.length, greaterThanOrEqualTo(fixedLabels.length));
+    content.applyDocument({
+      'version': 1,
+      'texts': {for (final key in keys) key: 'Changed'},
+      'images': {
+        'image.agq_logo_png': {
+          'url': 'https://firebasestorage.googleapis.com/v0/b/test/o/logo',
+          'contentType': 'image/png'
+        },
+      }
+    });
+    for (final key in keys) {
+      expect(content.resolveText(key), defaultAppText[key]);
+    }
+    expect(content.imageFor('assets/icons/agq_logo.png'), null);
+    expect(defaultAppImages.length, 2);
+    expect(
+        configurableAppText.any((key) =>
+            defaultAppText[key]!.startsWith('The connection is taking longer')),
+        true);
+  });
   testWidgets('an open screen updates copy without resetting widget state',
       (tester) async {
     await tester.pumpWidget(
