@@ -6,6 +6,7 @@ import 'package:flutter/widgets.dart';
 import 'package:shared_preferences/shared_preferences.dart';
 import 'content_defaults.dart';
 import 'content_image.dart';
+import 'inline_contacts.dart';
 
 /// Public app copy and artwork only. Never stores client or account data.
 class AppContent extends ChangeNotifier {
@@ -31,6 +32,27 @@ class AppContent extends ChangeNotifier {
         (match) => values.containsKey(match[1])
             ? '${values[match[1]] ?? ''}'
             : match[0]!);
+  }
+
+  static String contactTarget(String key) => instance.resolveContactTarget(key);
+
+  String resolveContactTarget(String key) =>
+      _contactValue(key, resolveText(key)) ??
+      _contactValue(key, defaultAppText[key] ?? '') ??
+      '';
+
+  static String? _contactValue(String key, String text) {
+    final email = key.endsWith('_email_message');
+    final pattern = email
+        ? RegExp(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}')
+        : RegExp(r'\+?[0-9][0-9 ()-]{5,}[0-9]');
+    final matches = pattern.allMatches(text).toList();
+    if (matches.length != 1) return null;
+    final value = matches.single.group(0)!;
+    if (email) return value;
+    final digits = value.replaceAll(RegExp(r'[^0-9]'), '');
+    if (digits.length < 7 || digits.length > 15) return null;
+    return value.startsWith('+') ? '+$digits' : digits;
   }
 
   static ImageProvider imageProvider(String asset) =>
@@ -81,17 +103,24 @@ class AppContent extends ChangeNotifier {
     final texts = <String, String>{};
     final rawTexts =
         data['texts'] is Map ? Map<dynamic, dynamic>.from(data['texts']) : null;
-    if (rawTexts is Map && !rawTexts.containsKey('signup.cid_help')) {
-      // Preserve previously published wording/contact details during rollout.
-      final legacy = rawTexts[
-          'text.screens.authenticate.create_account.create_account.your_client_id_number_cid_is_an_8_digi_1450b8'];
-      final email = rawTexts['contact.support_email'];
-      final template = legacy is String
-          ? legacy
-          : defaultAppText['signup.cid_help']!
-              .replaceAll('carter@agqconsulting.com', '{supportEmail}');
-      rawTexts['signup.cid_help'] = template.replaceAll('{supportEmail}',
-          email is String ? email : 'carter@agqconsulting.com');
+    if (rawTexts is Map) {
+      for (final entry in inlineContacts.entries) {
+        if (rawTexts.containsKey(entry.key)) continue;
+        final legacy = rawTexts[entry.value[0]];
+        final contact = rawTexts[entry.value[1]];
+        final token = entry.value[2];
+        final fallback = defaultAppText[entry.key]!;
+        final pattern = token == 'phone'
+            ? RegExp(r'\+?[0-9][0-9 ()-]{5,}[0-9]')
+            : RegExp(r'[A-Za-z0-9._%+-]+@[A-Za-z0-9.-]+\.[A-Za-z]{2,}');
+        final fallbackContact = pattern.firstMatch(fallback)!.group(0)!;
+        final address = contact is String && contact.trim().isNotEmpty
+            ? contact
+            : fallbackContact;
+        rawTexts[entry.key] = legacy is String
+            ? legacy.replaceAll('{$token}', address)
+            : fallback.replaceFirst(pattern, address);
+      }
     }
     if (rawTexts is Map) {
       for (final entry in rawTexts.entries) {
@@ -106,7 +135,11 @@ class AppContent extends ChangeNotifier {
         final pattern = RegExp(r'\{[A-Za-z][A-Za-z0-9_]*\}');
         final required = pattern.allMatches(fallback).map((m) => m[0]).toSet();
         final actual = pattern.allMatches(value).map((m) => m[0]).toSet();
-        if (setEquals(required, actual)) texts[entry.key as String] = value;
+        final key = entry.key as String;
+        if ((key.endsWith('_email_message') ||
+                key.endsWith('_phone_message')) &&
+            _contactValue(key, value) == null) continue;
+        if (setEquals(required, actual)) texts[key] = value;
       }
     }
     final images = <String, Map<String, String>>{};

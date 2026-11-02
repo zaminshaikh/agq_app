@@ -2527,49 +2527,23 @@
     ]
   },
   {
-    "id": "contact.sonny_email",
+    "id": "contact.sonny_email_message",
     "group": "Profile / Pages / Help",
-    "label": "sonny@agqconsulting.com",
-    "kind": "email",
-    "defaultValue": "sonny@agqconsulting.com",
+    "label": "Email contact line",
+    "kind": "email_message",
+    "defaultValue": "Email: sonny@agqconsulting.com",
     "placeholders": [],
-    "sources": [
-      "screens/profile/pages/help.dart:182"
-    ]
-  },
-  {
-    "id": "text.screens.profile.pages.help.email_sonny_agqconsulting_com_58c8a4",
-    "group": "Profile / Pages / Help",
-    "label": "Email: {email}",
-    "kind": "text",
-    "defaultValue": "Email: {email}",
-    "placeholders": [
-      "email"
-    ],
     "sources": [
       "screens/profile/pages/help.dart:199"
     ]
   },
   {
-    "id": "contact.sonny_phone",
+    "id": "contact.sonny_phone_message",
     "group": "Profile / Pages / Help",
-    "label": "+1 (631) 487-9818",
-    "kind": "phone",
-    "defaultValue": "+1 (631) 487-9818",
+    "label": "Phone contact line",
+    "kind": "phone_message",
+    "defaultValue": "Phone: +1 (631) 487-9818",
     "placeholders": [],
-    "sources": [
-      "screens/profile/pages/help.dart:214"
-    ]
-  },
-  {
-    "id": "text.screens.profile.pages.help.phone_1_631_487_9818_e0d194",
-    "group": "Profile / Pages / Help",
-    "label": "Phone: {phone}",
-    "kind": "text",
-    "defaultValue": "Phone: {phone}",
-    "placeholders": [
-      "phone"
-    ],
     "sources": [
       "screens/profile/pages/help.dart:232"
     ]
@@ -2586,49 +2560,23 @@
     ]
   },
   {
-    "id": "contact.kash_email",
+    "id": "contact.kash_email_message",
     "group": "Profile / Pages / Help",
-    "label": "kash@agqconsulting.com",
-    "kind": "email",
-    "defaultValue": "kash@agqconsulting.com",
+    "label": "Email contact line",
+    "kind": "email_message",
+    "defaultValue": "Email: kash@agqconsulting.com",
     "placeholders": [],
-    "sources": [
-      "screens/profile/pages/help.dart:333"
-    ]
-  },
-  {
-    "id": "text.screens.profile.pages.help.email_kash_agqconsulting_com_6e595c",
-    "group": "Profile / Pages / Help",
-    "label": "Email: {email}",
-    "kind": "text",
-    "defaultValue": "Email: {email}",
-    "placeholders": [
-      "email"
-    ],
     "sources": [
       "screens/profile/pages/help.dart:352"
     ]
   },
   {
-    "id": "contact.kash_phone",
+    "id": "contact.kash_phone_message",
     "group": "Profile / Pages / Help",
-    "label": "+1 (973) 610 4916",
-    "kind": "phone",
-    "defaultValue": "+1 (973) 610 4916",
+    "label": "Phone contact line",
+    "kind": "phone_message",
+    "defaultValue": "Phone: +1 (973) 610 4916",
     "placeholders": [],
-    "sources": [
-      "screens/profile/pages/help.dart:368"
-    ]
-  },
-  {
-    "id": "text.screens.profile.pages.help.phone_1_973_610_4916_ac63da",
-    "group": "Profile / Pages / Help",
-    "label": "Phone: {phone}",
-    "kind": "text",
-    "defaultValue": "Phone: {phone}",
-    "placeholders": [
-      "phone"
-    ],
     "sources": [
       "screens/profile/pages/help.dart:388"
     ]

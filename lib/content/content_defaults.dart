@@ -395,19 +395,15 @@ const defaultAppText = <String, String>{
       "Ahsan 'Sonny' Shaikh",
   'text.screens.profile.pages.help.partner_9357e0': 'Partner',
   'text.screens.profile.pages.help.contact_info_d01b04': 'Contact Info:',
-  'contact.sonny_email': 'sonny@agqconsulting.com',
-  'text.screens.profile.pages.help.email_sonny_agqconsulting_com_58c8a4':
-      'Email: {email}',
-  'contact.sonny_phone': '+1 (631) 487-9818',
-  'text.screens.profile.pages.help.phone_1_631_487_9818_e0d194':
-      'Phone: {phone}',
+  'contact.sonny_email_message':
+      'Email: sonny@agqconsulting.com',
+  'contact.sonny_phone_message':
+      'Phone: +1 (631) 487-9818',
   'text.screens.profile.pages.help.kashif_shaikh_9d51d3': 'Kashif Shaikh',
-  'contact.kash_email': 'kash@agqconsulting.com',
-  'text.screens.profile.pages.help.email_kash_agqconsulting_com_6e595c':
-      'Email: {email}',
-  'contact.kash_phone': '+1 (973) 610 4916',
-  'text.screens.profile.pages.help.phone_1_973_610_4916_ac63da':
-      'Phone: {phone}',
+  'contact.kash_email_message':
+      'Email: kash@agqconsulting.com',
+  'contact.kash_phone_message':
+      'Phone: +1 (973) 610 4916',
   'text.screens.profile.pages.help.faq_03688b': 'FAQ',
   'text.screens.profile.pages.help.is_the_app_secure_8e37a6':
       'Is the app secure?',

@@ -185,7 +185,8 @@ class _HelpPageState extends State<HelpPage> {
                               onTap: () async {
                                 final Uri emailLaunchUri = Uri(
                                   scheme: 'mailto',
-                                  path: AppContent.text('contact.sonny_email'),
+                                  path: AppContent.contactTarget(
+                                      'contact.sonny_email_message'),
                                   query:
                                       'subject=${Uri.encodeComponent(AppContent.text("contact.email_subject"))}',
                                 );
@@ -203,11 +204,7 @@ class _HelpPageState extends State<HelpPage> {
                                   const SizedBox(width: 10),
                                   Text(
                                     AppContent.text(
-                                        'text.screens.profile.pages.help.email_sonny_agqconsulting_com_58c8a4',
-                                        {
-                                          'email': AppContent.text(
-                                              'contact.sonny_email')
-                                        }),
+                                        'contact.sonny_email_message'),
                                     style: const TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -222,8 +219,8 @@ class _HelpPageState extends State<HelpPage> {
                               onTap: () async {
                                 final url = Uri(
                                         scheme: 'tel',
-                                        path: AppContent.text(
-                                            'contact.sonny_phone'))
+                                        path: AppContent.contactTarget(
+                                            'contact.sonny_phone_message'))
                                     .toString();
                                 try {
                                   bool launched = await launch(url);
@@ -241,11 +238,7 @@ class _HelpPageState extends State<HelpPage> {
                                   const SizedBox(width: 10),
                                   Text(
                                     AppContent.text(
-                                        'text.screens.profile.pages.help.phone_1_631_487_9818_e0d194',
-                                        {
-                                          'phone': AppContent.text(
-                                              'contact.sonny_phone')
-                                        }),
+                                        'contact.sonny_phone_message'),
                                     style: const TextStyle(
                                       fontSize: 16,
                                       color: Colors.white,
@@ -345,7 +338,8 @@ class _HelpPageState extends State<HelpPage> {
                               onTap: () async {
                                 final Uri emailLaunchUri = Uri(
                                   scheme: 'mailto',
-                                  path: AppContent.text('contact.kash_email'),
+                                  path: AppContent.contactTarget(
+                                      'contact.kash_email_message'),
                                   query:
                                       'subject=${Uri.encodeComponent(AppContent.text("contact.email_subject"))}',
                                 );
@@ -366,11 +360,7 @@ class _HelpPageState extends State<HelpPage> {
                                     const SizedBox(width: 10),
                                     Text(
                                       AppContent.text(
-                                          'text.screens.profile.pages.help.email_kash_agqconsulting_com_6e595c',
-                                          {
-                                            'email': AppContent.text(
-                                                'contact.kash_email')
-                                          }),
+                                          'contact.kash_email_message'),
                                       style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,
@@ -386,8 +376,8 @@ class _HelpPageState extends State<HelpPage> {
                               onTap: () async {
                                 final url = Uri(
                                         scheme: 'tel',
-                                        path: AppContent.text(
-                                            'contact.kash_phone'))
+                                        path: AppContent.contactTarget(
+                                            'contact.kash_phone_message'))
                                     .toString();
                                 try {
                                   bool launched = await launch(url);
@@ -407,11 +397,7 @@ class _HelpPageState extends State<HelpPage> {
                                     const SizedBox(width: 10),
                                     Text(
                                       AppContent.text(
-                                          'text.screens.profile.pages.help.phone_1_973_610_4916_ac63da',
-                                          {
-                                            'phone': AppContent.text(
-                                                'contact.kash_phone')
-                                          }),
+                                          'contact.kash_phone_message'),
                                       style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,

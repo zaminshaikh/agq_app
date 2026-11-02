@@ -80,6 +80,45 @@ void main() {
         'Contact the team at next@example.com.');
   });
   test(
+      'contact actions use the same full line and reject missing or ambiguous destinations',
+      () {
+    final content = AppContent();
+    content.applyDocument({
+      'version': 1,
+      'texts': {
+        'contact.sonny_email_message': 'Write to new@example.com for help.',
+        'contact.sonny_phone_message': 'Call us: +1 (555) 123-4567',
+      }
+    });
+    expect(content.resolveContactTarget('contact.sonny_email_message'),
+        'new@example.com');
+    expect(content.resolveContactTarget('contact.sonny_phone_message'),
+        '+15551234567');
+    content.applyDocument({
+      'version': 2,
+      'texts': {
+        'contact.sonny_email_message': 'No address here',
+        'contact.sonny_phone_message': 'Call 555-123-4567 or 555-111-2222',
+      }
+    });
+    expect(content.resolveContactTarget('contact.sonny_email_message'),
+        'sonny@agqconsulting.com');
+    expect(content.resolveContactTarget('contact.sonny_phone_message'),
+        '+16314879818');
+    content.applyDocument({
+      'version': 3,
+      'texts': {
+        'text.screens.profile.pages.help.email_sonny_agqconsulting_com_58c8a4':
+            'Email the team: {email}',
+        'contact.sonny_email': 'custom@example.com',
+      }
+    });
+    expect(content.resolveText('contact.sonny_email_message'),
+        'Email the team: custom@example.com');
+    expect(content.resolveContactTarget('contact.sonny_email_message'),
+        'custom@example.com');
+  });
+  test(
       'images accept published storage URLs and reject unknown or unsafe sources',
       () {
     final content = AppContent();
