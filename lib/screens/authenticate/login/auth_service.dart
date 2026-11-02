@@ -1,5 +1,6 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:agq_app/content/app_content.dart';
 import 'dart:io';
 import 'package:device_info_plus/device_info_plus.dart';
 import 'package:flutter/material.dart';
@@ -12,7 +13,6 @@ void main() => runApp(const MyApp());
 class MyApp extends StatefulWidget {
   const MyApp({super.key});
 
-
   @override
   _MyAppState createState() => _MyAppState();
 }
@@ -21,13 +21,14 @@ class AuthService {
   final LocalAuthentication auth = LocalAuthentication();
 
   Future<bool> authenticateWithBiometrics() async {
-    final bool canAuthenticateWithBiometrics = await auth.canCheckBiometrics &&
-        await auth.isDeviceSupported();
+    final bool canAuthenticateWithBiometrics =
+        await auth.canCheckBiometrics && await auth.isDeviceSupported();
 
     if (canAuthenticateWithBiometrics) {
       try {
         return await auth.authenticate(
-          localizedReason: 'Authenticate to access',
+          localizedReason: AppContent.text(
+              'text.screens.authenticate.login.auth_service.authenticate_to_access_8d3f37'),
           options: const AuthenticationOptions(biometricOnly: true),
         );
       } catch (e) {
@@ -45,33 +46,36 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   void initState() {
-	super.initState();
-	WidgetsBinding.instance.addObserver(this);
+    super.initState();
+    WidgetsBinding.instance.addObserver(this);
   }
 
   @override
   void dispose() {
-	WidgetsBinding.instance.removeObserver(this);
-	super.dispose();
+    WidgetsBinding.instance.removeObserver(this);
+    super.dispose();
   }
 
   @override
   void didChangeAppLifecycleState(AppLifecycleState state) {
-	if (state == AppLifecycleState.resumed) {
-	  // App is resumed - check for authentication
-	  _authService.authenticateWithBiometrics().then((isAuthenticated) {
-		if (!isAuthenticated) {
-		  // Handle authentication failure or redirect to a locked screen
-		  log('auth_service.dart: Authentication failed');
-		}
-	  });
-	}
+    if (state == AppLifecycleState.resumed) {
+      // App is resumed - check for authentication
+      _authService.authenticateWithBiometrics().then((isAuthenticated) {
+        if (!isAuthenticated) {
+          // Handle authentication failure or redirect to a locked screen
+          log('auth_service.dart: Authentication failed');
+        }
+      });
+    }
   }
 
   @override
-  Widget build(BuildContext context) => const MaterialApp(
-	  home: DashboardPage(), // Your example page
-	);
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return const MaterialApp(
+      home: DashboardPage(), // Your example page
+    );
+  }
 }
 
 Future<bool> isSimulator() async {

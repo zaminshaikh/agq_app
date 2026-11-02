@@ -1,3 +1,4 @@
+import 'package:agq_app/content/app_content.dart';
 import 'dart:convert';
 import 'dart:developer';
 import 'dart:math' as math;
@@ -22,8 +23,10 @@ class AppleAuthService {
         if (context.mounted) {
           await CustomAlertDialog.showAlertDialog(
             context,
-            'Not Available',
-            'Sign in with Apple is not available on this device.',
+            AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.not_available_4028c0'),
+            AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.sign_in_with_apple_is_not_available_on_ab2a7e'),
             icon: const Icon(Icons.error_outline, color: Colors.red),
           );
         }
@@ -31,11 +34,11 @@ class AppleAuthService {
       }
 
       log('Starting Apple sign in process (login flow)');
-      
+
       // Generate secure nonce - MUST follow Firebase requirements
       final rawNonce = _generateNonce();
       final nonce = _sha256ofString(rawNonce);
-      
+
       log('Generated nonce for Apple Sign In');
 
       // Request credential from Apple
@@ -47,14 +50,15 @@ class AppleAuthService {
           ],
           nonce: nonce,
         );
-        
+
         log('Got Apple credential with identity token length: ${appleCredential.identityToken?.length ?? 0}');
-        
+
         if (appleCredential.identityToken == null) {
           log('Error: Identity token is null');
           throw FirebaseAuthException(
             code: 'invalid-credential',
-            message: 'Apple Sign In failed: Identity token is null',
+            message: AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.apple_sign_in_failed_identity_token_is_c10704'),
           );
         }
 
@@ -64,42 +68,48 @@ class AppleAuthService {
           rawNonce: rawNonce,
           accessToken: appleCredential.authorizationCode,
         );
-        
+
         log('Created OAuth credential for Firebase');
 
         // Sign in with Firebase
-        final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+        final userCredential =
+            await FirebaseAuth.instance.signInWithCredential(oauthCredential);
         final user = userCredential.user;
-        
+
         if (user == null) {
           log('Error: Firebase user is null after sign in');
           throw FirebaseAuthException(
             code: 'user-not-found',
-            message: 'Failed to get user after Apple sign in',
+            message: AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.failed_to_get_user_after_apple_sign_in_100e83'),
           );
         }
-        
+
         log('Successfully signed in with Firebase using Apple ID: ${user.uid}');
 
         // Update display name if needed
-        if (appleCredential.givenName != null && appleCredential.familyName != null) {
-          String fullName = '${appleCredential.givenName} ${appleCredential.familyName}';
+        if (appleCredential.givenName != null &&
+            appleCredential.familyName != null) {
+          String fullName =
+              '${appleCredential.givenName} ${appleCredential.familyName}';
           if (user.displayName == null || user.displayName!.isEmpty) {
             await user.updateDisplayName(fullName);
           }
         }
-        
+
         // Check if this user has a linked CID
         final db = DatabaseService(user.uid);
         final isLinked = await db.isUIDLinked(user.uid);
-        
+
         if (!isLinked) {
           log('User is not linked to any CID');
           if (context.mounted) {
             await CustomAlertDialog.showAlertDialog(
               context,
-              'Account Not Found',
-              'This Apple ID is not linked to any account. Please create an account first.',
+              AppContent.text(
+                  'text.screens.authenticate.utils.apple_auth_service.account_not_found_df3c9a'),
+              AppContent.text(
+                  'text.screens.authenticate.utils.apple_auth_service.this_apple_id_is_not_linked_to_any_acc_f9127a'),
               icon: const Icon(Icons.error_outline, color: Colors.red),
             );
           }
@@ -109,7 +119,7 @@ class AppleAuthService {
         if (!context.mounted) return false;
         // Update Firebase messaging token
         await updateFirebaseMessagingToken(user, context);
-                
+
         return true;
       } catch (signInError) {
         log('Error during Apple Sign In process: $signInError');
@@ -118,11 +128,14 @@ class AppleAuthService {
     } catch (e) {
       log('Error in Apple sign in: $e', stackTrace: StackTrace.current);
       if (context.mounted) {
-        String message = 'Failed to sign in with Apple';
+        String message = AppContent.text(
+            'text.screens.authenticate.utils.apple_auth_service.failed_to_sign_in_with_apple_7ea61e');
         if (e.toString().contains('canceled')) {
-          message = 'Sign in was canceled';
+          message = AppContent.text(
+              'text.screens.authenticate.utils.apple_auth_service.sign_in_was_canceled_1fcd7f');
         } else if (e.toString().contains('invalid-credential')) {
-          message = 'Authentication failed. Please try again or use another method.';
+          message = AppContent.text(
+              'text.screens.authenticate.utils.apple_auth_service.authentication_failed_please_try_again_c8a267');
         }
         await _showError(context, message);
       }
@@ -139,8 +152,10 @@ class AppleAuthService {
         if (context.mounted) {
           await CustomAlertDialog.showAlertDialog(
             context,
-            'Not Available',
-            'Sign in with Apple is not available on this device.',
+            AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.not_available_4028c0'),
+            AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.sign_in_with_apple_is_not_available_on_ab2a7e'),
             icon: const Icon(Icons.error_outline, color: Colors.red),
           );
         }
@@ -148,11 +163,11 @@ class AppleAuthService {
       }
 
       log('Starting Apple sign in process');
-      
+
       // Generate secure nonce - MUST follow Firebase requirements
       final rawNonce = _generateNonce();
       final nonce = _sha256ofString(rawNonce);
-      
+
       log('Generated nonce for Apple Sign In');
 
       // Request credential from Apple
@@ -164,14 +179,15 @@ class AppleAuthService {
           ],
           nonce: nonce,
         );
-        
+
         log('Got Apple credential with identity token length: ${appleCredential.identityToken?.length ?? 0}');
-        
+
         if (appleCredential.identityToken == null) {
           log('Error: Identity token is null');
           throw FirebaseAuthException(
             code: 'invalid-credential',
-            message: 'Apple Sign In failed: Identity token is null',
+            message: AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.apple_sign_in_failed_identity_token_is_c10704'),
           );
         }
 
@@ -181,27 +197,31 @@ class AppleAuthService {
           rawNonce: rawNonce,
           accessToken: appleCredential.authorizationCode,
         );
-        
+
         log('Created OAuth credential for Firebase');
 
         // Sign in with Firebase
-        final userCredential = await FirebaseAuth.instance.signInWithCredential(oauthCredential);
+        final userCredential =
+            await FirebaseAuth.instance.signInWithCredential(oauthCredential);
         final user = userCredential.user;
-        
+
         if (user == null) {
           log('Error: Firebase user is null after sign in');
           throw FirebaseAuthException(
             code: 'user-not-found',
-            message: 'Failed to get user after Apple sign in',
+            message: AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.failed_to_get_user_after_apple_sign_in_100e83'),
           );
         }
-        
+
         log('Successfully signed in with Firebase using Apple ID: ${user.uid}');
 
         // Process the user data
         String displayName = 'Apple User';
-        if (appleCredential.givenName != null && appleCredential.familyName != null) {
-          displayName = '${appleCredential.givenName} ${appleCredential.familyName}';
+        if (appleCredential.givenName != null &&
+            appleCredential.familyName != null) {
+          displayName =
+              '${appleCredential.givenName} ${appleCredential.familyName}';
           // Update display name if needed
           if (user.displayName == null || user.displayName!.isEmpty) {
             await user.updateDisplayName(displayName);
@@ -217,11 +237,14 @@ class AppleAuthService {
     } catch (e) {
       log('Error in Apple sign up: $e', stackTrace: StackTrace.current);
       if (context.mounted) {
-        String message = 'Failed to sign up with Apple';
+        String message = AppContent.text(
+            'text.screens.authenticate.utils.apple_auth_service.failed_to_sign_up_with_apple_e98f0d');
         if (e.toString().contains('canceled')) {
-          message = 'Sign in was canceled';
+          message = AppContent.text(
+              'text.screens.authenticate.utils.apple_auth_service.sign_in_was_canceled_1fcd7f');
         } else if (e.toString().contains('invalid-credential')) {
-          message = 'Authentication failed. Please try again or use another method.';
+          message = AppContent.text(
+              'text.screens.authenticate.utils.apple_auth_service.authentication_failed_please_try_again_c8a267');
         }
         await _showError(context, message);
       }
@@ -230,9 +253,11 @@ class AppleAuthService {
 
   /// Generates a cryptographically secure random nonce
   String _generateNonce([int length = 32]) {
-    const charset = '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
+    const charset =
+        '0123456789ABCDEFGHIJKLMNOPQRSTUVXYZabcdefghijklmnopqrstuvwxyz-._';
     final random = math.Random.secure();
-    return List.generate(length, (_) => charset[random.nextInt(charset.length)]).join();
+    return List.generate(length, (_) => charset[random.nextInt(charset.length)])
+        .join();
   }
 
   /// Returns the SHA-256 hash of [input] in hex notation
@@ -259,8 +284,11 @@ class AppleAuthService {
       // Check if CID exists
       if (!(await db.checkDocumentExists(cid)) && context.mounted) {
         log('No record found for Client ID: $cid');
-        await _showError(context,
-            'No record found for Client ID $cid. Please contact support.');
+        await _showError(
+            context,
+            AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.no_record_found_for_client_id_cid_plea_025e5d',
+                {'cid': cid}));
         await FirebaseAuth.instance.signOut();
         return;
       }
@@ -280,8 +308,10 @@ class AppleAuthService {
         } else if (context.mounted) {
           // Someone else has already linked with this CID
           log('CID already linked to another account: $cid');
-          await _showError(context,
-              'This Client ID is already linked to another account. Please use a different Client ID or contact support.');
+          await _showError(
+              context,
+              AppContent.text(
+                  'text.screens.authenticate.utils.apple_auth_service.this_client_id_is_already_linked_to_an_3226d4'));
           await FirebaseAuth.instance.signOut();
         }
         return;
@@ -299,8 +329,10 @@ class AppleAuthService {
       if (context.mounted) {
         await CustomAlertDialog.showAlertDialog(
           context,
-          'Success',
-          'Your account has been created and linked successfully.',
+          AppContent.text(
+              'text.screens.authenticate.utils.apple_auth_service.success_42a8f6'),
+          AppContent.text(
+              'text.screens.authenticate.utils.apple_auth_service.your_account_has_been_created_and_link_f01413'),
           icon: const Icon(Icons.check_circle_outline_rounded,
               color: Colors.green),
         );
@@ -314,7 +346,11 @@ class AppleAuthService {
     } catch (e) {
       log('Error in _processSignUp: $e', stackTrace: StackTrace.current);
       if (context.mounted) {
-        await _showError(context, 'Failed to process sign-up: ${e.toString()}');
+        await _showError(
+            context,
+            AppContent.text(
+                'text.screens.authenticate.utils.apple_auth_service.failed_to_process_sign_up_value1_766de4',
+                {'value1': e.toString()}));
         await FirebaseAuth.instance.signOut();
       }
     }
@@ -325,7 +361,8 @@ class AppleAuthService {
     if (context.mounted) {
       await CustomAlertDialog.showAlertDialog(
         context,
-        'Error',
+        AppContent.text(
+            'text.screens.authenticate.utils.apple_auth_service.error_7f2f6a'),
         message,
         icon: const Icon(Icons.error_outline, color: Colors.red),
       );

@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api
 
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:agq_app/screens/authenticate/create_account/create_account.dart';
 import 'package:agq_app/screens/authenticate/login/login.dart'; // Adjust the import path as necessary
@@ -62,106 +64,114 @@ class _OnboardingPageState extends State<OnboardingPage>
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.only(left: 40, right: 40),
-          child: Center(
-            // This centers the content horizontally.
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment
-                  .center, // This centers the content vertically.
-              children: [
-                SlideTransition(
-                  position: _slideAnimation,
-                  child: Image.asset(
-                    'assets/icons/agq_logo.png',
-                    height: 80,
-                  ),
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.only(left: 40, right: 40),
+        child: Center(
+          // This centers the content horizontally.
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment
+                .center, // This centers the content vertically.
+            children: [
+              SlideTransition(
+                position: _slideAnimation,
+                child: const AppContentImage(
+                  'assets/icons/agq_logo.png',
+                  height: 80,
                 ),
-                const SizedBox(height: 30),
-                FadeTransition(
-                  opacity: _fadeAnimation,
-                  child: Column(
-                    mainAxisSize: MainAxisSize.min,
-                    children: <Widget>[
-                      const Text('Welcome to AGQ!',
-                          style: TextStyle(
-                              fontSize: 24, fontWeight: FontWeight.bold)),
-                      const SizedBox(height: 10),
-                      const Text(
-                          'Please log in or create a new account to continue.',
-                          style: TextStyle(
-                              fontSize: 14, fontWeight: FontWeight.w300)),
-                      const SizedBox(height: 30),
-                      GestureDetector(
-                        onTap: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const LoginPage()), // Navigate to the Log In page
-                          );
-                        },
-                        child: Container(
-                          height: 55,
-                          decoration: BoxDecoration(
-                            color: const Color.fromARGB(255, 7, 48, 89),
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          child: const Center(
-                            child: Text(
-                              'Login',
-                              style: TextStyle(
-                                fontSize: 18,
-                                color: Colors.white,
-                                fontWeight: FontWeight.bold,
-                                fontFamily: 'Titillium Web',
-                              ),
-                            ),
-                          ),
+              ),
+              const SizedBox(height: 30),
+              FadeTransition(
+                opacity: _fadeAnimation,
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: <Widget>[
+                    Text(
+                        AppContent.text(
+                            'text.screens.authenticate.onboarding.welcome_to_agq_b71855'),
+                        style: const TextStyle(
+                            fontSize: 24, fontWeight: FontWeight.bold)),
+                    const SizedBox(height: 10),
+                    Text(
+                        AppContent.text(
+                            'text.screens.authenticate.onboarding.please_log_in_or_create_a_new_account__111f2e'),
+                        style: const TextStyle(
+                            fontSize: 14, fontWeight: FontWeight.w300)),
+                    const SizedBox(height: 30),
+                    GestureDetector(
+                      onTap: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const LoginPage()), // Navigate to the Log In page
+                        );
+                      },
+                      child: Container(
+                        height: 55,
+                        decoration: BoxDecoration(
+                          color: const Color.fromARGB(255, 7, 48, 89),
+                          borderRadius: BorderRadius.circular(25),
                         ),
-                      ),
-
-                      const SizedBox(
-                          height: 10), // Provides spacing between the buttons
-                      OutlinedButton(
-                        onPressed: () {
-                          Navigator.push(
-                            context,
-                            MaterialPageRoute(
-                                builder: (context) =>
-                                    const CreateAccountPage()), // Navigate to the Sign Up page
-                          );
-                        },
-                        style: OutlinedButton.styleFrom(
-                          side: const BorderSide(
-                              color: Color.fromARGB(255, 0, 74, 147),
-                              width: 2.0), // Border color
-                          shape: RoundedRectangleBorder(
-                            borderRadius: BorderRadius.circular(25),
-                          ),
-                          padding: EdgeInsets.zero, // Remove default padding
-                        ),
-                        child: Container(
-                          height: 55,
-                          alignment: Alignment.center,
-                          child: const Text(
-                            'Sign Up',
-                            style: TextStyle(
+                        child: Center(
+                          child: Text(
+                            AppContent.text(
+                                'text.screens.authenticate.onboarding.login_4e5a28'),
+                            style: const TextStyle(
                               fontSize: 18,
-                              color: Color.fromARGB(255, 0, 100, 199),
+                              color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontFamily: 'Titillium Web',
                             ),
                           ),
                         ),
                       ),
-                    ],
-                  ),
+                    ),
+
+                    const SizedBox(
+                        height: 10), // Provides spacing between the buttons
+                    OutlinedButton(
+                      onPressed: () {
+                        Navigator.push(
+                          context,
+                          MaterialPageRoute(
+                              builder: (context) =>
+                                  const CreateAccountPage()), // Navigate to the Sign Up page
+                        );
+                      },
+                      style: OutlinedButton.styleFrom(
+                        side: const BorderSide(
+                            color: Color.fromARGB(255, 0, 74, 147),
+                            width: 2.0), // Border color
+                        shape: RoundedRectangleBorder(
+                          borderRadius: BorderRadius.circular(25),
+                        ),
+                        padding: EdgeInsets.zero, // Remove default padding
+                      ),
+                      child: Container(
+                        height: 55,
+                        alignment: Alignment.center,
+                        child: Text(
+                          AppContent.text(
+                              'text.screens.authenticate.onboarding.sign_up_2ba402'),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Color.fromARGB(255, 0, 100, 199),
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Titillium Web',
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-              ],
-            ),
+              ),
+            ],
           ),
         ),
-      );
+      ),
+    );
+  }
 }

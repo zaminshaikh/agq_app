@@ -1,4 +1,5 @@
 // Flutter and Dart packages
+import 'package:agq_app/content/app_content.dart';
 import 'dart:async';
 
 import 'package:flutter/material.dart';
@@ -54,7 +55,7 @@ void main() async {
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthState(),
-      child: Phoenix(child: const MyApp()),
+      child: AppContentScope(child: Phoenix(child: const MyApp())),
     ),
   );
 }
@@ -77,6 +78,7 @@ Future<void> _initializeServices() async {
 
   // Reset Firestore settings to ensure a clean state
   await _resetFirestore();
+  await AppContent.instance.initialize();
 }
 
 /// Reset Firestore settings to ensure a clean state
@@ -148,56 +150,61 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   /// Stream that provides Client data based on authentication state
-  Stream<Client?> getClientStream() => FirebaseAuth.instance
-        .userChanges()
-        .asyncExpand((User? user) async* {
-      if (user == null) {
-        // User is not authenticated
-        yield null;
-      } else if (mounted) {
-        // Fetch DatabaseService for the authenticated user
-        DatabaseService? db = await DatabaseService.fetchCID(user.uid, context);
-        if (db == null) {
-          // CID doc not found
+  Stream<Client?> getClientStream() =>
+      FirebaseAuth.instance.userChanges().asyncExpand((User? user) async* {
+        if (user == null) {
+          // User is not authenticated
           yield null;
-        } else {
-          yield* db.getClientStream();
+        } else if (mounted) {
+          // Fetch DatabaseService for the authenticated user
+          DatabaseService? db =
+              await DatabaseService.fetchCID(user.uid, context);
+          if (db == null) {
+            // CID doc not found
+            yield null;
+          } else {
+            yield* db.getClientStream();
+          }
         }
-      }});
+      });
 
   @override
   Future<void> didChangeAppLifecycleState(AppLifecycleState state) async {
     final appState = Provider.of<AuthState>(context, listen: false);
     log('AppLifecycleState changed: $state');
-  
+
     if (state == AppLifecycleState.resumed) {
       final user = FirebaseAuth.instance.currentUser;
-      if (user == null) { return; }
+      if (user == null) {
+        return;
+      }
       DatabaseService? db = await DatabaseService.fetchCID(user.uid, context);
-      if (db != null) { 
+      if (db != null) {
         await db.updateField('lastLoggedIn', Timestamp.now());
       }
-      
+
       // Cancel the timer when the app is resumed
       _inactivityTimer?.cancel();
       log('Timer cancelled on app resume');
     } else if ((state == AppLifecycleState.paused ||
-                state == AppLifecycleState.inactive ||
-                state == AppLifecycleState.hidden) &&
-            !appState.hasNavigatedToFaceIDPage &&
-            await isAuthenticated() &&
-            appState.initiallyAuthenticated &&
-            appState.isAppLockEnabled) {
+            state == AppLifecycleState.inactive ||
+            state == AppLifecycleState.hidden) &&
+        !appState.hasNavigatedToFaceIDPage &&
+        await isAuthenticated() &&
+        appState.initiallyAuthenticated &&
+        appState.isAppLockEnabled) {
       // log when all conditions are met
       log('All conditions met: Navigating to FaceIdPage after timer');
-  
+
       _inactivityTimer?.cancel();
       _inactivityTimer = Timer(Duration.zero, () {
         appState.setHasNavigatedToFaceIDPage(true);
         navigatorKey.currentState?.pushReplacement(
           PageRouteBuilder(
-            pageBuilder: (context, animation, secondaryAnimation) => const FaceIdPage(),
-            transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
+            pageBuilder: (context, animation, secondaryAnimation) =>
+                const FaceIdPage(),
+            transitionsBuilder:
+                (context, animation, secondaryAnimation, child) => child,
           ),
         );
       });
@@ -220,7 +227,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
         log('Condition not met: isAppLockEnabled is false');
       }
     }
-  
+
     if (appState.justAuthenticated) {
       // Reset navigation flags when the user has just authenticated
       appState.setHasNavigatedToFaceIDPage(false);
@@ -233,7 +240,9 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   /// Check if the user is authenticated and linked
   Future<bool> isAuthenticated() async {
     final user = FirebaseAuth.instance.currentUser;
-    if (user == null) { return false; }
+    if (user == null) {
+      return false;
+    }
 
     String uid = user.uid;
 
@@ -245,7 +254,9 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
   }
 
   @override
-  Widget build(BuildContext context) => StreamBuilder<ConnectivityResult>(
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return StreamBuilder<ConnectivityResult>(
       stream: Connectivity().onConnectivityChanged.expand((results) => results),
       builder: (context, snapshot) {
         if (snapshot.hasData && snapshot.data == ConnectivityResult.none) {
@@ -255,7 +266,6 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
           );
         }
 
-  
         return StreamBuilder<User?>(
           stream: FirebaseAuth.instance.userChanges(),
           builder: (context, authSnapshot) {
@@ -279,7 +289,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   ),
                   child: child!,
                 ),
-                title: 'AGQ Investments',
+                title: AppContent.text('text.main.agq_investments_e6d2b6'),
                 theme: _buildAppTheme(),
                 // home: const AuthCheck(),
                 routes: {
@@ -287,7 +297,8 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
                   '/create_account': (context) => const CreateAccountPage(),
                   '/login': (context) => const LoginPage(),
                   '/forgot_password': (context) => const ForgotPasswordPage(),
-                  '/email_verification': (context) => const EmailVerificationScreen(),
+                  '/email_verification': (context) =>
+                      const EmailVerificationScreen(),
                   '/dashboard': (context) => const DashboardPage(),
                   '/analytics': (context) => const AnalyticsPage(),
                   '/activity': (context) => const ActivityPage(),
@@ -301,7 +312,7 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
         );
       },
     );
-
+  }
 
   /// Build the application theme
   ThemeData _buildAppTheme() => ThemeData(
@@ -356,7 +367,9 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 /// Check if the user is authenticated and linked
 Future<bool> isAuthenticated() async {
   final user = FirebaseAuth.instance.currentUser;
-  if (user == null) { return false; }
+  if (user == null) {
+    return false;
+  }
 
   String uid = user.uid;
 
@@ -399,7 +412,7 @@ class _AuthCheckState extends State<AuthCheck> {
       return false;
     }
 
-    await user.reload(); 
+    await user.reload();
 
     if (!user.emailVerified) {
       return false;
@@ -427,94 +440,106 @@ class _AuthCheckState extends State<AuthCheck> {
   }
 
   @override
-  Widget build(BuildContext context) => StreamBuilder<User?>(
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, snapshot) {
         if (snapshot.connectionState == ConnectionState.waiting) {
           return const Center(child: CustomProgressIndicator());
         } else if (snapshot.hasError) {
           log('AuthCheck: StreamBuilder error: ${snapshot.error}');
-          return Center(child: Text('Error: ${snapshot.error}'));
+          return Center(
+              child: Text(AppContent.text('text.main.error_value1_54e519',
+                  {'value1': snapshot.error})));
         } else if (snapshot.hasData) {
           final user = snapshot.data!;
           log('AuthCheck: User is logged in as ${user.email}');
 
           final authState = Provider.of<AuthState>(context, listen: false);
 
-
           // Use the stored future
           return FutureBuilder<bool>(
-            future: _isAuthenticatedAndVerifiedFuture,
-            builder: (context, authSnapshot) {
-              if (authSnapshot.connectionState == ConnectionState.waiting) {
-                log('AuthCheck: FutureBuilder waiting for authentication check.');
-                if (authState.forceDashboard) {
-                  log('AuthCheck: User is not authenticated or linked, but has reloaded the app from the no internet screen. Navigating to DashboardPage.');
-                  return const DashboardPage();
-                } else {
-                  return const Center(child: CustomProgressIndicator());
-                }
-              } else if (authSnapshot.hasError) {
-                log('AuthCheck: FutureBuilder error: ${authSnapshot.error}');
-                return Center(child: Text('Error: ${authSnapshot.error}'));
-              } else if (authSnapshot.hasData && authSnapshot.data == true) {
-                // Now proceed to check app lock state
-                return FutureBuilder<bool>(
-                  future: _loadAppLockStateFuture,
-                  builder: (context, appLockSnapshot) {
-                    if (appLockSnapshot.connectionState ==
-                        ConnectionState.waiting) {
-                      return const Center(child: CustomProgressIndicator());
-                    } else if (appLockSnapshot.hasError) {
-                      log('AuthCheck: FutureBuilder error: ${appLockSnapshot.error}');
-                      return Center(
-                          child: Text('Error: ${appLockSnapshot.error}'));
-                    } else if (appLockSnapshot.hasData) {
-                      final isAppLockEnabled = appLockSnapshot.data!;
-                      if (!isAppLockEnabled) {
-                        log('AuthCheck: App lock is disabled. Navigating to DashboardPage.');
-                        return const DashboardPage();
-                      }
-                      log('AuthCheck: App lock is enabled. Navigating to InitialFaceIdPage.');
-                      return const InitialFaceIdPage();
-                    } else {
-                      return const InitialFaceIdPage();
-                    }
-                  },
-                );
-              } else {
-                // Check if user is signed in but not verified
-                return FutureBuilder<bool>(
-                  future: _isSignedInButNotVerifiedFuture,
-                  builder: (context, verificationSnapshot) {
-                    if (verificationSnapshot.connectionState == ConnectionState.waiting) {
-                      return const Center(child: CustomProgressIndicator());
-                    } else if (verificationSnapshot.hasError) {
-                      log('AuthCheck: FutureBuilder error: ${verificationSnapshot.error}');
-                      return Center(child: Text('Error: ${verificationSnapshot.error}'));
-                    } else if (verificationSnapshot.hasData && verificationSnapshot.data == true) {
-                      // User is signed in but email not verified
-                      log('AuthCheck: User is signed in but email not verified. Navigating to EmailVerificationScreen.');
-                      return const EmailVerificationScreen();
-                    } else {
-                      // User is not authenticated or linked
-                      if (!authState.forceDashboard) {
-                        log('AuthCheck: User is not authenticated or linked. Navigating to OnboardingPage.');
-                        return const OnboardingPage();
+              future: _isAuthenticatedAndVerifiedFuture,
+              builder: (context, authSnapshot) {
+                if (authSnapshot.connectionState == ConnectionState.waiting) {
+                  log('AuthCheck: FutureBuilder waiting for authentication check.');
+                  if (authState.forceDashboard) {
+                    log('AuthCheck: User is not authenticated or linked, but has reloaded the app from the no internet screen. Navigating to DashboardPage.');
+                    return const DashboardPage();
+                  } else {
+                    return const Center(child: CustomProgressIndicator());
+                  }
+                } else if (authSnapshot.hasError) {
+                  log('AuthCheck: FutureBuilder error: ${authSnapshot.error}');
+                  return Center(
+                      child: Text(AppContent.text(
+                          'text.main.error_value1_54e519',
+                          {'value1': authSnapshot.error})));
+                } else if (authSnapshot.hasData && authSnapshot.data == true) {
+                  // Now proceed to check app lock state
+                  return FutureBuilder<bool>(
+                    future: _loadAppLockStateFuture,
+                    builder: (context, appLockSnapshot) {
+                      if (appLockSnapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return const Center(child: CustomProgressIndicator());
+                      } else if (appLockSnapshot.hasError) {
+                        log('AuthCheck: FutureBuilder error: ${appLockSnapshot.error}');
+                        return Center(
+                            child: Text(AppContent.text(
+                                'text.main.error_value1_54e519',
+                                {'value1': appLockSnapshot.error})));
+                      } else if (appLockSnapshot.hasData) {
+                        final isAppLockEnabled = appLockSnapshot.data!;
+                        if (!isAppLockEnabled) {
+                          log('AuthCheck: App lock is disabled. Navigating to DashboardPage.');
+                          return const DashboardPage();
+                        }
+                        log('AuthCheck: App lock is enabled. Navigating to InitialFaceIdPage.');
+                        return const InitialFaceIdPage();
                       } else {
-                        return const DashboardPage();
+                        return const InitialFaceIdPage();
                       }
-                    }
-                  },
-                );
-              }
-            }
-          );
+                    },
+                  );
+                } else {
+                  // Check if user is signed in but not verified
+                  return FutureBuilder<bool>(
+                    future: _isSignedInButNotVerifiedFuture,
+                    builder: (context, verificationSnapshot) {
+                      if (verificationSnapshot.connectionState ==
+                          ConnectionState.waiting) {
+                        return const Center(child: CustomProgressIndicator());
+                      } else if (verificationSnapshot.hasError) {
+                        log('AuthCheck: FutureBuilder error: ${verificationSnapshot.error}');
+                        return Center(
+                            child: Text(AppContent.text(
+                                'text.main.error_value1_54e519',
+                                {'value1': verificationSnapshot.error})));
+                      } else if (verificationSnapshot.hasData &&
+                          verificationSnapshot.data == true) {
+                        // User is signed in but email not verified
+                        log('AuthCheck: User is signed in but email not verified. Navigating to EmailVerificationScreen.');
+                        return const EmailVerificationScreen();
+                      } else {
+                        // User is not authenticated or linked
+                        if (!authState.forceDashboard) {
+                          log('AuthCheck: User is not authenticated or linked. Navigating to OnboardingPage.');
+                          return const OnboardingPage();
+                        } else {
+                          return const DashboardPage();
+                        }
+                      }
+                    },
+                  );
+                }
+              });
         } else {
           log('AuthCheck: User is not logged in yet.');
           return const OnboardingPage();
         }
       },
     );
+  }
 }
-

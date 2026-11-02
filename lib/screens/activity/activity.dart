@@ -1,9 +1,10 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:intl/intl.dart';
 import 'package:provider/provider.dart';
-import 'package:flutter_svg/flutter_svg.dart';
- import 'package:agq_app/components/custom_bottom_navigation_bar.dart';
+import 'package:agq_app/components/custom_bottom_navigation_bar.dart';
 import 'package:agq_app/components/progress_indicator.dart';
 import 'package:agq_app/database/models/activity_model.dart';
 import 'package:agq_app/database/models/client_model.dart';
@@ -78,6 +79,7 @@ class ActivityPageState extends State<ActivityPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }
@@ -127,7 +129,6 @@ class ActivityPageState extends State<ActivityPage> {
       ),
     );
   }
-  
 
   /// Retrieves activities and recipients from the client and connected users.
   void _retrieveActivitiesAndRecipients() {
@@ -153,12 +154,11 @@ class ActivityPageState extends State<ActivityPage> {
         .toSet()
         // convert back to a list
         .toList();
-
   }
 
   /// Builds the content of the list based on the index.
   Widget? _buildListContent(BuildContext context, int index) {
-    // We removed the index == 0 filter/sort row check 
+    // We removed the index == 0 filter/sort row check
     // because it is now in the AppBar
     if (activities.isEmpty && index == 0) {
       return buildNoActivityMessage();
@@ -188,9 +188,9 @@ class ActivityPageState extends State<ActivityPage> {
             Padding(
               padding: const EdgeInsets.only(right: 8.0),
               child: ElevatedButton.icon(
-                icon: SvgPicture.asset(
+                icon: const AppContentImage(
                   'assets/icons/group_people.svg',
-                  colorFilter: const ColorFilter.mode(
+                  colorFilter: ColorFilter.mode(
                     Colors.white,
                     BlendMode.srcIn,
                   ),
@@ -209,9 +209,9 @@ class ActivityPageState extends State<ActivityPage> {
                     borderRadius: BorderRadius.circular(20.0),
                   ),
                 ),
-                label: const Text(
-                  'All',
-                  style: TextStyle(
+                label: Text(
+                  AppContent.text('text.screens.activity.activity.all_6a7208'),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 15,
                     fontFamily: 'Titillium Web',
@@ -232,9 +232,9 @@ class ActivityPageState extends State<ActivityPage> {
               bool isSelected = _clientsFilter.contains(parentName);
 
               final rowChildren = <Widget>[
-                SvgPicture.asset(
+                const AppContentImage(
                   'assets/icons/single_person.svg',
-                  colorFilter: const ColorFilter.mode(
+                  colorFilter: ColorFilter.mode(
                     Colors.white,
                     BlendMode.srcIn,
                   ),
@@ -253,9 +253,9 @@ class ActivityPageState extends State<ActivityPage> {
                 ),
                 if (isSelected) ...[
                   const SizedBox(width: 15),
-                  SvgPicture.asset(
+                  const AppContentImage(
                     'assets/icons/x_icon.svg',
-                    colorFilter: const ColorFilter.mode(
+                    colorFilter: ColorFilter.mode(
                       Colors.white,
                       BlendMode.srcIn,
                     ),
@@ -312,8 +312,6 @@ class ActivityPageState extends State<ActivityPage> {
       ),
     );
   }
-
-
 
   /// Builds an activity item with a day header if necessary.
   Widget _buildActivityWithDayHeader(Activity activity, int index) {
@@ -386,7 +384,6 @@ class ActivityPageState extends State<ActivityPage> {
     );
   }
 
-  
   /// Shows the filter modal.
   void _showFilterModal(BuildContext context) {
     showModalBottomSheet(
@@ -400,7 +397,8 @@ class ActivityPageState extends State<ActivityPage> {
         recipientsFilter: _recipientsFilter,
         allRecipients: allRecipients,
         // Pass allParents if _allSelected is true to reflect all checkboxes as selected
-        clientsFilter: _allSelected ? List.from(allClients) : List.from(_clientsFilter),
+        clientsFilter:
+            _allSelected ? List.from(allClients) : List.from(_clientsFilter),
         allClients: allClients,
         selectedDates: selectedDates,
         onApply: (
@@ -422,7 +420,7 @@ class ActivityPageState extends State<ActivityPage> {
               _allSelected = _clientsFilter.isEmpty;
             }
           });
-          
+
           // Re-apply filtering as needed
           filterActivities(activities, _typeFilter, _recipientsFilter,
               _clientsFilter, selectedDates);

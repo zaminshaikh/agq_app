@@ -1,5 +1,6 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously, duplicate_ignore, prefer_expression_function_bodies, unused_catch_clause, empty_catches
 
+import 'package:agq_app/content/app_content.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:agq_app/components/progress_indicator.dart';
@@ -23,6 +24,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }
@@ -55,31 +57,28 @@ class _ProfilesPageState extends State<ProfilesPage> {
 
 // This is the Profiless section
   Container _profilesForUser() => Container(
-    padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
-    child: Column(
-      children: [
-        const Row(
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 40),
+        child: Column(
           children: [
-            Text(
-              'My Profiles', 
-              style: TextStyle(
-                fontSize: 22,
-                color: Color.fromRGBO(255, 255, 255, 1),
-                fontWeight: FontWeight.bold,
-                fontFamily: 'Titillium Web',
-              ),
+            Row(
+              children: [
+                Text(
+                  AppContent.text(
+                      'text.screens.profile.pages.profiles.my_profiles_6f78f5'),
+                  style: const TextStyle(
+                    fontSize: 22,
+                    color: Color.fromRGBO(255, 255, 255, 1),
+                    fontWeight: FontWeight.bold,
+                    fontFamily: 'Titillium Web',
+                  ),
+                ),
+              ],
             ),
+            const SizedBox(height: 20),
+            clientCard(client!),
           ],
         ),
-
-        const SizedBox(height: 20),
-
-        clientCard(client!),
-
-      ],
-    ),
-  
-  );
+      );
 
 // This is the Profiless section
   Container _profilesForConnectedUser() {
@@ -90,11 +89,12 @@ class _ProfilesPageState extends State<ProfilesPage> {
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 40),
       child: Column(
         children: [
-          const Row(
+          Row(
             children: [
               Text(
-                'Connected Users',
-                style: TextStyle(
+                AppContent.text(
+                    'text.screens.profile.pages.profiles.connected_users_397621'),
+                style: const TextStyle(
                   fontSize: 22,
                   color: Color.fromRGBO(255, 255, 255, 1),
                   fontWeight: FontWeight.bold,
@@ -107,8 +107,7 @@ class _ProfilesPageState extends State<ProfilesPage> {
             padding: const EdgeInsets.only(top: 20),
             itemCount: client!.connectedUsers!.length,
             itemBuilder: (context, index) {
-              return 
-              Column(
+              return Column(
                 children: [
                   clientCard(client!.connectedUsers![index]!),
                   const SizedBox(height: 20),
@@ -124,83 +123,100 @@ class _ProfilesPageState extends State<ProfilesPage> {
   }
 
   Widget clientCard(Client c) => Container(
-          width: double.infinity,
-          decoration: BoxDecoration(
-            color: Colors.transparent,
-            borderRadius: BorderRadius.circular(10), 
-            border: Border.all(color: Colors.white, width: 1), // Add this line
+        width: double.infinity,
+        decoration: BoxDecoration(
+          color: Colors.transparent,
+          borderRadius: BorderRadius.circular(10),
+          border: Border.all(color: Colors.white, width: 1), // Add this line
+        ),
+        child: Padding(
+          padding: const EdgeInsets.all(20.0),
+          child: Row(
+            crossAxisAlignment: CrossAxisAlignment.start,
+            children: [
+              Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(
+                    '${c.firstName} ${c.lastName}',
+                    style: const TextStyle(
+                      fontSize: 20,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontWeight: FontWeight.bold,
+                      fontFamily: 'Titillium Web',
+                    ),
+                  ),
+                  const SizedBox(height: 5),
+                  Text(
+                    AppContent.text(
+                        'text.screens.profile.pages.profiles.client_id_value1_7c72cb',
+                        {'value1': c.cid}),
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Colors.blue,
+                      fontFamily: 'Titillium Web',
+                      fontWeight: FontWeight.w600,
+                    ),
+                  ),
+                  const SizedBox(height: 15),
+                  Text(
+                    AppContent.text(
+                        'text.screens.profile.pages.profiles.first_deposit_date_value1_59816f',
+                        {
+                          'value1': c.firstDepositDate.toString()
+                        }), // Assuming firstDepositDate is a String variable
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Titillium Web',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    AppContent.text(
+                        'text.screens.profile.pages.profiles.communication_email_value1_e0391e',
+                        {
+                          'value1': c.initEmail
+                        }), // Assuming initEmail is a String variable
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Titillium Web',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    AppContent.text(
+                        'text.screens.profile.pages.profiles.phone_number_value1_4b780f',
+                        {
+                          'value1': c.phoneNumber
+                        }), // Assuming phoneNumber is a String variable
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Titillium Web',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                  Text(
+                    AppContent.text(
+                        'text.screens.profile.pages.profiles.address_value1_aaa269',
+                        {
+                          'value1': c.address
+                        }), // Assuming address is a String variable
+                    style: const TextStyle(
+                      fontSize: 14,
+                      color: Color.fromRGBO(255, 255, 255, 1),
+                      fontFamily: 'Titillium Web',
+                    ),
+                  ),
+                  const SizedBox(height: 10),
+                ],
+              ),
+            ],
           ),
-          
-          child: Padding(
-            padding: const EdgeInsets.all(20.0),
-            child: Row(
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
-                  children: [
-                    Text(
-                      '${c.firstName} ${c.lastName}', 
-                      style: const TextStyle(
-                        fontSize: 20,
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontWeight: FontWeight.bold,
-                        fontFamily: 'Titillium Web',
-                      ),
-                    ),
-                    const SizedBox(height: 5),
-                    Text(
-                      'Client ID: ${c.cid}', 
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Colors.blue,
-                        fontFamily: 'Titillium Web',
-                        fontWeight: FontWeight.w600,
-                      ),
-                    ),
-                    const SizedBox(height: 15),
-                    Text(
-                      'First Deposit Date: ${c.firstDepositDate.toString()}', // Assuming firstDepositDate is a String variable
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Titillium Web',
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Communication Email: ${c.initEmail}', // Assuming initEmail is a String variable
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Titillium Web',
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Phone Number: ${c.phoneNumber}', // Assuming phoneNumber is a String variable
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Titillium Web',
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                    Text(
-                      'Address: ${c.address}', // Assuming address is a String variable
-                      style: const TextStyle(
-                        fontSize: 14,
-                        color: Color.fromRGBO(255, 255, 255, 1),
-                        fontFamily: 'Titillium Web',
-                      ),
-                    ),
-                    const SizedBox(height: 10),
-                  ],
-                ),
-              ],
-            ),
-          ),
-        );
+        ),
+      );
 
   // This is the app bar
   SliverAppBar _buildAppBar(context) => SliverAppBar(
@@ -218,16 +234,17 @@ class _ProfilesPageState extends State<ProfilesPage> {
             Navigator.pop(context);
           },
         ),
-        flexibleSpace: const SafeArea(
+        flexibleSpace: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(left: 60.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 60.0, right: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Profiles',
-                  style: TextStyle(
+                  AppContent.text(
+                      'text.screens.profile.pages.profiles.profiles_0c2a93'),
+                  style: const TextStyle(
                     fontSize: 27,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,

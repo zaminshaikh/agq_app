@@ -1,6 +1,6 @@
 // ignore_for_file: use_build_context_synchronously
 
-
+import 'package:agq_app/content/app_content.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:font_awesome_flutter/font_awesome_flutter.dart';
 import 'package:google_sign_in/google_sign_in.dart';
@@ -46,7 +46,8 @@ class GoogleAuthService {
       // Check if the uid exists in Firestore
       final User? user = userCredential.user;
       if (user != null) {
-        final DatabaseService? db = await DatabaseService.fetchCID(user.uid, context);
+        final DatabaseService? db =
+            await DatabaseService.fetchCID(user.uid, context);
         if (db == null) {
           debugPrint(
               'GoogleAuthService: UID does not exist in Firestore. Deleting UID and redirecting to login.');
@@ -65,7 +66,7 @@ class GoogleAuthService {
         );
         return null;
       }
-          
+
       await updateFirebaseMessagingToken(user, context);
 
       // Navigate to Dashboard
@@ -83,8 +84,12 @@ class GoogleAuthService {
 
   Future<bool> showGoogleFailAlert(context) async {
     if (showAlert) {
-      await CustomAlertDialog.showAlertDialog(context, 'Google Sign-In Failed',
-          'The Gmail Account you tried to sign in with has not been registered with the app yet. Please try again or sign in with your email and password.',
+      await CustomAlertDialog.showAlertDialog(
+          context,
+          AppContent.text(
+              'text.screens.authenticate.utils.google_auth_service.google_sign_in_failed_07ec0e'),
+          AppContent.text(
+              'text.screens.authenticate.utils.google_auth_service.the_gmail_account_you_tried_to_sign_in_9ad980'),
           icon: const Icon(
             FontAwesomeIcons.google,
             color: Colors.blue,
@@ -96,7 +101,10 @@ class GoogleAuthService {
 
   Future<bool> showGoogleSignUpFailAlert(context, String message) async {
     if (showAlert) {
-      await CustomAlertDialog.showAlertDialog(context, 'Google Sign-In Failed',
+      await CustomAlertDialog.showAlertDialog(
+          context,
+          AppContent.text(
+              'text.screens.authenticate.utils.google_auth_service.google_sign_in_failed_07ec0e'),
           message,
           icon: const Icon(
             FontAwesomeIcons.google,
@@ -109,8 +117,12 @@ class GoogleAuthService {
 
   Future<bool> wrongCIDFailAlert(context) async {
     if (showAlert) {
-      await CustomAlertDialog.showAlertDialog(context, 'Google Sign-Up Failed',
-          'The CID you entered does not exist. Please try again with a valid CID.',
+      await CustomAlertDialog.showAlertDialog(
+          context,
+          AppContent.text(
+              'text.screens.authenticate.utils.google_auth_service.google_sign_up_failed_ff4b4f'),
+          AppContent.text(
+              'text.screens.authenticate.utils.google_auth_service.the_cid_you_entered_does_not_exist_ple_27932f'),
           icon: const Icon(
             FontAwesomeIcons.google,
             color: Colors.blue,
@@ -172,8 +184,11 @@ class GoogleAuthService {
         // Check if CID exists and is not linked.
         if (uidLinked && docExists && !docLinked) {
           showAlert = true;
-          await showGoogleSignUpFailAlert(context,
-              'Email ${user.email} is already associated with a different account. Please log in instead.');
+          await showGoogleSignUpFailAlert(
+              context,
+              AppContent.text(
+                  'text.screens.authenticate.utils.google_auth_service.email_value1_is_already_associated_wit_ceaaf1',
+                  {'value1': user.email}));
           return null;
         } else if (!docExists) {
           showAlert = true;
@@ -181,8 +196,11 @@ class GoogleAuthService {
           return null;
         } else if (docLinked) {
           showAlert = true;
-          await showGoogleSignUpFailAlert(context,
-              'User already exists for given Client ID $cid. Please log in instead.');
+          await showGoogleSignUpFailAlert(
+              context,
+              AppContent.text(
+                  'text.screens.authenticate.utils.google_auth_service.user_already_exists_for_given_client_i_ec27db',
+                  {'cid': cid}));
           return null;
         }
         // If the user does not exist in Firestore, log it and create a new user
@@ -192,7 +210,6 @@ class GoogleAuthService {
           debugPrint('cid: $cid');
           await db.linkNewUser(user.email!);
           await updateFirebaseMessagingToken(user, context);
-
         } catch (e) {
           // If there is an error adding the new user to Firestore, log the error and show an alert
           debugPrint('Error adding new user to Firestore: $e');
@@ -228,7 +245,7 @@ class GoogleAuthService {
     } catch (e) {
       // If there is an error during the Google sign-up process, log the error and rethrow it
       debugPrint('GoogleAuthService: Error during Google sign-up: $e');
-    rethrow;
+      rethrow;
     }
   }
 

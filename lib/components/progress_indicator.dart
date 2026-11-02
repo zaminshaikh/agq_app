@@ -1,19 +1,23 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'dart:async'; // Import for Timer
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart'; // Import for FirebaseAuth
-import 'package:flutter_svg/svg.dart';
 import 'package:agq_app/screens/utils/resources.dart';
 
 class CustomProgressIndicator extends StatelessWidget {
   const CustomProgressIndicator({super.key});
 
   @override
-  Widget build(BuildContext context) => const CircularProgressIndicator(
-        valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
-        strokeWidth: 6.0,
-      );
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return const CircularProgressIndicator(
+      valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
+      strokeWidth: 6.0,
+    );
+  }
 }
 
 class CustomProgressIndicatorPage extends StatefulWidget {
@@ -51,83 +55,90 @@ class CustomProgressIndicatorPageState
       context: context,
       barrierDismissible: false, // User must tap the button to dismiss
       builder: (BuildContext context) => AlertDialog(
-          backgroundColor: AppColors.defaultBlueGray800,
-          content: SingleChildScrollView(
-            child: ListBody(
-              children: <Widget>[
-                Padding(
-                  padding: const EdgeInsets.symmetric(vertical: 10),
-                  child: Row(
-                    children: <Widget>[
-                      Text(
-                        'Connection Timeout',
-                        style: Theme.of(context).textTheme.titleLarge,
-                      ),
-                      const SizedBox(width: 10),
-                      SvgPicture.asset(
-                        'assets/icons/time.svg',
-                        width: 24,
-                        height: 24,
-                        color: Colors.white, // Set the color of the SVG icon
-                      ),
-                    ],
-                  ),
+        backgroundColor: AppColors.defaultBlueGray800,
+        content: SingleChildScrollView(
+          child: ListBody(
+            children: <Widget>[
+              Padding(
+                padding: const EdgeInsets.symmetric(vertical: 10),
+                child: Row(
+                  children: <Widget>[
+                    Text(
+                      AppContent.text(
+                          'text.components.progress_indicator.connection_timeout_d3c9a5'),
+                      style: Theme.of(context).textTheme.titleLarge,
+                    ),
+                    const SizedBox(width: 10),
+                    const AppContentImage(
+                      'assets/icons/time.svg',
+                      width: 24,
+                      height: 24,
+                      color: Colors.white, // Set the color of the SVG icon
+                    ),
+                  ],
                 ),
-                const Text(
-                  'The connection is taking longer than expected. Please return to the login page and try again.',
-                ),
-              ],
-            ),
+              ),
+              Text(
+                AppContent.text(
+                    'text.components.progress_indicator.the_connection_is_taking_longer_than_e_f8e4ef'),
+              ),
+            ],
           ),
-          actions: <Widget>[
-            GestureDetector(
-              onTap: () async {
-                // Sign out the user
-                await FirebaseAuth.instance.signOut();
-                // Navigate to the login page or any other desired page
-                if (!context.mounted) {
-                  return;
-                }
-                await Navigator.of(context).pushNamedAndRemoveUntil(
-                    '/login', (Route<dynamic> route) => false);
-              },
-              child: Container(
-                height: 45,
-                decoration: BoxDecoration(
-                  color: Colors.transparent, // Changed from Color.fromARGB(255, 149, 28, 28)
-                  border: Border.all(color: Colors.red), // Added red border
-                  borderRadius: BorderRadius.circular(12),
-                ),
-                child: Center(
-                  child: Row(
-                    crossAxisAlignment: CrossAxisAlignment.center,
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      SvgPicture.asset(
-                        'assets/icons/logout.svg',
+        ),
+        actions: <Widget>[
+          GestureDetector(
+            onTap: () async {
+              // Sign out the user
+              await FirebaseAuth.instance.signOut();
+              // Navigate to the login page or any other desired page
+              if (!context.mounted) {
+                return;
+              }
+              await Navigator.of(context).pushNamedAndRemoveUntil(
+                  '/login', (Route<dynamic> route) => false);
+            },
+            child: Container(
+              height: 45,
+              decoration: BoxDecoration(
+                color: Colors
+                    .transparent, // Changed from Color.fromARGB(255, 149, 28, 28)
+                border: Border.all(color: Colors.red), // Added red border
+                borderRadius: BorderRadius.circular(12),
+              ),
+              child: Center(
+                child: Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const AppContentImage(
+                      'assets/icons/logout.svg',
+                      color: Colors.red, // Changed from Colors.white
+                      height: 20,
+                    ),
+                    const SizedBox(width: 10),
+                    Text(
+                      AppContent.text(
+                          'text.components.progress_indicator.logout_e43d61'),
+                      style: const TextStyle(
+                        fontSize: 16,
                         color: Colors.red, // Changed from Colors.white
-                        height: 20,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Titillium Web',
                       ),
-                      const SizedBox(width: 10),
-                      const Text(
-                        'Logout',
-                        style: TextStyle(
-                          fontSize: 16,
-                          color: Colors.red, // Changed from Colors.white
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Titillium Web',
-                        ),
-                      ),
-                    ],
-                  ),
+                    ),
+                  ],
                 ),
               ),
             ),
-          ],
-        ),
+          ),
+        ],
+      ),
     );
   }
 
   @override
-  Widget build(BuildContext context) => const Center(child: CustomProgressIndicator());
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return const Center(child: CustomProgressIndicator());
+  }
 }

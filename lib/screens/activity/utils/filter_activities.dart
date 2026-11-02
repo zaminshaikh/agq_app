@@ -1,3 +1,4 @@
+import 'package:agq_app/content/app_content.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
 import 'package:agq_app/database/models/activity_model.dart';
@@ -32,7 +33,8 @@ void filterActivities(
   activities.removeWhere((activity) => !typeFilter.contains(activity.type));
 
   // 4) Filter by recipient
-  activities.removeWhere((activity) => !recipientsFilter.contains(activity.recipient));
+  activities.removeWhere(
+      (activity) => !recipientsFilter.contains(activity.recipient));
 
   // 5) Filter by date range
   activities.removeWhere((activity) =>
@@ -75,8 +77,11 @@ List<String> getSelectedFilters(
 
   // 4) Always add the date range
   String formatDate(DateTime date) => DateFormat('MM/dd/yy').format(date);
-  String dateRange =
-      '${formatDate(selectedDates.start)} to ${formatDate(selectedDates.end)}';
+  String dateRange = AppContent.text(
+      'text.screens.activity.utils.filter_activities.value1_to_value2_3535f6', {
+    'value1': formatDate(selectedDates.start),
+    'value2': formatDate(selectedDates.end)
+  });
   selectedFilters.add(dateRange);
 
   return selectedFilters;

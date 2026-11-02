@@ -1,9 +1,10 @@
 // ignore_for_file: deprecated_member_use, use_build_context_synchronously, duplicate_ignore, prefer_expression_function_bodies, unused_catch_clause, empty_catches
 
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:app_settings/app_settings.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:agq_app/components/alert_dialog.dart';
 import 'package:agq_app/components/progress_indicator.dart';
 import 'package:agq_app/database/auth_helper.dart';
@@ -25,119 +26,126 @@ class SettingsPage extends StatefulWidget {
 }
 
 class SettingsPageState extends State<SettingsPage> {
-    Client? client;
-    bool notifsSwitchValue = false;
+  Client? client;
+  bool notifsSwitchValue = false;
 
-    @override
-    void initState() {
-        super.initState();
-        _loadSwitchValue();
-    }
+  @override
+  void initState() {
+    super.initState();
+    _loadSwitchValue();
+  }
 
-    // Future<void> _checkNotificationPermission() async {
-    //     // Fetch the current notification permission status
-    //     var status = await Permission.notification.status;
-    //     setState(() {
-    //         // Update the switch based on whether permission is granted
-    //         notifsSwitchValue = status.isGranted;
-    //     });
-    // }
+  // Future<void> _checkNotificationPermission() async {
+  //     // Fetch the current notification permission status
+  //     var status = await Permission.notification.status;
+  //     setState(() {
+  //         // Update the switch based on whether permission is granted
+  //         notifsSwitchValue = status.isGranted;
+  //     });
+  // }
 
-    void _showPermissionDeniedDialog() {
-      showCupertinoDialog(
-        context: context,
-        builder: (context) {
-          return CupertinoAlertDialog(
-            title: const Text(
-              'Notifications Disabled',
-              style: TextStyle(
-                color: CupertinoColors.darkBackgroundGray, // Changed from default/purple to blue
-                fontWeight: FontWeight.bold,
-                fontSize: 18,
-              ),
+  void _showPermissionDeniedDialog() {
+    showCupertinoDialog(
+      context: context,
+      builder: (context) {
+        return CupertinoAlertDialog(
+          title: Text(
+            AppContent.text(
+                'text.screens.profile.pages.settings.notifications_disabled_5d140e'),
+            style: const TextStyle(
+              color: CupertinoColors
+                  .darkBackgroundGray, // Changed from default/purple to blue
+              fontWeight: FontWeight.bold,
+              fontSize: 18,
             ),
-            content: const Text(
-              'Please enable notifications in your device settings to receive updates.',
-              style: TextStyle(
-                color: CupertinoColors.black, // Changed from default/purple to blue
-                fontSize: 16,
-              ),
+          ),
+          content: Text(
+            AppContent.text(
+                'text.screens.profile.pages.settings.please_enable_notifications_in_your_de_9ac069'),
+            style: const TextStyle(
+              color:
+                  CupertinoColors.black, // Changed from default/purple to blue
+              fontSize: 16,
             ),
-            actions: [
-              CupertinoDialogAction(
-                child: const Text(
-                  'Cancel',
-                  style: TextStyle(
-                    color: CupertinoColors.activeBlue, // Changed from default/purple to blue
-                  ),
+          ),
+          actions: [
+            CupertinoDialogAction(
+              child: Text(
+                AppContent.text(
+                    'text.screens.profile.pages.settings.cancel_77dfd2'),
+                style: const TextStyle(
+                  color: CupertinoColors
+                      .activeBlue, // Changed from default/purple to blue
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                },
               ),
-              CupertinoDialogAction(
-                child: const Text(
-                  'Settings',
-                  style: TextStyle(
-                    color: CupertinoColors.activeBlue, // Changed from default/purple to blue
-                  ),
+              onPressed: () {
+                Navigator.of(context).pop();
+              },
+            ),
+            CupertinoDialogAction(
+              child: Text(
+                AppContent.text(
+                    'text.screens.profile.pages.settings.settings_c7f73b'),
+                style: const TextStyle(
+                  color: CupertinoColors
+                      .activeBlue, // Changed from default/purple to blue
                 ),
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  AppSettings.openAppSettings();
-                },
               ),
-            ],
-          );
-        },
-      );
-    }
+              onPressed: () {
+                Navigator.of(context).pop();
+                AppSettings.openAppSettings();
+              },
+            ),
+          ],
+        );
+      },
+    );
+  }
 
-    // Future<void> _requestNotificationPermission() async {
-    //     // Request the notification permission if it's not granted
-    //     var status = await Permission.notification.request();
+  // Future<void> _requestNotificationPermission() async {
+  //     // Request the notification permission if it's not granted
+  //     var status = await Permission.notification.request();
 
-    //     if (status.isGranted) {
-    //         // Update the state if permission is granted
-    //         setState(() {
-    //         notifsSwitchValue = true;
-    //         _saveSwitchValue(notifsSwitchValue);
-    //         });
-    //         _showCupertinoDialog('Notifications enabled');
-    //     } else {
-    //         // If denied, show a message and provide an option to go to settings
-    //         _showCupertinoDialog('Notification permission denied. Please enable it in settings.');
-    //     }
-    // }
+  //     if (status.isGranted) {
+  //         // Update the state if permission is granted
+  //         setState(() {
+  //         notifsSwitchValue = true;
+  //         _saveSwitchValue(notifsSwitchValue);
+  //         });
+  //         _showCupertinoDialog('Notifications enabled');
+  //     } else {
+  //         // If denied, show a message and provide an option to go to settings
+  //         _showCupertinoDialog('Notification permission denied. Please enable it in settings.');
+  //     }
+  // }
 
-    // void _showCupertinoDialog(String message) {
-    //     showCupertinoDialog(
-    //         context: context,
-    //         builder: (BuildContext context) {
-    //             return CupertinoAlertDialog(
-    //             title: const Text('Notification Permission'),
-    //             content: Text(message),
-    //             actions: <Widget>[
-    //                 CupertinoDialogAction(
-    //                 child: const Text('OK'),
-    //                 onPressed: () {
-    //                     Navigator.of(context).pop();
-    //                 },
-    //                 ),
-    //                 if (message.contains('denied'))
-    //                 CupertinoDialogAction(
-    //                     child: const Text('Settings'),
-    //                     onPressed: () {
-    //                     Navigator.of(context).pop();
-    //                     _openAppSettings();
-    //                     },
-    //                 ),
-    //             ],
-    //             );
-    //         },
-    //     );
-    // }
-
+  // void _showCupertinoDialog(String message) {
+  //     showCupertinoDialog(
+  //         context: context,
+  //         builder: (BuildContext context) {
+  //             return CupertinoAlertDialog(
+  //             title: const Text('Notification Permission'),
+  //             content: Text(message),
+  //             actions: <Widget>[
+  //                 CupertinoDialogAction(
+  //                 child: const Text('OK'),
+  //                 onPressed: () {
+  //                     Navigator.of(context).pop();
+  //                 },
+  //                 ),
+  //                 if (message.contains('denied'))
+  //                 CupertinoDialogAction(
+  //                     child: const Text('Settings'),
+  //                     onPressed: () {
+  //                     Navigator.of(context).pop();
+  //                     _openAppSettings();
+  //                     },
+  //                 ),
+  //             ],
+  //             );
+  //         },
+  //     );
+  // }
 
   // Future<void> _openAppSettings() async {
   //   // Open app settings to manually enable notifications
@@ -151,21 +159,22 @@ class SettingsPageState extends State<SettingsPage> {
     _loadSwitchValue();
   }
 
-    Future<void> _loadSwitchValue() async {
+  Future<void> _loadSwitchValue() async {
     final prefs = await SharedPreferences.getInstance();
     bool savedValue = prefs.getBool('notifsSwitchValue') ?? false;
     setState(() {
-        notifsSwitchValue = savedValue;
+      notifsSwitchValue = savedValue;
     });
-    }
+  }
 
-    Future<void> _saveSwitchValue(bool value) async {
+  Future<void> _saveSwitchValue(bool value) async {
     final prefs = await SharedPreferences.getInstance();
     await prefs.setBool('notifsSwitchValue', value);
-    }
+  }
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     return buildSettingsPage();
   }
 
@@ -210,25 +219,27 @@ class SettingsPageState extends State<SettingsPage> {
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
-                    const Row(
+                    Row(
                       children: [
                         Expanded(
                           child: Column(
                             crossAxisAlignment: CrossAxisAlignment.start,
                             children: [
                               Text(
-                                'Notifications',
-                                style: TextStyle(
+                                AppContent.text(
+                                    'text.screens.profile.pages.settings.notifications_753a22'),
+                                style: const TextStyle(
                                   fontSize: 18,
                                   color: Colors.white,
                                   fontWeight: FontWeight.bold,
                                   fontFamily: 'Titillium Web',
                                 ),
                               ),
-                              SizedBox(height: 5),
+                              const SizedBox(height: 5),
                               Text(
-                                'Let me know about new activities and statements within my portfolio.',
-                                style: TextStyle(
+                                AppContent.text(
+                                    'text.screens.profile.pages.settings.let_me_know_about_new_activities_and_s_569b76'),
+                                style: const TextStyle(
                                   fontSize: 15,
                                   color: Colors.white,
                                   fontFamily: 'Titillium Web',
@@ -251,20 +262,24 @@ class SettingsPageState extends State<SettingsPage> {
                           onChanged: (bool value) async {
                             if (value) {
                               // Request notification permissions
-                              NotificationSettings settings = await FirebaseMessaging.instance.requestPermission(
+                              NotificationSettings settings =
+                                  await FirebaseMessaging.instance
+                                      .requestPermission(
                                 alert: true,
                                 badge: true,
                                 sound: true,
                               );
-                        
-                              if (settings.authorizationStatus == AuthorizationStatus.authorized) {
+
+                              if (settings.authorizationStatus ==
+                                  AuthorizationStatus.authorized) {
                                 // Permissions granted
                                 setState(() {
                                   notifsSwitchValue = true;
                                 });
                                 await _saveSwitchValue(true);
                                 // Enable notifications
-                                await updateFirebaseMessagingToken(FirebaseAuth.instance.currentUser, context);
+                                await updateFirebaseMessagingToken(
+                                    FirebaseAuth.instance.currentUser, context);
                               } else {
                                 // Permissions denied
                                 _showPermissionDeniedDialog();
@@ -280,10 +295,12 @@ class SettingsPageState extends State<SettingsPage> {
                               });
                               await _saveSwitchValue(false);
                               // Disable notifications
-                              await deleteFirebaseMessagingToken(FirebaseAuth.instance.currentUser, context);
+                              await deleteFirebaseMessagingToken(
+                                  FirebaseAuth.instance.currentUser, context);
                             }
                           },
-                        ),],
+                        ),
+                      ],
                     ),
                   ],
                 ),
@@ -304,9 +321,10 @@ class SettingsPageState extends State<SettingsPage> {
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
-                        const Text(
-                          'Security',
-                          style: TextStyle(
+                        Text(
+                          AppContent.text(
+                              'text.screens.profile.pages.settings.security_f25ce1'),
+                          style: const TextStyle(
                             fontSize: 14,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
@@ -350,7 +368,7 @@ class SettingsPageState extends State<SettingsPage> {
                             }
 
                             Widget buildIconArt() {
-                              return SvgPicture.asset(
+                              return const AppContentImage(
                                 'assets/icons/change_email_and_password_icon_art.svg',
                                 // Optional: You can specify width, height, color, etc. if needed
                               );
@@ -361,26 +379,29 @@ class SettingsPageState extends State<SettingsPage> {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    'Change Email',
-                                    style: TextStyle(
+                                  Text(
+                                    AppContent.text(
+                                        'text.screens.profile.pages.settings.change_email_12dffa'),
+                                    style: const TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Titillium Web'),
                                   ),
                                   const SizedBox(height: 8),
-                                  const Text(
-                                    'You are changing the email associated with your account.',
-                                    style: TextStyle(
+                                  Text(
+                                    AppContent.text(
+                                        'text.screens.profile.pages.settings.you_are_changing_the_email_associated__380ca8'),
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.white70,
                                         fontFamily: 'Titillium Web'),
                                   ),
                                   const SizedBox(height: 20),
-                                  const Text(
-                                    'Email',
-                                    style: TextStyle(
+                                  Text(
+                                    AppContent.text(
+                                        'text.screens.profile.pages.settings.email_84add5'),
+                                    style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,
                                         fontFamily: 'Titillium Web'),
@@ -397,7 +418,8 @@ class SettingsPageState extends State<SettingsPage> {
                                         color: Colors.white,
                                         fontFamily: 'Titillium Web'),
                                     decoration: InputDecoration(
-                                      hintText: 'Enter your new email',
+                                      hintText: AppContent.text(
+                                          'text.screens.profile.pages.settings.enter_your_new_email_57c67c'),
                                       hintStyle: TextStyle(
                                           color: Colors.grey[400],
                                           fontFamily: 'Titillium Web'),
@@ -439,8 +461,10 @@ class SettingsPageState extends State<SettingsPage> {
                                       // Show a message to inform the user to check their email for verification.
                                       await CustomAlertDialog.showAlertDialog(
                                         context,
-                                        'Email Change Requested',
-                                        'Please check your email for a verification link. You need to verify the new email address before it takes effect.',
+                                        AppContent.text(
+                                            'text.screens.profile.pages.settings.email_change_requested_f9a41f'),
+                                        AppContent.text(
+                                            'text.screens.profile.pages.settings.please_check_your_email_for_a_verifica_d6c220'),
                                       );
                                     }
                                   } catch (e) {
@@ -450,8 +474,11 @@ class SettingsPageState extends State<SettingsPage> {
                                     // Handle error, display a message, etc.
                                     await CustomAlertDialog.showAlertDialog(
                                       context,
-                                      'Error',
-                                      'Error updating email: $e',
+                                      AppContent.text(
+                                          'text.screens.profile.pages.settings.error_7f2f6a'),
+                                      AppContent.text(
+                                          'text.screens.profile.pages.settings.error_updating_email_e_a4dcc5',
+                                          {'e': e}),
                                     );
                                   }
                                 },
@@ -466,9 +493,10 @@ class SettingsPageState extends State<SettingsPage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 15),
                                 ),
-                                child: const Text(
-                                  'Continue',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppContent.text(
+                                      'text.screens.profile.pages.settings.continue_2e0262'),
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Titillium Web'),
@@ -517,10 +545,11 @@ class SettingsPageState extends State<SettingsPage> {
                             width: 2,
                           ),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            'Change Email',
-                            style: TextStyle(
+                            AppContent.text(
+                                'text.screens.profile.pages.settings.change_email_12dffa'),
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,
@@ -551,7 +580,7 @@ class SettingsPageState extends State<SettingsPage> {
                             }
 
                             Widget buildIconArt() {
-                              return SvgPicture.asset(
+                              return const AppContentImage(
                                 'assets/icons/change_email_and_password_icon_art.svg',
                                 // Optional: You can specify width, height, color, etc. if needed
                               );
@@ -562,26 +591,29 @@ class SettingsPageState extends State<SettingsPage> {
                               return Column(
                                 crossAxisAlignment: CrossAxisAlignment.start,
                                 children: [
-                                  const Text(
-                                    'Change Password',
-                                    style: TextStyle(
+                                  Text(
+                                    AppContent.text(
+                                        'text.screens.profile.pages.settings.change_password_49289d'),
+                                    style: const TextStyle(
                                         fontSize: 20,
                                         color: Colors.white,
                                         fontWeight: FontWeight.bold,
                                         fontFamily: 'Titillium Web'),
                                   ),
                                   const SizedBox(height: 8),
-                                  const Text(
-                                    'You are changing the password associated with your account.',
-                                    style: TextStyle(
+                                  Text(
+                                    AppContent.text(
+                                        'text.screens.profile.pages.settings.you_are_changing_the_password_associat_ce88d3'),
+                                    style: const TextStyle(
                                         fontSize: 14,
                                         color: Colors.white70,
                                         fontFamily: 'Titillium Web'),
                                   ),
                                   const SizedBox(height: 20),
-                                  const Text(
-                                    'New Password',
-                                    style: TextStyle(
+                                  Text(
+                                    AppContent.text(
+                                        'text.screens.profile.pages.settings.new_password_4894cb'),
+                                    style: const TextStyle(
                                         fontSize: 16,
                                         color: Colors.white,
                                         fontFamily: 'Titillium Web'),
@@ -596,7 +628,8 @@ class SettingsPageState extends State<SettingsPage> {
                                         color: Colors.white,
                                         fontFamily: 'Titillium Web'),
                                     decoration: InputDecoration(
-                                      hintText: 'Enter your new password',
+                                      hintText: AppContent.text(
+                                          'text.screens.profile.pages.settings.enter_your_new_password_7bec90'),
                                       hintStyle: TextStyle(
                                           color: Colors.grey[400],
                                           fontFamily: 'Titillium Web'),
@@ -637,8 +670,10 @@ class SettingsPageState extends State<SettingsPage> {
                                       // Show a message to inform the user that the password has been changed.
                                       await CustomAlertDialog.showAlertDialog(
                                         context,
-                                        'Success',
-                                        'Your password has been updated successfully.',
+                                        AppContent.text(
+                                            'text.screens.profile.pages.settings.success_42a8f6'),
+                                        AppContent.text(
+                                            'text.screens.profile.pages.settings.your_password_has_been_updated_success_fd29a6'),
                                         icon: const Icon(
                                           Icons.check_circle_outline_rounded,
                                           color: Colors.green,
@@ -653,8 +688,11 @@ class SettingsPageState extends State<SettingsPage> {
                                     // Handle error, display a message, etc.
                                     await CustomAlertDialog.showAlertDialog(
                                       context,
-                                      'Error',
-                                      'Error updating password: $e',
+                                      AppContent.text(
+                                          'text.screens.profile.pages.settings.error_7f2f6a'),
+                                      AppContent.text(
+                                          'text.screens.profile.pages.settings.error_updating_password_e_3e4e91',
+                                          {'e': e}),
                                     );
                                   }
                                 },
@@ -670,9 +708,10 @@ class SettingsPageState extends State<SettingsPage> {
                                   padding: const EdgeInsets.symmetric(
                                       horizontal: 30, vertical: 15),
                                 ),
-                                child: const Text(
-                                  'Continue',
-                                  style: TextStyle(
+                                child: Text(
+                                  AppContent.text(
+                                      'text.screens.profile.pages.settings.continue_2e0262'),
+                                  style: const TextStyle(
                                       fontSize: 18,
                                       fontWeight: FontWeight.bold,
                                       fontFamily: 'Titillium Web'),
@@ -722,10 +761,11 @@ class SettingsPageState extends State<SettingsPage> {
                             width: 2,
                           ),
                         ),
-                        child: const Center(
+                        child: Center(
                           child: Text(
-                            'Change Password',
-                            style: TextStyle(
+                            AppContent.text(
+                                'text.screens.profile.pages.settings.change_password_49289d'),
+                            style: const TextStyle(
                               fontSize: 16,
                               color: Colors.blue,
                               fontWeight: FontWeight.bold,
@@ -747,24 +787,26 @@ class SettingsPageState extends State<SettingsPage> {
 
                 const SizedBox(height: 15),
 
-                const Row(
+                Row(
                   children: [
                     Column(
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Text(
-                          'Logout',
-                          style: TextStyle(
+                          AppContent.text(
+                              'text.screens.profile.pages.settings.logout_e43d61'),
+                          style: const TextStyle(
                             fontSize: 18,
                             color: Colors.white,
                             fontWeight: FontWeight.bold,
                             fontFamily: 'Titillium Web',
                           ),
                         ),
-                        SizedBox(height: 5),
+                        const SizedBox(height: 5),
                         Text(
-                          'Log out of your account.',
-                          style: TextStyle(
+                          AppContent.text(
+                              'text.screens.profile.pages.settings.log_out_of_your_account_44c4e0'),
+                          style: const TextStyle(
                             fontSize: 15,
                             color: Colors.white,
                             fontFamily: 'Titillium Web',
@@ -780,49 +822,48 @@ class SettingsPageState extends State<SettingsPage> {
             ),
           ),
           LogoutButton(client: client!),
-          const Padding(
-            padding: EdgeInsets.only(left: 20, right: 20),
-            child: 
-              Column(
-                children: [
-                  SizedBox(height: 20),
-                  Divider(
-                          color: Colors.white,
-                          thickness: 0.2,
-                          height: 20,
+          Padding(
+            padding: const EdgeInsets.only(left: 20, right: 20),
+            child: Column(
+              children: [
+                const SizedBox(height: 20),
+                const Divider(
+                  color: Colors.white,
+                  thickness: 0.2,
+                  height: 20,
+                ),
+                const SizedBox(height: 15),
+                Row(
+                  children: [
+                    Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        Text(
+                          AppContent.text(
+                              'text.screens.profile.pages.settings.delete_your_account_a0b7ba'),
+                          style: const TextStyle(
+                            fontSize: 18,
+                            color: Colors.white,
+                            fontWeight: FontWeight.bold,
+                            fontFamily: 'Titillium Web',
+                          ),
                         ),
-                  
-                  SizedBox(height: 15),
-                  
-                  Row(
-                    children: [
-                      Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Text(
-                            'Delete your account',
-                            style: TextStyle(
-                              fontSize: 18,
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontFamily: 'Titillium Web',
-                            ),
+                        const SizedBox(height: 5),
+                        Text(
+                          AppContent.text(
+                              'text.screens.profile.pages.settings.delete_your_account_this_cannot_be_und_220d07'),
+                          style: const TextStyle(
+                            fontSize: 15,
+                            color: Colors.white,
+                            fontFamily: 'Titillium Web',
                           ),
-                          SizedBox(height: 5),
-                          Text(
-                            'Delete your account. This cannot be undone.',
-                            style: TextStyle(
-                              fontSize: 15,
-                              color: Colors.white,
-                              fontFamily: 'Titillium Web',
-                            ),
-                          ),
-                        ],
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                        ),
+                      ],
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
           const SizedBox(height: 20),
           DeleteAccountButton(client: client!),
@@ -846,16 +887,17 @@ class SettingsPageState extends State<SettingsPage> {
             Navigator.pop(context);
           },
         ),
-        flexibleSpace: const SafeArea(
+        flexibleSpace: SafeArea(
           child: Padding(
-            padding: EdgeInsets.only(left: 60.0, right: 20.0),
+            padding: const EdgeInsets.only(left: 60.0, right: 20.0),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Text(
-                  'Settings',
-                  style: TextStyle(
+                  AppContent.text(
+                      'text.screens.profile.pages.settings.settings_c7f73b'),
+                  style: const TextStyle(
                     fontSize: 27,
                     color: Colors.white,
                     fontWeight: FontWeight.bold,
@@ -867,5 +909,4 @@ class SettingsPageState extends State<SettingsPage> {
           ),
         ),
       );
-      
 }

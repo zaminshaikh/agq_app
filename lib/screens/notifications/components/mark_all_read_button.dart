@@ -1,4 +1,5 @@
 // mark_all_as_read_button.dart
+import 'package:agq_app/content/app_content.dart';
 import 'package:flutter/material.dart';
 import 'package:agq_app/database/models/client_model.dart';
 import 'package:agq_app/database/database.dart';
@@ -16,6 +17,7 @@ class MarkAllAsReadButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     bool hasUnreadNotifications = (client.numNotifsUnread ?? 0) > 0;
 
     if (!hasUnreadNotifications) {
@@ -43,13 +45,14 @@ class MarkAllAsReadButton extends StatelessWidget {
                 padding: const EdgeInsets.symmetric(
                     horizontal: 16.0), // Add padding to the button
               ),
-              child: const Row(
+              child: Row(
                 mainAxisSize: MainAxisSize.min, // Add this
                 children: [
-                  Icon(Icons.checklist_rounded, color: Colors.white),
+                  const Icon(Icons.checklist_rounded, color: Colors.white),
                   Text(
-                    ' Mark All As Read',
-                    style: TextStyle(
+                    AppContent.text(
+                        'text.screens.notifications.components.mark_all_read_button.mark_all_as_read_81b1f7'),
+                    style: const TextStyle(
                       color: Colors.white,
                       fontFamily: 'Titillium Web',
                       fontWeight: FontWeight.bold,

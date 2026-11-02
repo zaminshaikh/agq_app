@@ -1,0 +1,4230 @@
+[
+  {
+    "id": "text.database.auth_helper.failed_to_sign_up_please_try_again_2fb2a5",
+    "group": "Database / Auth Helper",
+    "label": "Failed to sign up. Please try again.",
+    "kind": "text",
+    "defaultValue": "Failed to sign up. Please try again.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:27"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.email_email_is_already_in_use_please_u_d2abd2",
+    "group": "Database / Auth Helper",
+    "label": "Email {email} is already in use. Please use a different email.",
+    "kind": "text",
+    "defaultValue": "Email {email} is already in use. Please use a different email.",
+    "placeholders": [
+      "email"
+    ],
+    "sources": [
+      "database/auth_helper.dart:35"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.email_is_not_a_valid_email_format_plea_39414c",
+    "group": "Database / Auth Helper",
+    "label": "\"{email}\" is not a valid email format. Please try again.",
+    "kind": "text",
+    "defaultValue": "\"{email}\" is not a valid email format. Please try again.",
+    "placeholders": [
+      "email"
+    ],
+    "sources": [
+      "database/auth_helper.dart:38"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.the_password_provided_is_too_weak_ad073f",
+    "group": "Database / Auth Helper",
+    "label": "The password provided is too weak.",
+    "kind": "text",
+    "defaultValue": "The password provided is too weak.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:42"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.error_7f2f6a",
+    "group": "Database / Auth Helper",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:51",
+      "database/auth_helper.dart:136",
+      "database/auth_helper.dart:186",
+      "database/auth_helper.dart:199"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.no_user_is_currently_signed_in_1c2c94",
+    "group": "Database / Auth Helper",
+    "label": "No user is currently signed in.",
+    "kind": "text",
+    "defaultValue": "No user is currently signed in.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:137"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.already_verified_1c6aeb",
+    "group": "Database / Auth Helper",
+    "label": "Already Verified",
+    "kind": "text",
+    "defaultValue": "Already Verified",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:147"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.your_email_is_already_verified_a7a7b8",
+    "group": "Database / Auth Helper",
+    "label": "Your email is already verified.",
+    "kind": "text",
+    "defaultValue": "Your email is already verified.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:148"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.verification_email_sent_508d93",
+    "group": "Database / Auth Helper",
+    "label": "Verification Email Sent",
+    "kind": "text",
+    "defaultValue": "Verification Email Sent",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:160"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.a_verification_email_has_been_sent_to__fe463c",
+    "group": "Database / Auth Helper",
+    "label": "A verification email has been sent to {value1}. Please check your email and click the",
+    "kind": "text",
+    "defaultValue": "A verification email has been sent to {value1}. Please check your email and click the verification link.",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "database/auth_helper.dart:161"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.failed_to_send_verification_email_plea_792d65",
+    "group": "Database / Auth Helper",
+    "label": "Failed to send verification email. Please try again.",
+    "kind": "text",
+    "defaultValue": "Failed to send verification email. Please try again.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:169"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.too_many_requests_please_wait_before_r_db7c32",
+    "group": "Database / Auth Helper",
+    "label": "Too many requests. Please wait before requesting another verification email.",
+    "kind": "text",
+    "defaultValue": "Too many requests. Please wait before requesting another verification email.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:173"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.the_email_address_is_invalid_f9871e",
+    "group": "Database / Auth Helper",
+    "label": "The email address is invalid.",
+    "kind": "text",
+    "defaultValue": "The email address is invalid.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:176"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.no_user_found_please_sign_in_again_257abd",
+    "group": "Database / Auth Helper",
+    "label": "No user found. Please sign in again.",
+    "kind": "text",
+    "defaultValue": "No user found. Please sign in again.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:179"
+    ]
+  },
+  {
+    "id": "text.database.auth_helper.an_unexpected_error_occurred_please_tr_d07ac0",
+    "group": "Database / Auth Helper",
+    "label": "An unexpected error occurred. Please try again.",
+    "kind": "text",
+    "defaultValue": "An unexpected error occurred. Please try again.",
+    "placeholders": [],
+    "sources": [
+      "database/auth_helper.dart:200"
+    ]
+  },
+  {
+    "id": "text.database.database.user_document_does_not_exist_9150d8",
+    "group": "Database / Database",
+    "label": "User document does not exist",
+    "kind": "text",
+    "defaultValue": "User document does not exist",
+    "placeholders": [],
+    "sources": [
+      "database/database.dart:255"
+    ]
+  },
+  {
+    "id": "text.database.database.error_updating_field_e_2075b0",
+    "group": "Database / Database",
+    "label": "Error updating field: {e}",
+    "kind": "text",
+    "defaultValue": "Error updating field: {e}",
+    "placeholders": [
+      "e"
+    ],
+    "sources": [
+      "database/database.dart:276"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.faceid.please_authenticate_to_login_5faeb2",
+    "group": "Authenticate / Utils / Faceid",
+    "label": "Please authenticate to login",
+    "kind": "text",
+    "defaultValue": "Please authenticate to login",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/faceid.dart:93"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.faceid.agq_app_locked_dda619",
+    "group": "Authenticate / Utils / Faceid",
+    "label": "AGQ App Locked",
+    "kind": "text",
+    "defaultValue": "AGQ App Locked",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/faceid.dart:163"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.faceid.unlock_with_face_id_to_continue_7814ef",
+    "group": "Authenticate / Utils / Faceid",
+    "label": "Unlock with Face ID to continue",
+    "kind": "text",
+    "defaultValue": "Unlock with Face ID to continue",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/faceid.dart:175"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.faceid.use_face_id_f3ef71",
+    "group": "Authenticate / Utils / Faceid",
+    "label": "Use Face ID",
+    "kind": "text",
+    "defaultValue": "Use Face ID",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/faceid.dart:206"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.google_auth_service.google_sign_in_failed_07ec0e",
+    "group": "Authenticate / Utils / Google Auth Service",
+    "label": "Google Sign-In Failed",
+    "kind": "text",
+    "defaultValue": "Google Sign-In Failed",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/google_auth_service.dart:86",
+      "screens/authenticate/utils/google_auth_service.dart:99"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.google_auth_service.the_gmail_account_you_tried_to_sign_in_9ad980",
+    "group": "Authenticate / Utils / Google Auth Service",
+    "label": "The Gmail Account you tried to sign in with has not been registered with the app yet.",
+    "kind": "text",
+    "defaultValue": "The Gmail Account you tried to sign in with has not been registered with the app yet. Please try again or sign in with your email and password.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/google_auth_service.dart:87"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.google_auth_service.google_sign_up_failed_ff4b4f",
+    "group": "Authenticate / Utils / Google Auth Service",
+    "label": "Google Sign-Up Failed",
+    "kind": "text",
+    "defaultValue": "Google Sign-Up Failed",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/google_auth_service.dart:112"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.google_auth_service.the_cid_you_entered_does_not_exist_ple_27932f",
+    "group": "Authenticate / Utils / Google Auth Service",
+    "label": "The CID you entered does not exist. Please try again with a valid CID.",
+    "kind": "text",
+    "defaultValue": "The CID you entered does not exist. Please try again with a valid CID.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/google_auth_service.dart:113"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.google_auth_service.email_value1_is_already_associated_wit_ceaaf1",
+    "group": "Authenticate / Utils / Google Auth Service",
+    "label": "Email {value1} is already associated with a different account. Please log in instead.",
+    "kind": "text",
+    "defaultValue": "Email {value1} is already associated with a different account. Please log in instead.",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/utils/google_auth_service.dart:176"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.google_auth_service.user_already_exists_for_given_client_i_ec27db",
+    "group": "Authenticate / Utils / Google Auth Service",
+    "label": "User already exists for given Client ID {cid}. Please log in instead.",
+    "kind": "text",
+    "defaultValue": "User already exists for given Client ID {cid}. Please log in instead.",
+    "placeholders": [
+      "cid"
+    ],
+    "sources": [
+      "screens/authenticate/utils/google_auth_service.dart:185"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.not_available_4028c0",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Not Available",
+    "kind": "text",
+    "defaultValue": "Not Available",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:25",
+      "screens/authenticate/utils/apple_auth_service.dart:142"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.sign_in_with_apple_is_not_available_on_ab2a7e",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Sign in with Apple is not available on this device.",
+    "kind": "text",
+    "defaultValue": "Sign in with Apple is not available on this device.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:26",
+      "screens/authenticate/utils/apple_auth_service.dart:143"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.apple_sign_in_failed_identity_token_is_c10704",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Apple Sign In failed: Identity token is null",
+    "kind": "text",
+    "defaultValue": "Apple Sign In failed: Identity token is null",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:57",
+      "screens/authenticate/utils/apple_auth_service.dart:174"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.failed_to_get_user_after_apple_sign_in_100e83",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Failed to get user after Apple sign in",
+    "kind": "text",
+    "defaultValue": "Failed to get user after Apple sign in",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:78",
+      "screens/authenticate/utils/apple_auth_service.dart:195"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.account_not_found_df3c9a",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Account Not Found",
+    "kind": "text",
+    "defaultValue": "Account Not Found",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:101"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.this_apple_id_is_not_linked_to_any_acc_f9127a",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "This Apple ID is not linked to any account. Please create an account first.",
+    "kind": "text",
+    "defaultValue": "This Apple ID is not linked to any account. Please create an account first.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:102"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.failed_to_sign_in_with_apple_7ea61e",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Failed to sign in with Apple",
+    "kind": "text",
+    "defaultValue": "Failed to sign in with Apple",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:121"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.sign_in_was_canceled_1fcd7f",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Sign in was canceled",
+    "kind": "text",
+    "defaultValue": "Sign in was canceled",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:123",
+      "screens/authenticate/utils/apple_auth_service.dart:222"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.authentication_failed_please_try_again_c8a267",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Authentication failed. Please try again or use another method.",
+    "kind": "text",
+    "defaultValue": "Authentication failed. Please try again or use another method.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:125",
+      "screens/authenticate/utils/apple_auth_service.dart:224"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.failed_to_sign_up_with_apple_e98f0d",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Failed to sign up with Apple",
+    "kind": "text",
+    "defaultValue": "Failed to sign up with Apple",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:220"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.no_record_found_for_client_id_cid_plea_025e5d",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "No record found for Client ID {cid}. Please contact support.",
+    "kind": "text",
+    "defaultValue": "No record found for Client ID {cid}. Please contact support.",
+    "placeholders": [
+      "cid"
+    ],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:263"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.this_client_id_is_already_linked_to_an_3226d4",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "This Client ID is already linked to another account. Please use a different Client ID",
+    "kind": "text",
+    "defaultValue": "This Client ID is already linked to another account. Please use a different Client ID or contact support.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:284"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.success_42a8f6",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Success",
+    "kind": "text",
+    "defaultValue": "Success",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:302"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.your_account_has_been_created_and_link_f01413",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Your account has been created and linked successfully.",
+    "kind": "text",
+    "defaultValue": "Your account has been created and linked successfully.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:303"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.failed_to_process_sign_up_value1_766de4",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Failed to process sign-up: {value1}",
+    "kind": "text",
+    "defaultValue": "Failed to process sign-up: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:317"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.utils.apple_auth_service.error_7f2f6a",
+    "group": "Authenticate / Utils / Apple Auth Service",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/apple_auth_service.dart:328"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.email_verified_174614",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Email Verified!",
+    "kind": "text",
+    "defaultValue": "Email Verified!",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:76"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.your_email_has_been_successfully_verif_23f3d5",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Your email has been successfully verified.",
+    "kind": "text",
+    "defaultValue": "Your email has been successfully verified.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:77"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.verification_email_sent_to_value1_22ce48",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Verification email sent to {value1}",
+    "kind": "text",
+    "defaultValue": "Verification email sent to {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:136"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.failed_to_send_verification_email_plea_884620",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Failed to send verification email. Please try again later.",
+    "kind": "text",
+    "defaultValue": "Failed to send verification email. Please try again later.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:145"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.too_many_requests_please_wait_before_r_db7c32",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Too many requests. Please wait before requesting another verification email.",
+    "kind": "text",
+    "defaultValue": "Too many requests. Please wait before requesting another verification email.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:149"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.the_email_address_is_invalid_f9871e",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "The email address is invalid.",
+    "kind": "text",
+    "defaultValue": "The email address is invalid.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:152"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.no_user_found_please_sign_in_again_257abd",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "No user found. Please sign in again.",
+    "kind": "text",
+    "defaultValue": "No user found. Please sign in again.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:155"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.error_7f2f6a",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:161",
+      "screens/authenticate/email_verification_screen.dart:170"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.an_unexpected_error_occurred_please_tr_d07ac0",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "An unexpected error occurred. Please try again.",
+    "kind": "text",
+    "defaultValue": "An unexpected error occurred. Please try again.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:171"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.verify_your_email_05fd7a",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Verify Your Email",
+    "kind": "text",
+    "defaultValue": "Verify Your Email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:220"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.we_sent_a_verification_email_to_value1_d80f36",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "We sent a verification email to: {value1}",
+    "kind": "text",
+    "defaultValue": "We sent a verification email to:\n{value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:234"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.please_check_your_email_and_click_the__611181",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Please check your email and click the verification link to continue.",
+    "kind": "text",
+    "defaultValue": "Please check your email and click the verification link to continue.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:246"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.checking_verification_status_4b8267",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Checking verification status...",
+    "kind": "text",
+    "defaultValue": "Checking verification status...",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:272"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.resend_in_value1_s_b4463a",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Resend in {value1}s",
+    "kind": "text",
+    "defaultValue": "Resend in {value1}s",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:300"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.resend_verification_email_072f96",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Resend Verification Email",
+    "kind": "text",
+    "defaultValue": "Resend Verification Email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:301"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.email_verification_screen.sign_out_61fd08",
+    "group": "Authenticate / Email Verification Screen",
+    "label": "Sign Out",
+    "kind": "text",
+    "defaultValue": "Sign Out",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:326"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.there_is_no_record_of_the_client_id_va_96674c",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "There is no record of the Client ID {value1} in the database. Please contact support ",
+    "kind": "text",
+    "defaultValue": "There is no record of the Client ID {value1} in the database. Please contact support or re-enter your Client ID.",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:127"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.user_already_exists_for_given_client_i_e4c8b5",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "User already exists for given Client ID {value1}. Please log in instead.",
+    "kind": "text",
+    "defaultValue": "User already exists for given Client ID {value1}. Please log in instead.",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:131"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.success_42a8f6",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Success",
+    "kind": "text",
+    "defaultValue": "Success",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:186"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.email_verified_successfully_b1a0f1",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Email verified successfully.",
+    "kind": "text",
+    "defaultValue": "Email verified successfully.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:187"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.error_7f2f6a",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:206",
+      "screens/authenticate/create_account/create_account.dart:220"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.email_not_verified_please_check_your_i_e2adbf",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Email not verified. Please check your inbox for the verification link.",
+    "kind": "text",
+    "defaultValue": "Email not verified. Please check your inbox for the verification link.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:207"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.create_an_account_db933d",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Create An Account",
+    "kind": "text",
+    "defaultValue": "Create An Account",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:339"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.client_id_a766cd",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Client ID",
+    "kind": "text",
+    "defaultValue": "Client ID",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:462",
+      "screens/authenticate/create_account/create_account.dart:492"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.what_is_my_client_id_bd1e22",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "What is my Client ID?",
+    "kind": "text",
+    "defaultValue": "What is my Client ID?",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:475"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.your_client_id_number_cid_is_an_8_digi_1450b8",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Your Client ID Number (CID) is an 8 digit numeric identification code. You will recei",
+    "kind": "text",
+    "defaultValue": "Your Client ID Number (CID) is an 8 digit numeric identification code. You will receive an email containing your CID that is specific to your account. Do not share it with anyone. If you have yet to receive your CID, please reach out to {supportEmail} for assistance.",
+    "placeholders": [
+      "supportEmail"
+    ],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:493"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.enter_your_client_id_c015bb",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Enter your client ID",
+    "kind": "text",
+    "defaultValue": "Enter your client ID",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:511"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.please_enter_your_cid_a9ada6",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Please enter your CID",
+    "kind": "text",
+    "defaultValue": "Please enter your CID",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:566",
+      "screens/authenticate/create_account/create_account.dart:674"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.we_need_your_cid_to_authenticate_with__59fafa",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "We need your CID to authenticate with Google. Please enter your CID to continue.",
+    "kind": "text",
+    "defaultValue": "We need your CID to authenticate with Google. Please enter your CID to continue.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:567"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.sign_up_with_google_338492",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Sign up with Google",
+    "kind": "text",
+    "defaultValue": "Sign up with Google",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:589"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.not_available_4028c0",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Not Available",
+    "kind": "text",
+    "defaultValue": "Not Available",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:620"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.sign_in_with_apple_is_not_available_on_f881d6",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Sign in with Apple is not available on this device or simulator. Please try on a real",
+    "kind": "text",
+    "defaultValue": "Sign in with Apple is not available on this device or simulator. Please try on a real iOS device.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:621"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.authentication_failed_2db8da",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Authentication failed",
+    "kind": "text",
+    "defaultValue": "Authentication failed",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:633"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.invalid_authentication_please_try_agai_bb127a",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Invalid authentication. Please try again or use another method.",
+    "kind": "text",
+    "defaultValue": "Invalid authentication. Please try again or use another method.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:636"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.this_user_account_has_been_disabled_b7de08",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "This user account has been disabled.",
+    "kind": "text",
+    "defaultValue": "This user account has been disabled.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:639"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.apple_sign_in_is_not_enabled_for_this__e41fa9",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Apple Sign In is not enabled for this project.",
+    "kind": "text",
+    "defaultValue": "Apple Sign In is not enabled for this project.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:642"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.authentication_failed_value1_e19ef8",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Authentication failed: {value1}",
+    "kind": "text",
+    "defaultValue": "Authentication failed: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:645"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.sign_in_failed_9c06fa",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Sign In Failed",
+    "kind": "text",
+    "defaultValue": "Sign In Failed",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:649"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.apple_sign_in_failed_2122ea",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Apple Sign In Failed",
+    "kind": "text",
+    "defaultValue": "Apple Sign In Failed",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:658"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.there_was_a_problem_signing_in_with_ap_e31638",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "There was a problem signing in with Apple. Please try again later.",
+    "kind": "text",
+    "defaultValue": "There was a problem signing in with Apple. Please try again later.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:659"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.we_need_your_cid_to_authenticate_with__88fd95",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "We need your CID to authenticate with Apple. Please enter your CID to continue.",
+    "kind": "text",
+    "defaultValue": "We need your CID to authenticate with Apple. Please enter your CID to continue.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:675"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.sign_up_with_apple_73ca82",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Sign up with Apple",
+    "kind": "text",
+    "defaultValue": "Sign up with Apple",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:697"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.or_f579c5",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "OR",
+    "kind": "text",
+    "defaultValue": "OR",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:722"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.email_84add5",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Email",
+    "kind": "text",
+    "defaultValue": "Email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:746"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.enter_your_email_8cdbba",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Enter your email",
+    "kind": "text",
+    "defaultValue": "Enter your email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:758"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.password_8be3c9",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Password",
+    "kind": "text",
+    "defaultValue": "Password",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:790"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.create_a_password_f26d53",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Create a password",
+    "kind": "text",
+    "defaultValue": "Create a password",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:800"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.confirm_password_c2d404",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Confirm Password",
+    "kind": "text",
+    "defaultValue": "Confirm Password",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:846"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.enter_your_password_137816",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Enter your password",
+    "kind": "text",
+    "defaultValue": "Enter your password",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:862"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.next_bc9819",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Next",
+    "kind": "text",
+    "defaultValue": "Next",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:904"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.already_have_an_account_855903",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Already have an account?",
+    "kind": "text",
+    "defaultValue": "Already have an account?",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:925"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.create_account.login_4e5a28",
+    "group": "Authenticate / Create Account / Create Account",
+    "label": "Login",
+    "kind": "text",
+    "defaultValue": "Login",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:945"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.email_verification_dialog.an_error_occurred_e_7cfb3f",
+    "group": "Authenticate / Create Account / Components / Email Verification Dialog",
+    "label": "An error occurred: {e}",
+    "kind": "text",
+    "defaultValue": "An error occurred: {e}",
+    "placeholders": [
+      "e"
+    ],
+    "sources": [
+      "screens/authenticate/create_account/components/email_verification_dialog.dart:47"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.email_verification_dialog.verify_your_email_address_273692",
+    "group": "Authenticate / Create Account / Components / Email Verification Dialog",
+    "label": "Verify your Email Address",
+    "kind": "text",
+    "defaultValue": "Verify your Email Address",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/email_verification_dialog.dart:83"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.email_verification_dialog.you_will_receive_an_email_with_a_link__184c60",
+    "group": "Authenticate / Create Account / Components / Email Verification Dialog",
+    "label": "You will receive an email with a link to verify your email. Please check your inbox.",
+    "kind": "text",
+    "defaultValue": "You will receive an email with a link to verify your email. Please check your inbox.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/email_verification_dialog.dart:94"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.email_verification_dialog.continue_2e0262",
+    "group": "Authenticate / Create Account / Components / Email Verification Dialog",
+    "label": "Continue",
+    "kind": "text",
+    "defaultValue": "Continue",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/email_verification_dialog.dart:123"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.password_validation.at_least_8_characters_1fe494",
+    "group": "Authenticate / Create Account / Components / Password Validation",
+    "label": "At least 8 characters",
+    "kind": "text",
+    "defaultValue": "At least 8 characters",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/password_validation.dart:13"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.password_validation.1_digit_c2daba",
+    "group": "Authenticate / Create Account / Components / Password Validation",
+    "label": "1 digit",
+    "kind": "text",
+    "defaultValue": "1 digit",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/password_validation.dart:18"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.password_validation.1_uppercase_character_e4e706",
+    "group": "Authenticate / Create Account / Components / Password Validation",
+    "label": "1 uppercase character",
+    "kind": "text",
+    "defaultValue": "1 uppercase character",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/password_validation.dart:23"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.create_account.components.password_validation.1_lowercase_character_ea1254",
+    "group": "Authenticate / Create Account / Components / Password Validation",
+    "label": "1 lowercase character",
+    "kind": "text",
+    "defaultValue": "1 lowercase character",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/components/password_validation.dart:28"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.onboarding.welcome_to_agq_b71855",
+    "group": "Authenticate / Onboarding",
+    "label": "Welcome to AGQ!",
+    "kind": "text",
+    "defaultValue": "Welcome to AGQ!",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/onboarding.dart:87"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.onboarding.please_log_in_or_create_a_new_account__111f2e",
+    "group": "Authenticate / Onboarding",
+    "label": "Please log in or create a new account to continue.",
+    "kind": "text",
+    "defaultValue": "Please log in or create a new account to continue.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/onboarding.dart:92"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.onboarding.login_4e5a28",
+    "group": "Authenticate / Onboarding",
+    "label": "Login",
+    "kind": "text",
+    "defaultValue": "Login",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/onboarding.dart:113"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.onboarding.sign_up_2ba402",
+    "group": "Authenticate / Onboarding",
+    "label": "Sign Up",
+    "kind": "text",
+    "defaultValue": "Sign Up",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/onboarding.dart:149"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.initial_face_id.please_authenticate_to_login_5faeb2",
+    "group": "Authenticate / Initial Face Id",
+    "label": "Please authenticate to login",
+    "kind": "text",
+    "defaultValue": "Please authenticate to login",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/initial_face_id.dart:38"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.initial_face_id.agq_app_locked_dda619",
+    "group": "Authenticate / Initial Face Id",
+    "label": "AGQ App Locked",
+    "kind": "text",
+    "defaultValue": "AGQ App Locked",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/initial_face_id.dart:91"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.initial_face_id.unlock_with_face_id_to_continue_7814ef",
+    "group": "Authenticate / Initial Face Id",
+    "label": "Unlock with Face ID to continue",
+    "kind": "text",
+    "defaultValue": "Unlock with Face ID to continue",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/initial_face_id.dart:103"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.initial_face_id.use_face_id_f3ef71",
+    "group": "Authenticate / Initial Face Id",
+    "label": "Use Face ID",
+    "kind": "text",
+    "defaultValue": "Use Face ID",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/initial_face_id.dart:132"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.forgot_password_1cc8d1",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Forgot Password?",
+    "kind": "text",
+    "defaultValue": "Forgot Password?",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:106"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.enter_your_email_we_will_email_instruc_cf8dab",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Enter your email. We will email instructions on how to reset your password.",
+    "kind": "text",
+    "defaultValue": "Enter your email. We will email instructions on how to reset your password.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:136"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.email_84add5",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Email",
+    "kind": "text",
+    "defaultValue": "Email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:169"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.enter_your_email_8cdbba",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Enter your email",
+    "kind": "text",
+    "defaultValue": "Enter your email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:196"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.success_42a8f6",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Success",
+    "kind": "text",
+    "defaultValue": "Success",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:254"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.password_reset_email_sent_successfully_c28797",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Password reset email sent successfully!",
+    "kind": "text",
+    "defaultValue": "Password reset email sent successfully!",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:255"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.ok_9ce3bd",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "OK",
+    "kind": "text",
+    "defaultValue": "OK",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:267",
+      "screens/authenticate/login/forgot_password.dart:288"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.error_7f2f6a",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:281"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.failed_to_send_password_reset_email_pl_2c7785",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Failed to send password reset email. Please try again.",
+    "kind": "text",
+    "defaultValue": "Failed to send password reset email. Please try again.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:282"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.submit_2dacf6",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Submit",
+    "kind": "text",
+    "defaultValue": "Submit",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:314"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.back_to_bbe651",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Back to",
+    "kind": "text",
+    "defaultValue": "Back to",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:340"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.forgot_password.sign_in_f8492c",
+    "group": "Authenticate / Login / Forgot Password",
+    "label": "Sign In",
+    "kind": "text",
+    "defaultValue": "Sign In",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/forgot_password.dart:370"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.email_not_found_please_check_your_emai_87403f",
+    "group": "Authenticate / Login / Login",
+    "label": "Email not found. Please check your email or sign up for a new account.",
+    "kind": "text",
+    "defaultValue": "Email not found. Please check your email or sign up for a new account.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:107"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.error_signing_in_please_check_your_ema_cefa55",
+    "group": "Authenticate / Login / Login",
+    "label": "Error signing in. Please check your email and password. {e}",
+    "kind": "text",
+    "defaultValue": "Error signing in. Please check your email and password. {e}",
+    "placeholders": [
+      "e"
+    ],
+    "sources": [
+      "screens/authenticate/login/login.dart:111"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.error_logging_in_d88bcb",
+    "group": "Authenticate / Login / Login",
+    "label": "Error logging in",
+    "kind": "text",
+    "defaultValue": "Error logging in",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:116"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.please_authenticate_to_login_5faeb2",
+    "group": "Authenticate / Login / Login",
+    "label": "Please authenticate to login",
+    "kind": "text",
+    "defaultValue": "Please authenticate to login",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:130"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.not_available_4028c0",
+    "group": "Authenticate / Login / Login",
+    "label": "Not Available",
+    "kind": "text",
+    "defaultValue": "Not Available",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:172"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.sign_in_with_apple_is_not_available_on_f3c1de",
+    "group": "Authenticate / Login / Login",
+    "label": "Sign in with Apple is not available on this device or simulator.",
+    "kind": "text",
+    "defaultValue": "Sign in with Apple is not available on this device or simulator.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:173"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.sign_in_failed_9c06fa",
+    "group": "Authenticate / Login / Login",
+    "label": "Sign In Failed",
+    "kind": "text",
+    "defaultValue": "Sign In Failed",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:201"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.there_was_an_error_signing_in_with_app_529e8a",
+    "group": "Authenticate / Login / Login",
+    "label": "There was an error signing in with Apple. Please try again or use another method.",
+    "kind": "text",
+    "defaultValue": "There was an error signing in with Apple. Please try again or use another method.",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:202"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.login_to_your_account_95704e",
+    "group": "Authenticate / Login / Login",
+    "label": "Login to Your Account",
+    "kind": "text",
+    "defaultValue": "Login to Your Account",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:282"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.email_84add5",
+    "group": "Authenticate / Login / Login",
+    "label": "Email",
+    "kind": "text",
+    "defaultValue": "Email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:320"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.enter_your_email_8cdbba",
+    "group": "Authenticate / Login / Login",
+    "label": "Enter your email",
+    "kind": "text",
+    "defaultValue": "Enter your email",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:335"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.password_8be3c9",
+    "group": "Authenticate / Login / Login",
+    "label": "Password",
+    "kind": "text",
+    "defaultValue": "Password",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:372"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.enter_your_password_137816",
+    "group": "Authenticate / Login / Login",
+    "label": "Enter your password",
+    "kind": "text",
+    "defaultValue": "Enter your password",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:387"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.forgot_password_1cc8d1",
+    "group": "Authenticate / Login / Login",
+    "label": "Forgot Password?",
+    "kind": "text",
+    "defaultValue": "Forgot Password?",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:479"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.login_4e5a28",
+    "group": "Authenticate / Login / Login",
+    "label": "Login",
+    "kind": "text",
+    "defaultValue": "Login",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:555"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.sign_in_with_google_4a0b72",
+    "group": "Authenticate / Login / Login",
+    "label": "Sign in with Google",
+    "kind": "text",
+    "defaultValue": "Sign in with Google",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:597"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.sign_in_with_apple_a5331c",
+    "group": "Authenticate / Login / Login",
+    "label": "Sign in with Apple",
+    "kind": "text",
+    "defaultValue": "Sign in with Apple",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:634"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.don_t_have_an_account_f838dc",
+    "group": "Authenticate / Login / Login",
+    "label": "Don't have an account?",
+    "kind": "text",
+    "defaultValue": "Don't have an account?",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:653"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.login.sign_up_2ba402",
+    "group": "Authenticate / Login / Login",
+    "label": "Sign Up",
+    "kind": "text",
+    "defaultValue": "Sign Up",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/login.dart:677"
+    ]
+  },
+  {
+    "id": "text.screens.authenticate.login.auth_service.authenticate_to_access_8d3f37",
+    "group": "Authenticate / Login / Auth Service",
+    "label": "Authenticate to access",
+    "kind": "text",
+    "defaultValue": "Authenticate to access",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/login/auth_service.dart:30"
+    ]
+  },
+  {
+    "id": "text.screens.activity.activity.all_6a7208",
+    "group": "Activity / Activity",
+    "label": "All",
+    "kind": "text",
+    "defaultValue": "All",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/activity.dart:213"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.filter_activities.value1_to_value2_3535f6",
+    "group": "Activity / Utils / Filter Activities",
+    "label": "{value1} to {value2}",
+    "kind": "text",
+    "defaultValue": "{value1} to {value2}",
+    "placeholders": [
+      "value1",
+      "value2"
+    ],
+    "sources": [
+      "screens/activity/utils/filter_activities.dart:79"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.profit_8544a4",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Profit",
+    "kind": "text",
+    "defaultValue": "Profit",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:15"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.deposit_e7b0b3",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Deposit",
+    "kind": "text",
+    "defaultValue": "Deposit",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:17"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.withdrawal_730e37",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Withdrawal",
+    "kind": "text",
+    "defaultValue": "Withdrawal",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:19"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.pending_withdrawal_e109f0",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Pending Withdrawal",
+    "kind": "text",
+    "defaultValue": "Pending Withdrawal",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:21"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.error_7f2f6a",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:23"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.deposit_to_your_investment_at_0d0e00",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Deposit to your investment at",
+    "kind": "text",
+    "defaultValue": "Deposit to your investment at",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:107"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.withdrawal_from_your_investment_at_623589",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Withdrawal from your investment at",
+    "kind": "text",
+    "defaultValue": "Withdrawal from your investment at",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:110"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.pending_withdrawal_from_your_investmen_ea67d0",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Pending withdrawal from your investment at",
+    "kind": "text",
+    "defaultValue": "Pending withdrawal from your investment at",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:113"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.profit_to_your_investment_at_abd1de",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Profit to your investment at",
+    "kind": "text",
+    "defaultValue": "Profit to your investment at",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:117"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.all_time_4745c5",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "All Time",
+    "kind": "text",
+    "defaultValue": "All Time",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:134"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.all_types_eb672c",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "All Types",
+    "kind": "text",
+    "defaultValue": "All Types",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:149"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.no_types_selected_9d927b",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "No Types Selected",
+    "kind": "text",
+    "defaultValue": "No Types Selected",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:151"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.all_recipients_3b7e46",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "All Recipients",
+    "kind": "text",
+    "defaultValue": "All Recipients",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:165"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.no_recipients_selected_639bd8",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "No Recipients Selected",
+    "kind": "text",
+    "defaultValue": "No Recipients Selected",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:167"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.date_new_to_old_560139",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Date: New to Old",
+    "kind": "text",
+    "defaultValue": "Date: New to Old",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:177"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.date_old_to_new_77fdcc",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Date: Old to New",
+    "kind": "text",
+    "defaultValue": "Date: Old to New",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:179"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.amount_low_to_high_e12d6c",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Amount: Low to High",
+    "kind": "text",
+    "defaultValue": "Amount: Low to High",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:181"
+    ]
+  },
+  {
+    "id": "text.screens.activity.utils.activity_styles.amount_high_to_low_6235dc",
+    "group": "Activity / Utils / Activity Styles",
+    "label": "Amount: High to Low",
+    "kind": "text",
+    "defaultValue": "Amount: High to Low",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:183"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.sort_modal.sort_by_311158",
+    "group": "Activity / Components / Sort Modal",
+    "label": "Sort By",
+    "kind": "text",
+    "defaultValue": "Sort By",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/sort_modal.dart:33"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.sort_modal.date_new_to_old_default_81c34e",
+    "group": "Activity / Components / Sort Modal",
+    "label": "Date: New to Old (Default)",
+    "kind": "text",
+    "defaultValue": "Date: New to Old (Default)",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/sort_modal.dart:44"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.sort_modal.date_old_to_new_77fdcc",
+    "group": "Activity / Components / Sort Modal",
+    "label": "Date: Old to New",
+    "kind": "text",
+    "defaultValue": "Date: Old to New",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/sort_modal.dart:45"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.sort_modal.amount_low_to_high_e12d6c",
+    "group": "Activity / Components / Sort Modal",
+    "label": "Amount: Low to High",
+    "kind": "text",
+    "defaultValue": "Amount: Low to High",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/sort_modal.dart:47"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.sort_modal.amount_high_to_low_6235dc",
+    "group": "Activity / Components / Sort Modal",
+    "label": "Amount: High to Low",
+    "kind": "text",
+    "defaultValue": "Amount: High to Low",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/sort_modal.dart:49"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_app_bar.activity_81c0d9",
+    "group": "Activity / Components / Activity App Bar",
+    "label": "Activity",
+    "kind": "text",
+    "defaultValue": "Activity",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_app_bar.dart:50"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_app_bar.filter_d7decf",
+    "group": "Activity / Components / Activity App Bar",
+    "label": "Filter",
+    "kind": "text",
+    "defaultValue": "Filter",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_app_bar.dart:153"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_app_bar.sort_adc4e9",
+    "group": "Activity / Components / Activity App Bar",
+    "label": "Sort",
+    "kind": "text",
+    "defaultValue": "Sort",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_app_bar.dart:182"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.filter_activity_527606",
+    "group": "Activity / Components / Filter Modal",
+    "label": "Filter Activity",
+    "kind": "text",
+    "defaultValue": "Filter Activity",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:93"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.type_3deb74",
+    "group": "Activity / Components / Filter Modal",
+    "label": "Type",
+    "kind": "text",
+    "defaultValue": "Type",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:109"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.recipients_78cbf8",
+    "group": "Activity / Components / Filter Modal",
+    "label": "Recipients",
+    "kind": "text",
+    "defaultValue": "Recipients",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:114"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.clients_28e22f",
+    "group": "Activity / Components / Filter Modal",
+    "label": "Clients",
+    "kind": "text",
+    "defaultValue": "Clients",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:120"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.by_time_period_f7e29b",
+    "group": "Activity / Components / Filter Modal",
+    "label": "By Time Period",
+    "kind": "text",
+    "defaultValue": "By Time Period",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:172"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.apply_cfea41",
+    "group": "Activity / Components / Filter Modal",
+    "label": "Apply",
+    "kind": "text",
+    "defaultValue": "Apply",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:287"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.filter_modal.clear_719ea3",
+    "group": "Activity / Components / Filter Modal",
+    "label": "Clear",
+    "kind": "text",
+    "defaultValue": "Clear",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/filter_modal.dart:322"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_details_modal.activity_details_733a26",
+    "group": "Activity / Components / Activity Details Modal",
+    "label": "Activity Details",
+    "kind": "text",
+    "defaultValue": "Activity Details",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:72"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_details_modal.description_55f8eb",
+    "group": "Activity / Components / Activity Details Modal",
+    "label": "Description",
+    "kind": "text",
+    "defaultValue": "Description",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:134"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_details_modal.date_eb9a4b",
+    "group": "Activity / Components / Activity Details Modal",
+    "label": "Date",
+    "kind": "text",
+    "defaultValue": "Date",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:144"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.activity_details_modal.recipient_903432",
+    "group": "Activity / Components / Activity Details Modal",
+    "label": "Recipient",
+    "kind": "text",
+    "defaultValue": "Recipient",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:154"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.no_activities_body.no_activities_57741f",
+    "group": "Activity / Components / No Activities Body",
+    "label": "No Activities",
+    "kind": "text",
+    "defaultValue": "No Activities",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/no_activities_body.dart:15"
+    ]
+  },
+  {
+    "id": "text.screens.activity.components.no_activities_body.please_adjust_your_filters_to_view_act_a64525",
+    "group": "Activity / Components / No Activities Body",
+    "label": "Please adjust your filters to view activities.",
+    "kind": "text",
+    "defaultValue": "Please adjust your filters to view activities.",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/no_activities_body.dart:20"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.dashboard.recent_transactions_f28b82",
+    "group": "Dashboard / Dashboard",
+    "label": "Recent Transactions",
+    "kind": "text",
+    "defaultValue": "Recent Transactions",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/dashboard.dart:232"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.dashboard.connected_users_397621",
+    "group": "Dashboard / Dashboard",
+    "label": "Connected Users",
+    "kind": "text",
+    "defaultValue": "Connected Users",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/dashboard.dart:252"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.dashboard_app_bar.welcome_shortername_4e6d4e",
+    "group": "Dashboard / Components / Dashboard App Bar",
+    "label": "Welcome, {shorterName}!",
+    "kind": "text",
+    "defaultValue": "Welcome, {shorterName}!",
+    "placeholders": [
+      "shorterName"
+    ],
+    "sources": [
+      "screens/dashboard/components/dashboard_app_bar.dart:22"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.dashboard_app_bar.welcome_fullname_75f547",
+    "group": "Dashboard / Components / Dashboard App Bar",
+    "label": "Welcome, {fullName}!",
+    "kind": "text",
+    "defaultValue": "Welcome, {fullName}!",
+    "placeholders": [
+      "fullName"
+    ],
+    "sources": [
+      "screens/dashboard/components/dashboard_app_bar.dart:24"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.dashboard_app_bar.client_id_value1_7c72cb",
+    "group": "Dashboard / Components / Dashboard App Bar",
+    "label": "Client ID: {value1}",
+    "kind": "text",
+    "defaultValue": "Client ID: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/dashboard/components/dashboard_app_bar.dart:55"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.three_recent_activities.view_all_efd835",
+    "group": "Dashboard / Components / Three Recent Activities",
+    "label": "View All",
+    "kind": "text",
+    "defaultValue": "View All",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/three_recent_activities.dart:93"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.total_assets_section.total_assets_5d9f9a",
+    "group": "Dashboard / Components / Total Assets Section",
+    "label": "Total Assets",
+    "kind": "text",
+    "defaultValue": "Total Assets",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:54"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.total_assets_section.what_is_9c9e11",
+    "group": "Dashboard / Components / Total Assets Section",
+    "label": "What is",
+    "kind": "text",
+    "defaultValue": "What is",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:117"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.total_assets_section.ytd_stands_for_year_to_date_it_is_a_fi_61a2da",
+    "group": "Dashboard / Components / Total Assets Section",
+    "label": "YTD stands for Year-To-Date. It is a financial term that describes the amount of inco",
+    "kind": "text",
+    "defaultValue": "YTD stands for Year-To-Date. It is a financial term that describes the amount of income accumulated over the period of time from the beginning of the current year to the present date.",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:133"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.total_assets_section.what_are_my_total_assets_5bea76",
+    "group": "Dashboard / Components / Total Assets Section",
+    "label": "What are my total assets?",
+    "kind": "text",
+    "defaultValue": "What are my total assets?",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:139"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.total_assets_section.total_assets_are_the_sum_of_all_assets_98d27d",
+    "group": "Dashboard / Components / Total Assets Section",
+    "label": "Total assets are the sum of all assets in your account, including the assets of your ",
+    "kind": "text",
+    "defaultValue": "Total assets are the sum of all assets in your account, including the assets of your connected users. This includes all IRAs, Nuview Cash, and assets in both AGQ and AK1.",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:146"
+    ]
+  },
+  {
+    "id": "text.screens.dashboard.components.total_assets_section.continue_2e0262",
+    "group": "Dashboard / Components / Total Assets Section",
+    "label": "Continue",
+    "kind": "text",
+    "defaultValue": "Continue",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:163"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.help_c47ae1",
+    "group": "Profile / Profile",
+    "label": "Help",
+    "kind": "text",
+    "defaultValue": "Help",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:92"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.documents_687c82",
+    "group": "Profile / Profile",
+    "label": "Documents",
+    "kind": "text",
+    "defaultValue": "Documents",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:118"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.settings_c7f73b",
+    "group": "Profile / Profile",
+    "label": "Settings",
+    "kind": "text",
+    "defaultValue": "Settings",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:145"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.profiles_0c2a93",
+    "group": "Profile / Profile",
+    "label": "Profiles",
+    "kind": "text",
+    "defaultValue": "Profiles",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:171"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.authentication_ee1acf",
+    "group": "Profile / Profile",
+    "label": "Authentication",
+    "kind": "text",
+    "defaultValue": "Authentication",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:197"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.disclaimer_752e0c",
+    "group": "Profile / Profile",
+    "label": "DISCLAIMER",
+    "kind": "text",
+    "defaultValue": "DISCLAIMER",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:229"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.investment_products_and_services_are_o_e86030",
+    "group": "Profile / Profile",
+    "label": "Investment products and services are offered through AGQ Consulting LLC, a Florida li",
+    "kind": "text",
+    "defaultValue": "Investment products and services are offered through AGQ Consulting LLC, a Florida limited liability company.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:239"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.read_full_disclaimer_09d9e1",
+    "group": "Profile / Profile",
+    "label": "Read Full Disclaimer",
+    "kind": "text",
+    "defaultValue": "Read Full Disclaimer",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:258"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.profile_ff4fc0",
+    "group": "Profile / Profile",
+    "label": "Profile",
+    "kind": "text",
+    "defaultValue": "Profile",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:300"
+    ]
+  },
+  {
+    "id": "text.screens.profile.profile.client_id_value1_7c72cb",
+    "group": "Profile / Profile",
+    "label": "Client ID: {value1}",
+    "kind": "text",
+    "defaultValue": "Client ID: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/profile.dart:428"
+    ]
+  },
+  {
+    "id": "text.screens.profile.utils.PDFPreview.pdf_preview_2bddce",
+    "group": "Profile / Utils / Pdfpreview",
+    "label": "PDF Preview",
+    "kind": "text",
+    "defaultValue": "PDF Preview",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/utils/PDFPreview.dart:17"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.logout_button.logout_e43d61",
+    "group": "Profile / Components / Logout Button",
+    "label": "Logout",
+    "kind": "text",
+    "defaultValue": "Logout",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/logout_button.dart:48",
+      "screens/profile/components/logout_button.dart:111"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.logout_button.confirm_logout_6e6ea0",
+    "group": "Profile / Components / Logout Button",
+    "label": "Confirm Logout",
+    "kind": "text",
+    "defaultValue": "Confirm Logout",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/logout_button.dart:79"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.logout_button.are_you_sure_you_want_to_log_out_97c2c6",
+    "group": "Profile / Components / Logout Button",
+    "label": "Are you sure you want to log out?",
+    "kind": "text",
+    "defaultValue": "Are you sure you want to log out?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/logout_button.dart:92"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.logout_button.cancel_77dfd2",
+    "group": "Profile / Components / Logout Button",
+    "label": "Cancel",
+    "kind": "text",
+    "defaultValue": "Cancel",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/logout_button.dart:137"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.delete_account_ee1b9a",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Delete Account",
+    "kind": "text",
+    "defaultValue": "Delete Account",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:61"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.confirm_delete_account_8629da",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Confirm Delete Account",
+    "kind": "text",
+    "defaultValue": "Confirm Delete Account",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:98"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.are_you_sure_you_want_to_permanently_d_12ba10",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Are you sure you want to permanently delete your account?",
+    "kind": "text",
+    "defaultValue": "Are you sure you want to permanently delete your account?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:111"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.type_your_cid_to_confirm_deletion_885a10",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Type your CID to confirm deletion:",
+    "kind": "text",
+    "defaultValue": "Type your CID to confirm deletion:",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:115"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.your_cid_value1_9430ed",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Your CID: {value1}",
+    "kind": "text",
+    "defaultValue": "Your CID: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:131"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.cid_does_not_match_please_enter_the_co_a731d7",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "CID does not match, please enter the correct CID",
+    "kind": "text",
+    "defaultValue": "CID does not match, please enter the correct CID",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:158"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.delete_f6fdbe",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Delete",
+    "kind": "text",
+    "defaultValue": "Delete",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:173"
+    ]
+  },
+  {
+    "id": "text.screens.profile.components.delete_account_button.cancel_77dfd2",
+    "group": "Profile / Components / Delete Account Button",
+    "label": "Cancel",
+    "kind": "text",
+    "defaultValue": "Cancel",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:199"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.help_c47ae1",
+    "group": "Profile / Pages / Help",
+    "label": "Help",
+    "kind": "text",
+    "defaultValue": "Help",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:65"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.point_of_contact_0631b7",
+    "group": "Profile / Pages / Help",
+    "label": "Point of Contact",
+    "kind": "text",
+    "defaultValue": "Point of Contact",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:91"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.ahsan_sonny_shaikh_7502e6",
+    "group": "Profile / Pages / Help",
+    "label": "Ahsan 'Sonny' Shaikh",
+    "kind": "text",
+    "defaultValue": "Ahsan 'Sonny' Shaikh",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:137"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.partner_9357e0",
+    "group": "Profile / Pages / Help",
+    "label": "Partner",
+    "kind": "text",
+    "defaultValue": "Partner",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:147",
+      "screens/profile/pages/help.dart:297"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.contact_info_d01b04",
+    "group": "Profile / Pages / Help",
+    "label": "Contact Info:",
+    "kind": "text",
+    "defaultValue": "Contact Info:",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:167",
+      "screens/profile/pages/help.dart:317"
+    ]
+  },
+  {
+    "id": "contact.sonny_email",
+    "group": "Profile / Pages / Help",
+    "label": "sonny@agqconsulting.com",
+    "kind": "email",
+    "defaultValue": "sonny@agqconsulting.com",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:182"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.email_sonny_agqconsulting_com_58c8a4",
+    "group": "Profile / Pages / Help",
+    "label": "Email: {email}",
+    "kind": "text",
+    "defaultValue": "Email: {email}",
+    "placeholders": [
+      "email"
+    ],
+    "sources": [
+      "screens/profile/pages/help.dart:199"
+    ]
+  },
+  {
+    "id": "contact.sonny_phone",
+    "group": "Profile / Pages / Help",
+    "label": "+1 (631) 487-9818",
+    "kind": "phone",
+    "defaultValue": "+1 (631) 487-9818",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:214"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.phone_1_631_487_9818_e0d194",
+    "group": "Profile / Pages / Help",
+    "label": "Phone: {phone}",
+    "kind": "text",
+    "defaultValue": "Phone: {phone}",
+    "placeholders": [
+      "phone"
+    ],
+    "sources": [
+      "screens/profile/pages/help.dart:232"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.kashif_shaikh_9d51d3",
+    "group": "Profile / Pages / Help",
+    "label": "Kashif Shaikh",
+    "kind": "text",
+    "defaultValue": "Kashif Shaikh",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:287"
+    ]
+  },
+  {
+    "id": "contact.kash_email",
+    "group": "Profile / Pages / Help",
+    "label": "kash@agqconsulting.com",
+    "kind": "email",
+    "defaultValue": "kash@agqconsulting.com",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:333"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.email_kash_agqconsulting_com_6e595c",
+    "group": "Profile / Pages / Help",
+    "label": "Email: {email}",
+    "kind": "text",
+    "defaultValue": "Email: {email}",
+    "placeholders": [
+      "email"
+    ],
+    "sources": [
+      "screens/profile/pages/help.dart:352"
+    ]
+  },
+  {
+    "id": "contact.kash_phone",
+    "group": "Profile / Pages / Help",
+    "label": "+1 (973) 610 4916",
+    "kind": "phone",
+    "defaultValue": "+1 (973) 610 4916",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:368"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.phone_1_973_610_4916_ac63da",
+    "group": "Profile / Pages / Help",
+    "label": "Phone: {phone}",
+    "kind": "text",
+    "defaultValue": "Phone: {phone}",
+    "placeholders": [
+      "phone"
+    ],
+    "sources": [
+      "screens/profile/pages/help.dart:388"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.faq_03688b",
+    "group": "Profile / Pages / Help",
+    "label": "FAQ",
+    "kind": "text",
+    "defaultValue": "FAQ",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:422"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.is_the_app_secure_8e37a6",
+    "group": "Profile / Pages / Help",
+    "label": "Is the app secure?",
+    "kind": "text",
+    "defaultValue": "Is the app secure?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:435"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.absolutely_the_agq_app_employs_cutting_54d0ec",
+    "group": "Profile / Pages / Help",
+    "label": "Absolutely. The AGQ app employs cutting-edge security measures to safeguard your data",
+    "kind": "text",
+    "defaultValue": "Absolutely. The AGQ app employs cutting-edge security measures to safeguard your data and ensure your privacy is fully protected. Your security is our top priority, and we are committed to maintaining the highest standards of data protection.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:436"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.how_do_i_contact_customer_support_6a03d1",
+    "group": "Profile / Pages / Help",
+    "label": "How do I contact customer support?",
+    "kind": "text",
+    "defaultValue": "How do I contact customer support?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:439"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.you_can_contact_us_via_email_at_manage_155913",
+    "group": "Profile / Pages / Help",
+    "label": "You can contact us via email at management@agqconsulting.com, or by phone at 973-610-",
+    "kind": "text",
+    "defaultValue": "You can contact us via email at management@agqconsulting.com, or by phone at 973-610-4916 or 631-487-9818.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:440"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.how_do_i_update_my_personal_informatio_942784",
+    "group": "Profile / Pages / Help",
+    "label": "How do I update my personal information?",
+    "kind": "text",
+    "defaultValue": "How do I update my personal information?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:443"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.log_in_to_your_account_go_to_profile_s_8470f8",
+    "group": "Profile / Pages / Help",
+    "label": "Log in to your account, go to profile settings, edit your information, and save the c",
+    "kind": "text",
+    "defaultValue": "Log in to your account, go to profile settings, edit your information, and save the changes. For help, contact our support team at management@agqconsulting.com.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:444"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.what_should_i_do_if_my_phone_is_lost_o_97df21",
+    "group": "Profile / Pages / Help",
+    "label": "What should I do if my phone is lost or stolen?",
+    "kind": "text",
+    "defaultValue": "What should I do if my phone is lost or stolen?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:447"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.if_your_phone_is_lost_or_stolen_contac_ec6456",
+    "group": "Profile / Pages / Help",
+    "label": "If your phone is lost or stolen, contact us immediately. Even though the app is secur",
+    "kind": "text",
+    "defaultValue": "If your phone is lost or stolen, contact us immediately. Even though the app is secured with a PIN or face ID, we will promptly disable your account to ensure your safety.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:448"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.how_can_i_export_my_financial_data_0b0bfd",
+    "group": "Profile / Pages / Help",
+    "label": "How can I export my financial data?",
+    "kind": "text",
+    "defaultValue": "How can I export my financial data?",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:451"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.help.go_to_the_documents_section_click_the__869bb2",
+    "group": "Profile / Pages / Help",
+    "label": "Go to the Documents section, click the Download button, and choose your preferred for",
+    "kind": "text",
+    "defaultValue": "Go to the Documents section, click the Download button, and choose your preferred format from the options dialog.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:452"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.search_pdf_files_71d5c7",
+    "group": "Profile / Pages / Documents",
+    "label": "Search PDF files",
+    "kind": "text",
+    "defaultValue": "Search PDF files",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:283"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.sort_by_a2a5bd",
+    "group": "Profile / Pages / Documents",
+    "label": "Sort by",
+    "kind": "text",
+    "defaultValue": "Sort by",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:337"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.new_to_old_f1154d",
+    "group": "Profile / Pages / Documents",
+    "label": "New to Old",
+    "kind": "text",
+    "defaultValue": "New to Old",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:358"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.old_to_new_fdd20f",
+    "group": "Profile / Pages / Documents",
+    "label": "Old to New",
+    "kind": "text",
+    "defaultValue": "Old to New",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:380"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.there_are_no_documents_available_46357a",
+    "group": "Profile / Pages / Documents",
+    "label": "There are no documents available.",
+    "kind": "text",
+    "defaultValue": "There are no documents available.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:411"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.loading_b04ba4",
+    "group": "Profile / Pages / Documents",
+    "label": "Loading...",
+    "kind": "text",
+    "defaultValue": "Loading...",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:453"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.error_loading_metadata_f93558",
+    "group": "Profile / Pages / Documents",
+    "label": "Error loading metadata",
+    "kind": "text",
+    "defaultValue": "Error loading metadata",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:464"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.added_on_value1_7adde3",
+    "group": "Profile / Pages / Documents",
+    "label": "Added on: {value1}",
+    "kind": "text",
+    "defaultValue": "Added on: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/pages/documents.dart:480"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.date_not_available_57497e",
+    "group": "Profile / Pages / Documents",
+    "label": "Date not available",
+    "kind": "text",
+    "defaultValue": "Date not available",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:481"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.documents.documents_687c82",
+    "group": "Profile / Pages / Documents",
+    "label": "Documents",
+    "kind": "text",
+    "defaultValue": "Documents",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:552"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.disclaimer.disclaimer_4c4a2e",
+    "group": "Profile / Pages / Disclaimer",
+    "label": "Disclaimer",
+    "kind": "text",
+    "defaultValue": "Disclaimer",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/disclaimer.dart:69"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.disclaimer.agq_consulting_llc_99d049",
+    "group": "Profile / Pages / Disclaimer",
+    "label": "AGQ Consulting LLC",
+    "kind": "text",
+    "defaultValue": "AGQ Consulting LLC",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/disclaimer.dart:94"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.disclaimer.agq_consulting_llc_is_a_florida_limite_bf4710",
+    "group": "Profile / Pages / Disclaimer",
+    "label": "AGQ Consulting LLC is a Florida limited liability company exempt from the registratio",
+    "kind": "text",
+    "defaultValue": "AGQ Consulting LLC is a Florida limited liability company exempt from the registration requirements of the Investment Company Act of 1940 pursuant to Section 3(c)(1) thereof. Our private offerings are available for up to one hundred (100) accredited investors of which no more than thirty-five (35) may be non-accredited investors and rely on the registration exemption under Rule 506 of Regulation D under the Securities Act of 1933. A Form D claiming such exemption as a safe harbor is on file with the SEC and applicable states. AGQ is domiciled at 195 International Parkway, Suite 103, Lake Mary, Florida 32746 and is under the purview of the State of Florida and United States laws. Please contact AGQ at management@agqconsulting.com. Thank you.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/disclaimer.dart:104"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.authentication.authentication_ee1acf",
+    "group": "Profile / Pages / Authentication",
+    "label": "Authentication",
+    "kind": "text",
+    "defaultValue": "Authentication",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/authentication.dart:98"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.authentication.app_lock_155f0c",
+    "group": "Profile / Pages / Authentication",
+    "label": "App Lock",
+    "kind": "text",
+    "defaultValue": "App Lock",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/authentication.dart:127"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.authentication.when_enabled_a_passcode_or_biometric_a_4ea681",
+    "group": "Profile / Pages / Authentication",
+    "label": "When enabled, a passcode or biometric authentication such as Face ID will be required",
+    "kind": "text",
+    "defaultValue": "When enabled, a passcode or biometric authentication such as Face ID will be required each time you re-enter the app.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/authentication.dart:151"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.my_profiles_6f78f5",
+    "group": "Profile / Pages / Profiles",
+    "label": "My Profiles",
+    "kind": "text",
+    "defaultValue": "My Profiles",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/profiles.dart:64"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.connected_users_397621",
+    "group": "Profile / Pages / Profiles",
+    "label": "Connected Users",
+    "kind": "text",
+    "defaultValue": "Connected Users",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/profiles.dart:96"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.client_id_value1_7c72cb",
+    "group": "Profile / Pages / Profiles",
+    "label": "Client ID: {value1}",
+    "kind": "text",
+    "defaultValue": "Client ID: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/pages/profiles.dart:153"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.first_deposit_date_value1_59816f",
+    "group": "Profile / Pages / Profiles",
+    "label": "First Deposit Date: {value1}",
+    "kind": "text",
+    "defaultValue": "First Deposit Date: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/pages/profiles.dart:163"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.communication_email_value1_e0391e",
+    "group": "Profile / Pages / Profiles",
+    "label": "Communication Email: {value1}",
+    "kind": "text",
+    "defaultValue": "Communication Email: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/pages/profiles.dart:172"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.phone_number_value1_4b780f",
+    "group": "Profile / Pages / Profiles",
+    "label": "Phone Number: {value1}",
+    "kind": "text",
+    "defaultValue": "Phone Number: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/pages/profiles.dart:181"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.address_value1_aaa269",
+    "group": "Profile / Pages / Profiles",
+    "label": "Address: {value1}",
+    "kind": "text",
+    "defaultValue": "Address: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/profile/pages/profiles.dart:190"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.profiles.profiles_0c2a93",
+    "group": "Profile / Pages / Profiles",
+    "label": "Profiles",
+    "kind": "text",
+    "defaultValue": "Profiles",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/profiles.dart:229"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.notifications_disabled_5d140e",
+    "group": "Profile / Pages / Settings",
+    "label": "Notifications Disabled",
+    "kind": "text",
+    "defaultValue": "Notifications Disabled",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:52"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.please_enable_notifications_in_your_de_9ac069",
+    "group": "Profile / Pages / Settings",
+    "label": "Please enable notifications in your device settings to receive updates.",
+    "kind": "text",
+    "defaultValue": "Please enable notifications in your device settings to receive updates.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:60"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.cancel_77dfd2",
+    "group": "Profile / Pages / Settings",
+    "label": "Cancel",
+    "kind": "text",
+    "defaultValue": "Cancel",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:69"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.settings_c7f73b",
+    "group": "Profile / Pages / Settings",
+    "label": "Settings",
+    "kind": "text",
+    "defaultValue": "Settings",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:80",
+      "screens/profile/pages/settings.dart:857"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.notifications_753a22",
+    "group": "Profile / Pages / Settings",
+    "label": "Notifications",
+    "kind": "text",
+    "defaultValue": "Notifications",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:220"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.let_me_know_about_new_activities_and_s_569b76",
+    "group": "Profile / Pages / Settings",
+    "label": "Let me know about new activities and statements within my portfolio.",
+    "kind": "text",
+    "defaultValue": "Let me know about new activities and statements within my portfolio.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:230"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.security_f25ce1",
+    "group": "Profile / Pages / Settings",
+    "label": "Security",
+    "kind": "text",
+    "defaultValue": "Security",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:308"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.change_email_12dffa",
+    "group": "Profile / Pages / Settings",
+    "label": "Change Email",
+    "kind": "text",
+    "defaultValue": "Change Email",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:365",
+      "screens/profile/pages/settings.dart:522"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.you_are_changing_the_email_associated__380ca8",
+    "group": "Profile / Pages / Settings",
+    "label": "You are changing the email associated with your account.",
+    "kind": "text",
+    "defaultValue": "You are changing the email associated with your account.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:374"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.email_84add5",
+    "group": "Profile / Pages / Settings",
+    "label": "Email",
+    "kind": "text",
+    "defaultValue": "Email",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:382"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.enter_your_new_email_57c67c",
+    "group": "Profile / Pages / Settings",
+    "label": "Enter your new email",
+    "kind": "text",
+    "defaultValue": "Enter your new email",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:400"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.email_change_requested_f9a41f",
+    "group": "Profile / Pages / Settings",
+    "label": "Email Change Requested",
+    "kind": "text",
+    "defaultValue": "Email Change Requested",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:442"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.please_check_your_email_for_a_verifica_d6c220",
+    "group": "Profile / Pages / Settings",
+    "label": "Please check your email for a verification link. You need to verify the new email add",
+    "kind": "text",
+    "defaultValue": "Please check your email for a verification link. You need to verify the new email address before it takes effect.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:443"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.error_7f2f6a",
+    "group": "Profile / Pages / Settings",
+    "label": "Error",
+    "kind": "text",
+    "defaultValue": "Error",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:453",
+      "screens/profile/pages/settings.dart:656"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.error_updating_email_e_a4dcc5",
+    "group": "Profile / Pages / Settings",
+    "label": "Error updating email: {e}",
+    "kind": "text",
+    "defaultValue": "Error updating email: {e}",
+    "placeholders": [
+      "e"
+    ],
+    "sources": [
+      "screens/profile/pages/settings.dart:454"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.continue_2e0262",
+    "group": "Profile / Pages / Settings",
+    "label": "Continue",
+    "kind": "text",
+    "defaultValue": "Continue",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:470",
+      "screens/profile/pages/settings.dart:674"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.change_password_49289d",
+    "group": "Profile / Pages / Settings",
+    "label": "Change Password",
+    "kind": "text",
+    "defaultValue": "Change Password",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:566",
+      "screens/profile/pages/settings.dart:727"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.you_are_changing_the_password_associat_ce88d3",
+    "group": "Profile / Pages / Settings",
+    "label": "You are changing the password associated with your account.",
+    "kind": "text",
+    "defaultValue": "You are changing the password associated with your account.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:575"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.new_password_4894cb",
+    "group": "Profile / Pages / Settings",
+    "label": "New Password",
+    "kind": "text",
+    "defaultValue": "New Password",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:583"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.enter_your_new_password_7bec90",
+    "group": "Profile / Pages / Settings",
+    "label": "Enter your new password",
+    "kind": "text",
+    "defaultValue": "Enter your new password",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:599"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.success_42a8f6",
+    "group": "Profile / Pages / Settings",
+    "label": "Success",
+    "kind": "text",
+    "defaultValue": "Success",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:640"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.your_password_has_been_updated_success_fd29a6",
+    "group": "Profile / Pages / Settings",
+    "label": "Your password has been updated successfully.",
+    "kind": "text",
+    "defaultValue": "Your password has been updated successfully.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:641"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.error_updating_password_e_3e4e91",
+    "group": "Profile / Pages / Settings",
+    "label": "Error updating password: {e}",
+    "kind": "text",
+    "defaultValue": "Error updating password: {e}",
+    "placeholders": [
+      "e"
+    ],
+    "sources": [
+      "screens/profile/pages/settings.dart:657"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.logout_e43d61",
+    "group": "Profile / Pages / Settings",
+    "label": "Logout",
+    "kind": "text",
+    "defaultValue": "Logout",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:756"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.log_out_of_your_account_44c4e0",
+    "group": "Profile / Pages / Settings",
+    "label": "Log out of your account.",
+    "kind": "text",
+    "defaultValue": "Log out of your account.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:766"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.delete_your_account_a0b7ba",
+    "group": "Profile / Pages / Settings",
+    "label": "Delete your account",
+    "kind": "text",
+    "defaultValue": "Delete your account",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:803"
+    ]
+  },
+  {
+    "id": "text.screens.profile.pages.settings.delete_your_account_this_cannot_be_und_220d07",
+    "group": "Profile / Pages / Settings",
+    "label": "Delete your account. This cannot be undone.",
+    "kind": "text",
+    "defaultValue": "Delete your account. This cannot be undone.",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:813"
+    ]
+  },
+  {
+    "id": "text.screens.notifications.components.notification_card.new_activity_f8bc95",
+    "group": "Notifications / Components / Notification Card",
+    "label": "New Activity",
+    "kind": "text",
+    "defaultValue": "New Activity",
+    "placeholders": [],
+    "sources": [
+      "screens/notifications/components/notification_card.dart:30"
+    ]
+  },
+  {
+    "id": "text.screens.notifications.components.notification_card.new_statement_2daf44",
+    "group": "Notifications / Components / Notification Card",
+    "label": "New Statement",
+    "kind": "text",
+    "defaultValue": "New Statement",
+    "placeholders": [],
+    "sources": [
+      "screens/notifications/components/notification_card.dart:34"
+    ]
+  },
+  {
+    "id": "text.screens.notifications.components.notification_card.new_notification_8fbc0f",
+    "group": "Notifications / Components / Notification Card",
+    "label": "New Notification",
+    "kind": "text",
+    "defaultValue": "New Notification",
+    "placeholders": [],
+    "sources": [
+      "screens/notifications/components/notification_card.dart:38"
+    ]
+  },
+  {
+    "id": "text.screens.notifications.components.mark_all_read_button.mark_all_as_read_81b1f7",
+    "group": "Notifications / Components / Mark All Read Button",
+    "label": " Mark All As Read",
+    "kind": "text",
+    "defaultValue": " Mark All As Read",
+    "placeholders": [],
+    "sources": [
+      "screens/notifications/components/mark_all_read_button.dart:51"
+    ]
+  },
+  {
+    "id": "text.screens.notifications.components.notifications_app_bar.notifications_753a22",
+    "group": "Notifications / Components / Notifications App Bar",
+    "label": "Notifications",
+    "kind": "text",
+    "defaultValue": "Notifications",
+    "placeholders": [],
+    "sources": [
+      "screens/notifications/components/notifications_app_bar.dart:31"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.utils.analytics_utilities.value1_m_79b41b",
+    "group": "Analytics / Utils / Analytics Utilities",
+    "label": "{value1}M",
+    "kind": "text",
+    "defaultValue": "{value1}M",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/analytics/utils/analytics_utilities.dart:140"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.utils.analytics_utilities.value1_k_ccd2fd",
+    "group": "Analytics / Utils / Analytics Utilities",
+    "label": "{value1}K",
+    "kind": "text",
+    "defaultValue": "{value1}K",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "screens/analytics/utils/analytics_utilities.dart:142"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.no_accounts_f34b92",
+    "group": "Analytics / Components / Line Chart",
+    "label": "No accounts",
+    "kind": "text",
+    "defaultValue": "No accounts",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:255"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.no_clients_available_58aacd",
+    "group": "Analytics / Components / Line Chart",
+    "label": "No clients available",
+    "kind": "text",
+    "defaultValue": "No clients available",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:398"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.asset_timeline_291567",
+    "group": "Analytics / Components / Line Chart",
+    "label": "Asset Timeline",
+    "kind": "text",
+    "defaultValue": "Asset Timeline",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:463"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.last_week_bc159a",
+    "group": "Analytics / Components / Line Chart",
+    "label": "Last Week",
+    "kind": "text",
+    "defaultValue": "Last Week",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:593"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.last_month_20fe4f",
+    "group": "Analytics / Components / Line Chart",
+    "label": "Last Month",
+    "kind": "text",
+    "defaultValue": "Last Month",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:594"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.last_year_ab9f82",
+    "group": "Analytics / Components / Line Chart",
+    "label": "Last Year",
+    "kind": "text",
+    "defaultValue": "Last Year",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:595"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.year_to_date_c84334",
+    "group": "Analytics / Components / Line Chart",
+    "label": "Year-to-Date",
+    "kind": "text",
+    "defaultValue": "Year-to-Date",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:596"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.last_2_years_047f9e",
+    "group": "Analytics / Components / Line Chart",
+    "label": "Last 2 Years",
+    "kind": "text",
+    "defaultValue": "Last 2 Years",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:597"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.line_chart.no_data_available_for_this_time_period_bebf4f",
+    "group": "Analytics / Components / Line Chart",
+    "label": "No data available for this time period",
+    "kind": "text",
+    "defaultValue": "No data available for this time period",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/line_chart.dart:895"
+    ]
+  },
+  {
+    "id": "text.screens.analytics.components.analytics_app_bar.analytics_25bc96",
+    "group": "Analytics / Components / Analytics App Bar",
+    "label": "Analytics",
+    "kind": "text",
+    "defaultValue": "Analytics",
+    "placeholders": [],
+    "sources": [
+      "screens/analytics/components/analytics_app_bar.dart:33"
+    ]
+  },
+  {
+    "id": "text.main.agq_investments_e6d2b6",
+    "group": "Main",
+    "label": "AGQ Investments",
+    "kind": "text",
+    "defaultValue": "AGQ Investments",
+    "placeholders": [],
+    "sources": [
+      "main.dart:282"
+    ]
+  },
+  {
+    "id": "text.main.error_value1_54e519",
+    "group": "Main",
+    "label": "Error: {value1}",
+    "kind": "text",
+    "defaultValue": "Error: {value1}",
+    "placeholders": [
+      "value1"
+    ],
+    "sources": [
+      "main.dart:437",
+      "main.dart:459",
+      "main.dart:471",
+      "main.dart:494"
+    ]
+  },
+  {
+    "id": "text.components.alert_dialog.continue_2e0262",
+    "group": "Components / Alert Dialog",
+    "label": "Continue",
+    "kind": "text",
+    "defaultValue": "Continue",
+    "placeholders": [],
+    "sources": [
+      "components/alert_dialog.dart:84"
+    ]
+  },
+  {
+    "id": "text.components.progress_indicator.connection_timeout_d3c9a5",
+    "group": "Components / Progress Indicator",
+    "label": "Connection Timeout",
+    "kind": "text",
+    "defaultValue": "Connection Timeout",
+    "placeholders": [],
+    "sources": [
+      "components/progress_indicator.dart:63"
+    ]
+  },
+  {
+    "id": "text.components.progress_indicator.the_connection_is_taking_longer_than_e_f8e4ef",
+    "group": "Components / Progress Indicator",
+    "label": "The connection is taking longer than expected. Please return to the login page and tr",
+    "kind": "text",
+    "defaultValue": "The connection is taking longer than expected. Please return to the login page and try again.",
+    "placeholders": [],
+    "sources": [
+      "components/progress_indicator.dart:77"
+    ]
+  },
+  {
+    "id": "text.components.progress_indicator.logout_e43d61",
+    "group": "Components / Progress Indicator",
+    "label": "Logout",
+    "kind": "text",
+    "defaultValue": "Logout",
+    "placeholders": [],
+    "sources": [
+      "components/progress_indicator.dart:113"
+    ]
+  },
+  {
+    "id": "text.components.assets_structure_section.assets_structure_53d0db",
+    "group": "Components / Assets Structure Section",
+    "label": "Assets Structure",
+    "kind": "text",
+    "defaultValue": "Assets Structure",
+    "placeholders": [],
+    "sources": [
+      "components/assets_structure_section.dart:141"
+    ]
+  },
+  {
+    "id": "text.components.assets_structure_section.total_b25928",
+    "group": "Components / Assets Structure Section",
+    "label": "Total",
+    "kind": "text",
+    "defaultValue": "Total",
+    "placeholders": [],
+    "sources": [
+      "components/assets_structure_section.dart:200"
+    ]
+  },
+  {
+    "id": "text.components.assets_structure_section.no_data_available_for_this_fund_4b86b9",
+    "group": "Components / Assets Structure Section",
+    "label": "No data available for this fund",
+    "kind": "text",
+    "defaultValue": "No data available for this fund",
+    "placeholders": [],
+    "sources": [
+      "components/assets_structure_section.dart:227"
+    ]
+  },
+  {
+    "id": "text.components.assets_structure_section.account_85dfa3",
+    "group": "Components / Assets Structure Section",
+    "label": "Account",
+    "kind": "text",
+    "defaultValue": "Account",
+    "placeholders": [],
+    "sources": [
+      "components/assets_structure_section.dart:236"
+    ]
+  },
+  {
+    "id": "text.components.assets_structure_section.not_shown_4a382a",
+    "group": "Components / Assets Structure Section",
+    "label": "Not Shown",
+    "kind": "text",
+    "defaultValue": "Not Shown",
+    "placeholders": [],
+    "sources": [
+      "components/assets_structure_section.dart:307"
+    ]
+  },
+  {
+    "id": "text.components.no_connection.no_internet_connection_549961",
+    "group": "Components / No Connection",
+    "label": "No Internet Connection",
+    "kind": "text",
+    "defaultValue": "No Internet Connection",
+    "placeholders": [],
+    "sources": [
+      "components/no_connection.dart:77",
+      "components/no_connection.dart:126",
+      "components/no_connection.dart:171"
+    ]
+  },
+  {
+    "id": "text.components.no_connection.please_check_your_internet_connection__10cd84",
+    "group": "Components / No Connection",
+    "label": "Please check your internet connection and try again.",
+    "kind": "text",
+    "defaultValue": "Please check your internet connection and try again.",
+    "placeholders": [],
+    "sources": [
+      "components/no_connection.dart:84",
+      "components/no_connection.dart:178"
+    ]
+  },
+  {
+    "id": "text.components.no_connection.ok_9ce3bd",
+    "group": "Components / No Connection",
+    "label": "OK",
+    "kind": "text",
+    "defaultValue": "OK",
+    "placeholders": [],
+    "sources": [
+      "components/no_connection.dart:101",
+      "components/no_connection.dart:195"
+    ]
+  },
+  {
+    "id": "text.components.no_connection.please_connect_to_wi_fi_first_bfd20c",
+    "group": "Components / No Connection",
+    "label": "Please connect to Wi-Fi first",
+    "kind": "text",
+    "defaultValue": "Please connect to Wi-Fi first",
+    "placeholders": [],
+    "sources": [
+      "components/no_connection.dart:135"
+    ]
+  },
+  {
+    "id": "text.components.no_connection.reload_cce715",
+    "group": "Components / No Connection",
+    "label": "Reload",
+    "kind": "text",
+    "defaultValue": "Reload",
+    "placeholders": [],
+    "sources": [
+      "components/no_connection.dart:210"
+    ]
+  },
+  {
+    "id": "contact.support_email",
+    "group": "Contact details",
+    "label": "carter@agqconsulting.com",
+    "kind": "email",
+    "defaultValue": "carter@agqconsulting.com",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:493"
+    ]
+  },
+  {
+    "id": "contact.email_subject",
+    "group": "Contact details",
+    "label": "Your Subject Here",
+    "kind": "text",
+    "defaultValue": "Your Subject Here",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:180"
+    ]
+  },
+  {
+    "id": "image.ytd_svg",
+    "group": "Images",
+    "label": "Ytd (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/YTD.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/total_assets_section.dart:75",
+      "screens/dashboard/components/total_assets_section.dart:122",
+      "screens/dashboard/components/user_breakdown_section.dart:88"
+    ]
+  },
+  {
+    "id": "image.activity_date_svg",
+    "group": "Images",
+    "label": "Activity Date (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/activity_date.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:141"
+    ]
+  },
+  {
+    "id": "image.activity_description_svg",
+    "group": "Images",
+    "label": "Activity Description (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/activity_description.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:131"
+    ]
+  },
+  {
+    "id": "image.activity_filled_svg",
+    "group": "Images",
+    "label": "Activity Filled (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/activity_filled.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:86"
+    ]
+  },
+  {
+    "id": "image.activity_hollowed_svg",
+    "group": "Images",
+    "label": "Activity Hollowed (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/activity_hollowed.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:87"
+    ]
+  },
+  {
+    "id": "image.activity_user_svg",
+    "group": "Images",
+    "label": "Activity User (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/activity_user.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:151"
+    ]
+  },
+  {
+    "id": "image.agq_logo_png",
+    "group": "Images",
+    "label": "Agq Logo (png)",
+    "kind": "image",
+    "defaultValue": "assets/icons/agq_logo.png",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/utils/faceid.dart:156",
+      "screens/authenticate/create_account/create_account.dart:310",
+      "screens/authenticate/onboarding.dart:77",
+      "screens/authenticate/initial_face_id.dart:84",
+      "screens/authenticate/login/forgot_password.dart:76",
+      "screens/authenticate/login/login.dart:253"
+    ]
+  },
+  {
+    "id": "image.agq_logo_svg",
+    "group": "Images",
+    "label": "Agq Logo (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/agq_logo.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_details_modal.dart:66",
+      "screens/dashboard/components/asset_tile.dart:51",
+      "screens/notifications/components/notification_card.dart:96",
+      "components/assets_structure_section.dart:156"
+    ]
+  },
+  {
+    "id": "image.ak1_logo_svg",
+    "group": "Images",
+    "label": "Ak1 Logo (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/ak1_logo.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/dashboard/components/asset_tile.dart:53",
+      "screens/notifications/components/notification_card.dart:90",
+      "components/assets_structure_section.dart:166"
+    ]
+  },
+  {
+    "id": "image.analytics_filled_svg",
+    "group": "Images",
+    "label": "Analytics Filled (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/analytics_filled.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:79"
+    ]
+  },
+  {
+    "id": "image.analytics_hollowed_svg",
+    "group": "Images",
+    "label": "Analytics Hollowed (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/analytics_hollowed.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:80"
+    ]
+  },
+  {
+    "id": "image.bell_svg",
+    "group": "Images",
+    "label": "Bell (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/bell.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_app_bar.dart:76",
+      "screens/dashboard/components/dashboard_app_bar.dart:99",
+      "screens/profile/profile.dart:347",
+      "screens/analytics/components/analytics_app_bar.dart:80"
+    ]
+  },
+  {
+    "id": "image.change_email_and_password_icon_art_svg",
+    "group": "Images",
+    "label": "Change Email And Password Icon Art (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/change_email_and_password_icon_art.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/settings.dart:354",
+      "screens/profile/pages/settings.dart:555"
+    ]
+  },
+  {
+    "id": "image.dashboard_filled_svg",
+    "group": "Images",
+    "label": "Dashboard Filled (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/dashboard_filled.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:72"
+    ]
+  },
+  {
+    "id": "image.dashboard_hollowed_svg",
+    "group": "Images",
+    "label": "Dashboard Hollowed (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/dashboard_hollowed.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:73"
+    ]
+  },
+  {
+    "id": "image.deposit_svg",
+    "group": "Images",
+    "label": "Deposit (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/deposit.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:65"
+    ]
+  },
+  {
+    "id": "image.download_svg",
+    "group": "Images",
+    "label": "Download (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/download.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/documents.dart:499"
+    ]
+  },
+  {
+    "id": "image.email_svg",
+    "group": "Images",
+    "label": "Email (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/email.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:194",
+      "screens/profile/pages/help.dart:346"
+    ]
+  },
+  {
+    "id": "image.face_id_svg",
+    "group": "Images",
+    "label": "Face Id (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/face_id.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:192",
+      "screens/profile/pages/authentication.dart:120"
+    ]
+  },
+  {
+    "id": "image.filter_svg",
+    "group": "Images",
+    "label": "Filter (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/filter.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_app_bar.dart:138"
+    ]
+  },
+  {
+    "id": "image.group_people_svg",
+    "group": "Images",
+    "label": "Group People (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/group_people.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/activity.dart:192"
+    ]
+  },
+  {
+    "id": "image.kash_headshot_png",
+    "group": "Images",
+    "label": "Kash Headshot (png)",
+    "kind": "image",
+    "defaultValue": "assets/icons/kash_headshot.png",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:277"
+    ]
+  },
+  {
+    "id": "image.line_svg",
+    "group": "Images",
+    "label": "Line (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/line.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_list_item.dart:110",
+      "screens/dashboard/components/activity_card_item.dart:67"
+    ]
+  },
+  {
+    "id": "image.logout_svg",
+    "group": "Images",
+    "label": "Logout (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/logout.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/logout_button.dart:42",
+      "screens/profile/components/logout_button.dart:84",
+      "components/progress_indicator.dart:107"
+    ]
+  },
+  {
+    "id": "image.pending_withdrawal_svg",
+    "group": "Images",
+    "label": "Pending Withdrawal (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/pending_withdrawal.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:79"
+    ]
+  },
+  {
+    "id": "image.phone_svg",
+    "group": "Images",
+    "label": "Phone (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/phone.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:226",
+      "screens/profile/pages/help.dart:382"
+    ]
+  },
+  {
+    "id": "image.profile_filled_svg",
+    "group": "Images",
+    "label": "Profile Filled (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/profile_filled.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:93"
+    ]
+  },
+  {
+    "id": "image.profile_help_center_icon_svg",
+    "group": "Images",
+    "label": "Profile Help Center Icon (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/profile_help_center_icon.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:87"
+    ]
+  },
+  {
+    "id": "image.profile_hollowed_svg",
+    "group": "Images",
+    "label": "Profile Hollowed (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/profile_hollowed.svg",
+    "placeholders": [],
+    "sources": [
+      "components/custom_bottom_navigation_bar.dart:94"
+    ]
+  },
+  {
+    "id": "image.profile_profiles_icon_svg",
+    "group": "Images",
+    "label": "Profile Profiles Icon (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/profile_profiles_icon.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:166"
+    ]
+  },
+  {
+    "id": "image.profile_settings_icon_svg",
+    "group": "Images",
+    "label": "Profile Settings Icon (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/profile_settings_icon.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:140"
+    ]
+  },
+  {
+    "id": "image.profile_statements_icon_svg",
+    "group": "Images",
+    "label": "Profile Statements Icon (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/profile_statements_icon.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/profile.dart:113"
+    ]
+  },
+  {
+    "id": "image.single_person_svg",
+    "group": "Images",
+    "label": "Single Person (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/single_person.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/activity.dart:236",
+      "screens/analytics/components/line_chart.dart:430"
+    ]
+  },
+  {
+    "id": "image.sonny_headshot_png",
+    "group": "Images",
+    "label": "Sonny Headshot (png)",
+    "kind": "image",
+    "defaultValue": "assets/icons/sonny_headshot.png",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/pages/help.dart:127"
+    ]
+  },
+  {
+    "id": "image.sort_svg",
+    "group": "Images",
+    "label": "Sort (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/sort.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/components/activity_app_bar.dart:167",
+      "screens/profile/pages/documents.dart:310"
+    ]
+  },
+  {
+    "id": "image.time_svg",
+    "group": "Images",
+    "label": "Time (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/time.svg",
+    "placeholders": [],
+    "sources": [
+      "components/progress_indicator.dart:68"
+    ]
+  },
+  {
+    "id": "image.total_assets_gradient_png",
+    "group": "Images",
+    "label": "Total Assets Gradient (png)",
+    "kind": "image",
+    "defaultValue": "assets/icons/total_assets_gradient.png",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/create_account/create_account.dart:297",
+      "screens/authenticate/login/forgot_password.dart:63",
+      "screens/authenticate/login/login.dart:240",
+      "screens/dashboard/components/total_assets_section.dart:42"
+    ]
+  },
+  {
+    "id": "image.trash_svg",
+    "group": "Images",
+    "label": "Trash (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/trash.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/profile/components/delete_account_button.dart:55",
+      "screens/profile/components/delete_account_button.dart:103"
+    ]
+  },
+  {
+    "id": "image.variable_income_svg",
+    "group": "Images",
+    "label": "Variable Income (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/variable_income.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:88"
+    ]
+  },
+  {
+    "id": "image.verify_email_iconart_svg",
+    "group": "Images",
+    "label": "Verify Email Iconart (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/verify_email_iconart.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/authenticate/email_verification_screen.dart:211",
+      "screens/authenticate/create_account/components/email_verification_dialog.dart:77"
+    ]
+  },
+  {
+    "id": "image.withdrawal_svg",
+    "group": "Images",
+    "label": "Withdrawal (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/withdrawal.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/utils/activity_styles.dart:72"
+    ]
+  },
+  {
+    "id": "image.x_icon_svg",
+    "group": "Images",
+    "label": "X Icon (svg)",
+    "kind": "image",
+    "defaultValue": "assets/icons/x_icon.svg",
+    "placeholders": [],
+    "sources": [
+      "screens/activity/activity.dart:257"
+    ]
+  }
+]

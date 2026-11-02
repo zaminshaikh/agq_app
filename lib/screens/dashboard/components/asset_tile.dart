@@ -1,5 +1,6 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:agq_app/database/models/assets_model.dart';
 import 'package:agq_app/screens/utils/utilities.dart';
 
@@ -8,15 +9,20 @@ enum FundName { AGQ, AK1 }
 
 // ignore: must_be_immutable
 class AssetTile extends StatelessWidget {
-
   final Asset asset;
   final FundName fund;
   final String? companyName;
 
-  const AssetTile({super.key, required this.asset, required this.fund, this.companyName,});
+  const AssetTile({
+    super.key,
+    required this.asset,
+    required this.fund,
+    this.companyName,
+  });
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
 
     // String sectionName = getSectionName(fieldName, companyName: companyName);
     // title = sectionName;
@@ -48,12 +54,11 @@ class AssetTile extends StatelessWidget {
   Widget getFundIcon(FundName fund) {
     switch (fund) {
       case FundName.AGQ:
-        return SvgPicture.asset('assets/icons/agq_logo.svg');
+        return const AppContentImage('assets/icons/agq_logo.svg');
       case FundName.AK1:
-        return SvgPicture.asset('assets/icons/ak1_logo.svg');
+        return const AppContentImage('assets/icons/ak1_logo.svg');
       default:
         return const Icon(Icons.account_balance, color: Colors.white);
     }
   }
-
 }

@@ -1,5 +1,6 @@
 // activity_filter_modal.dart
 
+import 'package:agq_app/content/app_content.dart';
 import 'package:flutter/material.dart';
 import 'package:agq_app/screens/utils/resources.dart';
 import 'package:agq_app/screens/utils/utilities.dart';
@@ -33,7 +34,6 @@ class ActivityFilterModal extends StatefulWidget {
     // NEW
     required this.clientsFilter,
     required this.allClients,
-
     required this.selectedDates,
     required this.onApply,
   });
@@ -64,75 +64,82 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
   }
 
   @override
-  Widget build(BuildContext context) => GestureDetector(
-        onTap: () => Navigator.of(context).pop(),
-        child: Container(
-          color: const Color.fromRGBO(0, 0, 0, 0.001),
-          child: GestureDetector(
-            onTap: () {},
-            child: DraggableScrollableSheet(
-              initialChildSize: 0.8,
-              minChildSize: 0.8,
-              maxChildSize: 0.8,
-              builder: (_, controller) => Container(
-                decoration: const BoxDecoration(
-                  color: AppColors.defaultBlueGray800,
-                  borderRadius: BorderRadius.only(
-                    topLeft: Radius.circular(25.0),
-                    topRight: Radius.circular(25.0),
-                  ),
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return GestureDetector(
+      onTap: () => Navigator.of(context).pop(),
+      child: Container(
+        color: const Color.fromRGBO(0, 0, 0, 0.001),
+        child: GestureDetector(
+          onTap: () {},
+          child: DraggableScrollableSheet(
+            initialChildSize: 0.8,
+            minChildSize: 0.8,
+            maxChildSize: 0.8,
+            builder: (_, controller) => Container(
+              decoration: const BoxDecoration(
+                color: AppColors.defaultBlueGray800,
+                borderRadius: BorderRadius.only(
+                  topLeft: Radius.circular(25.0),
+                  topRight: Radius.circular(25.0),
                 ),
-                child: Column(
-                  children: [
-                    const SizedBox(height: 5),
-                    const Icon(Icons.remove, color: Colors.transparent),
-                    const Center(
-                      child: Padding(
-                        padding: EdgeInsets.all(25.0),
-                        child: Text(
-                          'Filter Activity',
-                          style: TextStyle(
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.bold,
-                            fontFamily: 'Titillium Web',
-                          ),
+              ),
+              child: Column(
+                children: [
+                  const SizedBox(height: 5),
+                  const Icon(Icons.remove, color: Colors.transparent),
+                  Center(
+                    child: Padding(
+                      padding: const EdgeInsets.all(25.0),
+                      child: Text(
+                        AppContent.text(
+                            'text.screens.activity.components.filter_modal.filter_activity_527606'),
+                        style: const TextStyle(
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.bold,
+                          fontFamily: 'Titillium Web',
                         ),
                       ),
                     ),
-                    Expanded(
-                      child: ListView(
-                        controller: controller,
-                        children: [
-                          _buildTimePeriodFilter(),
-                          _buildFilter(
-                            'Type',
-                            widget.typeFilter,
-                            _typeFilter,
-                          ),
-                          _buildFilter(
-                            'Recipients',
-                            widget.allRecipients,
-                            _recipientsFilter,
-                          ),
-                          // NEW: Parent Name Filter Section
-                          _buildFilter(
-                            'Clients',
-                            widget.allClients,
-                            _clientsFilter,
-                          ),
-                        ],
-                      ),
+                  ),
+                  Expanded(
+                    child: ListView(
+                      controller: controller,
+                      children: [
+                        _buildTimePeriodFilter(),
+                        _buildFilter(
+                          AppContent.text(
+                              'text.screens.activity.components.filter_modal.type_3deb74'),
+                          widget.typeFilter,
+                          _typeFilter,
+                        ),
+                        _buildFilter(
+                          AppContent.text(
+                              'text.screens.activity.components.filter_modal.recipients_78cbf8'),
+                          widget.allRecipients,
+                          _recipientsFilter,
+                        ),
+                        // NEW: Parent Name Filter Section
+                        _buildFilter(
+                          AppContent.text(
+                              'text.screens.activity.components.filter_modal.clients_28e22f'),
+                          widget.allClients,
+                          _clientsFilter,
+                        ),
+                      ],
                     ),
-                    _buildFilterApplyClearButtons(),
-                    const SizedBox(height: 40),
-                  ],
-                ),
+                  ),
+                  _buildFilterApplyClearButtons(),
+                  const SizedBox(height: 40),
+                ],
               ),
             ),
           ),
         ),
-      );
+      ),
+    );
+  }
 
   /// Builds the time period filter option.
   Widget _buildTimePeriodFilter() => ListTile(
@@ -168,9 +175,10 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
           },
           child: Container(
             color: Colors.transparent,
-            child: const Text(
-              'By Time Period',
-              style: TextStyle(
+            child: Text(
+              AppContent.text(
+                  'text.screens.activity.components.filter_modal.by_time_period_f7e29b'),
+              style: const TextStyle(
                 color: Colors.white,
                 fontWeight: FontWeight.w600,
                 fontFamily: 'Titillium Web',
@@ -179,11 +187,6 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
           ),
         ),
       );
-
-
-
-
-
 
   /// Builds a filter section with checkboxes.
   Widget _buildFilter(
@@ -283,9 +286,10 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
                 style: ElevatedButton.styleFrom(
                   backgroundColor: AppColors.defaultBlue500,
                 ),
-                child: const Text(
-                  'Apply',
-                  style: TextStyle(
+                child: Text(
+                  AppContent.text(
+                      'text.screens.activity.components.filter_modal.apply_cfea41'),
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 18,
                     fontWeight: FontWeight.bold,
@@ -301,7 +305,7 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
                   widget.onApply(
                     _typeFilter,
                     _recipientsFilter,
-                    _clientsFilter,  // NEW
+                    _clientsFilter, // NEW
                     _selectedDates,
                   );
                 },
@@ -311,16 +315,17 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
           GestureDetector(
             child: Container(
               color: Colors.transparent,
-              child: const Padding(
-                padding: EdgeInsets.all(4.0),
+              child: Padding(
+                padding: const EdgeInsets.all(4.0),
                 child: Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
-                    Icon(Icons.close, color: Colors.white),
-                    SizedBox(width: 5),
+                    const Icon(Icons.close, color: Colors.white),
+                    const SizedBox(width: 5),
                     Text(
-                      'Clear',
-                      style: TextStyle(
+                      AppContent.text(
+                          'text.screens.activity.components.filter_modal.clear_719ea3'),
+                      style: const TextStyle(
                         color: Colors.white,
                         fontSize: 18,
                         fontWeight: FontWeight.bold,
@@ -350,7 +355,7 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
               widget.onApply(
                 _typeFilter,
                 _recipientsFilter,
-                _clientsFilter, 
+                _clientsFilter,
                 _selectedDates,
               );
             },
@@ -359,5 +364,5 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
       );
 
   // ignore: unused_field
-  bool _allSelected = false; // Add this state 
+  bool _allSelected = false; // Add this state
 }

@@ -1,3 +1,4 @@
+import 'package:agq_app/content/app_content.dart';
 import 'dart:developer';
 import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:cloud_functions/cloud_functions.dart';
@@ -10,7 +11,6 @@ import 'package:agq_app/database/models/assets_model.dart';
 import 'package:agq_app/database/models/client_model.dart';
 import 'package:rxdart/rxdart.dart';
 import 'package:agq_app/screens/utils/utilities.dart';
-
 
 /// A service class for interacting with the Firestore database.
 ///
@@ -49,24 +49,25 @@ class DatabaseService {
   ///
   /// Returns a [Future] that completes with a [DatabaseService] instance or `null` if the [uid] is not found.
   /// Each user in Firestore has a document with a unique [uid] field. If the [uid] is found, the method fetches the [cid] and connected users from the document.
-  
-  static Future<DatabaseService?> fetchCID(String uid, BuildContext context) async {
+
+  static Future<DatabaseService?> fetchCID(
+      String uid, BuildContext context) async {
     DatabaseService db = DatabaseService(uid);
-  
+
     // Access Firestore and get the document
     QuerySnapshot querySnapshot =
         await usersCollection.where('uid', isEqualTo: uid).get();
-  
+
     if (querySnapshot.size > 0) {
       log('database.dart: UID $uid found in Firestore.');
-  
+
       // Document found, access the 'cid' field
       QueryDocumentSnapshot snapshot = querySnapshot.docs.first;
       db.cid = snapshot.id;
-  
+
       // Cast snapshot.data() to Map<String, dynamic>
       Map<String, dynamic> data = snapshot.data() as Map<String, dynamic>;
-  
+
       // Check if 'connectedUsers' field exists before trying to access it
       if (data.containsKey('connectedUsers')) {
         db.connectedUsersCIDs = data['connectedUsers'] ?? [];
@@ -74,7 +75,7 @@ class DatabaseService {
         log('database.dart: Field "connectedUsers" does not exist in document.');
         db.connectedUsersCIDs = []; // Or handle this case as needed
       }
-  
+
       setSubCollections(db);
     } else {
       log('database.dart: Document with UID $uid not found in Firestore.');
@@ -82,12 +83,9 @@ class DatabaseService {
       // await FirebaseAuth.instance.signOut();
       return null;
     }
-  
+
     return db;
   }
-
-
-
 
   /// Sets the sub-collections for the given [DatabaseService] instance.
   ///
@@ -252,7 +250,8 @@ class DatabaseService {
           return null; // Field does not exist
         }
       } else {
-        throw Exception('User document does not exist');
+        throw Exception(AppContent.text(
+            'text.database.database.user_document_does_not_exist_9150d8'));
       }
     } catch (e) {
       log('database.dart: Error getting field: $e',
@@ -273,7 +272,8 @@ class DatabaseService {
     try {
       await usersCollection.doc(cid).update({fieldName: newValue});
     } catch (e) {
-      throw Exception('Error updating field: $e');
+      throw Exception(AppContent.text(
+          'text.database.database.error_updating_field_e_2075b0', {'e': e}));
     }
   }
 
@@ -429,7 +429,10 @@ class DatabaseService {
           FirebaseFunctions.instance.httpsCallable('checkDocumentExists');
 
       // Call the function with 'cid' as the parameter
-      final result = await callable.call({'cid': cid, 'usersCollectionID': Config.get('FIRESTORE_ACTIVE_USERS_COLLECTION')});
+      final result = await callable.call({
+        'cid': cid,
+        'usersCollectionID': Config.get('FIRESTORE_ACTIVE_USERS_COLLECTION')
+      });
 
       // Return the boolean result from the function call
       return result.data['exists'] as bool;
@@ -468,7 +471,10 @@ class DatabaseService {
           FirebaseFunctions.instance.httpsCallable('checkDocumentLinked');
 
       // Call the function with 'cid' as the parameter
-      final result = await callable.call({'cid': cid, 'usersCollectionID': Config.get('FIRESTORE_ACTIVE_USERS_COLLECTION')});
+      final result = await callable.call({
+        'cid': cid,
+        'usersCollectionID': Config.get('FIRESTORE_ACTIVE_USERS_COLLECTION')
+      });
 
       // Return the boolean result from the function call
       return result.data['isLinked'] as bool;

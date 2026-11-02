@@ -1,5 +1,6 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:agq_app/screens/activity/activity.dart';
 import 'package:agq_app/screens/analytics/analytics.dart';
 import 'package:agq_app/screens/dashboard/dashboard.dart';
@@ -47,7 +48,9 @@ class CustomBottomNavigationBar extends StatelessWidget {
   }
 
   @override
-  Widget build(BuildContext context) => Container(
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return Container(
       margin: const EdgeInsets.only(bottom: 30, right: 20, left: 20),
       height: 80,
       padding: const EdgeInsets.symmetric(horizontal: 10),
@@ -97,6 +100,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
         ],
       ),
     );
+  }
 
   Widget _buildNavItem(
     BuildContext context, {
@@ -113,7 +117,7 @@ class CustomBottomNavigationBar extends StatelessWidget {
       child: Container(
         color: Colors.transparent,
         padding: const EdgeInsets.all(20.0),
-        child: SvgPicture.asset(
+        child: AppContentImage(
           icon,
           height: height,
         ),

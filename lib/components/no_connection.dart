@@ -1,3 +1,4 @@
+import 'package:agq_app/content/app_content.dart';
 import 'dart:async';
 import 'dart:developer';
 import 'package:connectivity_plus/connectivity_plus.dart';
@@ -19,7 +20,8 @@ class NoInternetScreenState extends State<NoInternetScreen> {
   ConnectivityResult _connectionStatus = ConnectivityResult.none;
   final Connectivity _connectivity = Connectivity();
   // Note: The stream now emits a List<ConnectivityResult>
-  late final StreamSubscription<List<ConnectivityResult>> _connectivitySubscription;
+  late final StreamSubscription<List<ConnectivityResult>>
+      _connectivitySubscription;
 
   @override
   void initState() {
@@ -40,11 +42,11 @@ class NoInternetScreenState extends State<NoInternetScreen> {
     if (!mounted) return;
     setState(() {
       // Choose the first result if available; otherwise, default to none.
-      _connectionStatus = results.isNotEmpty ? results.first : ConnectivityResult.none;
+      _connectionStatus =
+          results.isNotEmpty ? results.first : ConnectivityResult.none;
     });
     log('Initial connectivity: $_connectionStatus');
   }
-
 
   // Update our state with the new connectivity status.
   // Since the stream now provides a List, we pick one result.
@@ -73,16 +75,18 @@ class NoInternetScreenState extends State<NoInternetScreen> {
       await showDialog(
         context: context,
         builder: (context) => AlertDialog(
-          title: const Text(
-            'No Internet Connection',
-            style: TextStyle(
+          title: Text(
+            AppContent.text(
+                'text.components.no_connection.no_internet_connection_549961'),
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'Titillium Web',
             ),
           ),
-          content: const Text(
-            'Please check your internet connection and try again.',
-            style: TextStyle(
+          content: Text(
+            AppContent.text(
+                'text.components.no_connection.please_check_your_internet_connection__10cd84'),
+            style: const TextStyle(
               color: Colors.white,
               fontFamily: 'Titillium Web',
             ),
@@ -97,10 +101,10 @@ class NoInternetScreenState extends State<NoInternetScreen> {
                   color: const Color.fromARGB(255, 30, 75, 137),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                child: const Text(
-                  'OK',
+                child: Text(
+                  AppContent.text('text.components.no_connection.ok_9ce3bd'),
                   textAlign: TextAlign.center,
-                  style: TextStyle(
+                  style: const TextStyle(
                     color: Colors.white,
                     fontSize: 16,
                   ),
@@ -114,7 +118,9 @@ class NoInternetScreenState extends State<NoInternetScreen> {
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return Scaffold(
       backgroundColor: const Color.fromARGB(255, 17, 24, 39),
       body: Center(
         child: Column(
@@ -122,18 +128,20 @@ class NoInternetScreenState extends State<NoInternetScreen> {
           children: [
             const Icon(Icons.wifi_off, size: 80, color: Colors.white),
             const SizedBox(height: 20),
-            const Text(
-              'No Internet Connection',
-              style: TextStyle(
+            Text(
+              AppContent.text(
+                  'text.components.no_connection.no_internet_connection_549961'),
+              style: const TextStyle(
                 color: Colors.white,
                 fontSize: 20,
                 fontFamily: 'Titillium Web',
               ),
             ),
             const SizedBox(height: 10),
-            const Text(
-              'Please connect to Wi-Fi first',
-              style: TextStyle(
+            Text(
+              AppContent.text(
+                  'text.components.no_connection.please_connect_to_wi_fi_first_bfd20c'),
+              style: const TextStyle(
                 color: Colors.white70,
                 fontFamily: 'Titillium Web',
               ),
@@ -149,7 +157,8 @@ class NoInternetScreenState extends State<NoInternetScreen> {
                   ),
                   borderRadius: BorderRadius.circular(20),
                 ),
-                padding: const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
+                padding:
+                    const EdgeInsets.symmetric(vertical: 12, horizontal: 24),
                 elevation: 5,
                 textStyle: const TextStyle(
                   fontSize: 18,
@@ -167,16 +176,18 @@ class NoInternetScreenState extends State<NoInternetScreen> {
                     context: context,
                     builder: (context) => AlertDialog(
                       backgroundColor: AppColors.altBlueGray900,
-                      title: const Text(
-                        'No Internet Connection',
-                        style: TextStyle(
+                      title: Text(
+                        AppContent.text(
+                            'text.components.no_connection.no_internet_connection_549961'),
+                        style: const TextStyle(
                           color: Colors.white,
                           fontFamily: 'Titillium Web',
                         ),
                       ),
-                      content: const Text(
-                        'Please check your internet connection and try again.',
-                        style: TextStyle(
+                      content: Text(
+                        AppContent.text(
+                            'text.components.no_connection.please_check_your_internet_connection__10cd84'),
+                        style: const TextStyle(
                           color: Colors.white,
                           fontFamily: 'Titillium Web',
                         ),
@@ -191,10 +202,11 @@ class NoInternetScreenState extends State<NoInternetScreen> {
                               color: const Color.fromARGB(255, 30, 75, 137),
                               borderRadius: BorderRadius.circular(20),
                             ),
-                            child: const Text(
-                              'OK',
+                            child: Text(
+                              AppContent.text(
+                                  'text.components.no_connection.ok_9ce3bd'),
                               textAlign: TextAlign.center,
-                              style: TextStyle(
+                              style: const TextStyle(
                                 color: Colors.white,
                                 fontSize: 16,
                               ),
@@ -206,16 +218,17 @@ class NoInternetScreenState extends State<NoInternetScreen> {
                   );
                 }
               },
-              child: const Text(
-                'Reload',
-                  style: TextStyle(
-                    color: Colors.white,
-                    fontFamily: 'Titillium Web',
-                  ),
+              child: Text(
+                AppContent.text('text.components.no_connection.reload_cce715'),
+                style: const TextStyle(
+                  color: Colors.white,
+                  fontFamily: 'Titillium Web',
                 ),
+              ),
             ),
           ],
         ),
       ),
     );
+  }
 }

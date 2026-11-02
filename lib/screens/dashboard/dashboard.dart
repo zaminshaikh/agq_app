@@ -1,4 +1,5 @@
 // lib/screens/dashboard/dashboard.dart
+import 'package:agq_app/content/app_content.dart';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:flutter/material.dart';
@@ -130,43 +131,43 @@ class DashboardPageState extends State<DashboardPage>
           .expand((user) => user!.activities ?? [].cast<Activity>());
       activities.addAll(connectedUserActivities);
     }
-  
-    activities.sort((a, b) => b.time.compareTo(a.time)); 
+
+    activities.sort((a, b) => b.time.compareTo(a.time));
     activities = activities.take(3).toList();
   }
 
-
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     final List<Widget> fundCharts = [];
     final funds = client?.assets?.funds ?? {};
 
-  // Loop through each fund to see if it has a non-zero total
-  funds.forEach((fundName, fund) {
-    final totalAssets = fund.assets.values.fold(0.0, (sum, asset) => sum + asset.amount);
-    if (totalAssets > 0) {
-      fundCharts.add(
-        Column(
-          children: [
-            SlideTransition(
-              position: _offsetAnimation,
-              child: AssetsStructureSection(
-                client: client!,
-                fundName: fundName, // Dynamically pass each fund's name
+    // Loop through each fund to see if it has a non-zero total
+    funds.forEach((fundName, fund) {
+      final totalAssets =
+          fund.assets.values.fold(0.0, (sum, asset) => sum + asset.amount);
+      if (totalAssets > 0) {
+        fundCharts.add(
+          Column(
+            children: [
+              SlideTransition(
+                position: _offsetAnimation,
+                child: AssetsStructureSection(
+                  client: client!,
+                  fundName: fundName, // Dynamically pass each fund's name
+                ),
               ),
-            ),
-            const SizedBox(height: 20),
-          ],
-        ),
-      );
-    }
-  });
-
+              const SizedBox(height: 20),
+            ],
+          ),
+        );
+      }
+    });
 
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }
-  
+
     return Scaffold(
       body: Stack(
         children: [
@@ -222,35 +223,37 @@ class DashboardPageState extends State<DashboardPage>
       ),
     );
   }
-  
+
   Widget buildRecentTransactionsSection(BuildContext context) => Column(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: [
-        const Padding(
-          padding: EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
-          child: Text(
-            'Recent Transactions',
-            style: TextStyle(
-              fontSize: 20,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
-              fontFamily: 'Titillium Web',
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 5.0, vertical: 5.0),
+            child: Text(
+              AppContent.text(
+                  'text.screens.dashboard.dashboard.recent_transactions_f28b82'),
+              style: const TextStyle(
+                fontSize: 20,
+                fontWeight: FontWeight.bold,
+                color: Colors.white,
+                fontFamily: 'Titillium Web',
+              ),
             ),
           ),
-        ),
-        const SizedBox(height: 12),
-        ActivityTilesSection(activities: activities),
-      ],
-    );
-  
+          const SizedBox(height: 12),
+          ActivityTilesSection(activities: activities),
+        ],
+      );
+
   Widget _buildConnectedUsersSection() => Column(
         children: [
           const SizedBox(height: 40),
           Row(
             children: [
-              const Text(
-                'Connected Users',
-                style: TextStyle(
+              Text(
+                AppContent.text(
+                    'text.screens.dashboard.dashboard.connected_users_397621'),
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,

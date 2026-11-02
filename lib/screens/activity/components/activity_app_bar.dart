@@ -1,5 +1,6 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:agq_app/database/models/client_model.dart';
 import 'package:agq_app/screens/notifications/notifications.dart';
 import 'package:agq_app/screens/utils/resources.dart';
@@ -27,116 +28,120 @@ class ActivityAppBar extends StatefulWidget implements PreferredSizeWidget {
 
 class ActivityAppBarState extends State<ActivityAppBar> {
   @override
-  Widget build(BuildContext context) => SliverAppBar(
-        backgroundColor: const Color.fromARGB(255, 30, 41, 59),
-        automaticallyImplyLeading: false,
-        toolbarHeight: widget.preferredSize.height,
-        expandedHeight: 0,
-        snap: false,
-        floating: true,
-        pinned: true,
-        flexibleSpace: SafeArea(
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              // Activity Title + Bell icon
-              Padding(
-                padding: const EdgeInsets.only(left: 20, top: 17, right: 15),
-                child: Row(
-                  children: [
-                    Padding(
-                      padding: const EdgeInsets.only(top: 3),
-                      child: const Text(
-                        'Activity',
-                        style: TextStyle(
-                          fontSize: 27,
-                          color: Colors.white,
-                          fontWeight: FontWeight.bold,
-                          fontFamily: 'Titillium Web',
-                        ),
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
+    return SliverAppBar(
+      backgroundColor: const Color.fromARGB(255, 30, 41, 59),
+      automaticallyImplyLeading: false,
+      toolbarHeight: widget.preferredSize.height,
+      expandedHeight: 0,
+      snap: false,
+      floating: true,
+      pinned: true,
+      flexibleSpace: SafeArea(
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            // Activity Title + Bell icon
+            Padding(
+              padding: const EdgeInsets.only(left: 20, top: 17, right: 15),
+              child: Row(
+                children: [
+                  Padding(
+                    padding: const EdgeInsets.only(top: 3),
+                    child: Text(
+                      AppContent.text(
+                          'text.screens.activity.components.activity_app_bar.activity_81c0d9'),
+                      style: const TextStyle(
+                        fontSize: 27,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
+                        fontFamily: 'Titillium Web',
                       ),
                     ),
-                    const Spacer(),
-                    GestureDetector(
-                      onTap: () {
-                        Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                            builder: (context) => const NotificationPage(),
+                  ),
+                  const Spacer(),
+                  GestureDetector(
+                    onTap: () {
+                      Navigator.push(
+                        context,
+                        MaterialPageRoute(
+                          builder: (context) => const NotificationPage(),
+                        ),
+                      );
+                    },
+                    child: Container(
+                      color: Colors.transparent,
+                      child: Stack(
+                        clipBehavior: Clip.none,
+                        alignment: Alignment.center,
+                        children: <Widget>[
+                          const AppContentImage(
+                            'assets/icons/bell.svg',
+                            colorFilter: ColorFilter.mode(
+                              Colors.white,
+                              BlendMode.srcIn,
+                            ),
+                            height: 32,
                           ),
-                        );
-                      },
-                      child: Container(
-                        color: Colors.transparent,
-                        child: Stack(
-                          clipBehavior: Clip.none,
-                          alignment: Alignment.center,
-                          children: <Widget>[
-                            SvgPicture.asset(
-                              'assets/icons/bell.svg',
-                              colorFilter: const ColorFilter.mode(
-                                Colors.white,
-                                BlendMode.srcIn,
-                              ),
-                              height: 32,
-                            ),
-                            Positioned(
-                              right: 0,
-                              top: -6, 
-                              child: (widget.client.numNotifsUnread ?? 0) > 0
-                                  ? Container(
-                                      decoration: BoxDecoration(
-                                        color: const Color(0xFF267DB5),
-                                        borderRadius: BorderRadius.circular(10),
+                          Positioned(
+                            right: 0,
+                            top: -6,
+                            child: (widget.client.numNotifsUnread ?? 0) > 0
+                                ? Container(
+                                    decoration: BoxDecoration(
+                                      color: const Color(0xFF267DB5),
+                                      borderRadius: BorderRadius.circular(10),
+                                    ),
+                                    constraints: const BoxConstraints(
+                                      minWidth: 18,
+                                      minHeight: 18,
+                                    ),
+                                    child: Text(
+                                      '${widget.client.numNotifsUnread}',
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w800,
+                                        fontFamily: 'Titillium Web',
+                                        fontSize: 12,
                                       ),
-                                      constraints: const BoxConstraints(
-                                        minWidth: 18,
-                                        minHeight: 18,
-                                      ),
-                                      child: Text(
-                                        '${widget.client.numNotifsUnread}',
-                                        style: const TextStyle(
-                                          color: Colors.white,
-                                          fontWeight: FontWeight.w800,
-                                          fontFamily: 'Titillium Web',
-                                          fontSize: 12,
-                                        ),
-                                        textAlign: TextAlign.center,
-                                      ),
-                                    )
-                                  : Container(),
-                            ),
-                          ],
-                        ),
+                                      textAlign: TextAlign.center,
+                                    ),
+                                  )
+                                : Container(),
+                          ),
+                        ],
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
+            ),
 
-              const Spacer(),
+            const Spacer(),
 
-              // Filter and Sort Buttons
-              Padding(
-                padding: const EdgeInsets.only(left: 20, right: 20, bottom: 15.0),
-                child: Row(
-                  children: [
-                    Expanded(child: _buildFilterButton()),
-                    const SizedBox(width: 10),
-                    Expanded(child: _buildSortButton()),
-                  ],
-                ),
+            // Filter and Sort Buttons
+            Padding(
+              padding: const EdgeInsets.only(left: 20, right: 20, bottom: 15.0),
+              child: Row(
+                children: [
+                  Expanded(child: _buildFilterButton()),
+                  const SizedBox(width: 10),
+                  Expanded(child: _buildSortButton()),
+                ],
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 
   /// Builds the Filter button. You can style it however you wish.
   Widget _buildFilterButton() => ElevatedButton.icon(
-        icon: SvgPicture.asset(
+        icon: const AppContentImage(
           'assets/icons/filter.svg',
-          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
           height: 22,
           width: 22,
         ),
@@ -149,9 +154,10 @@ class ActivityAppBarState extends State<ActivityAppBar> {
           ),
           elevation: 0,
         ),
-        label: const Text(
-          'Filter',
-          style: TextStyle(
+        label: Text(
+          AppContent.text(
+              'text.screens.activity.components.activity_app_bar.filter_d7decf'),
+          style: const TextStyle(
             color: AppColors.defaultGray200,
             fontWeight: FontWeight.bold,
             fontSize: 18,
@@ -163,9 +169,9 @@ class ActivityAppBarState extends State<ActivityAppBar> {
 
   /// Builds the Sort button.
   Widget _buildSortButton() => ElevatedButton.icon(
-        icon: SvgPicture.asset(
+        icon: const AppContentImage(
           'assets/icons/sort.svg',
-          colorFilter: const ColorFilter.mode(Colors.white, BlendMode.srcIn),
+          colorFilter: ColorFilter.mode(Colors.white, BlendMode.srcIn),
           height: 22,
           width: 22,
         ),
@@ -178,9 +184,10 @@ class ActivityAppBarState extends State<ActivityAppBar> {
           ),
           elevation: 0,
         ),
-        label: const Text(
-          'Sort',
-          style: TextStyle(
+        label: Text(
+          AppContent.text(
+              'text.screens.activity.components.activity_app_bar.sort_adc4e9'),
+          style: const TextStyle(
             color: AppColors.defaultGray200,
             fontWeight: FontWeight.bold,
             fontSize: 18,

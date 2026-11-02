@@ -1,8 +1,9 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:fl_chart/fl_chart.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:agq_app/database/models/client_model.dart';
 import 'package:agq_app/screens/utils/resources.dart';
 import 'package:agq_app/screens/utils/utilities.dart';
@@ -12,15 +13,15 @@ class AssetsStructureSection extends StatelessWidget {
   final String fundName;
   final Map<String, double> accountSums = {};
 
-
   AssetsStructureSection({
     super.key,
     required this.client,
-    required this.fundName, 
+    required this.fundName,
   });
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     // 1) Gather all the account amounts across this client and any connected users
     double overallTotal = 0;
 
@@ -34,7 +35,8 @@ class AssetsStructureSection extends StatelessWidget {
 
       fund.assets.forEach((_, asset) {
         final amount = asset.amount;
-        final accountName = '${client.firstName} ${client.lastName} - ${asset.displayTitle}';    // <- use the asset’s displayTitle
+        final accountName =
+            '${client.firstName} ${client.lastName} - ${asset.displayTitle}'; // <- use the asset’s displayTitle
         accountSums[accountName] = (accountSums[accountName] ?? 0) + amount;
         overallTotal += amount;
       });
@@ -59,10 +61,9 @@ class AssetsStructureSection extends StatelessWidget {
     // 3) Add a “hidden” slice for any accounts below the threshold
     final List<_AccountSlice> hiddenSliceData = [];
 
-
-    // Provide a color palette for slices 
+    // Provide a color palette for slices
     final colorPalette = <Color>[
-      const Color(0xFF0D5EAF), 
+      const Color(0xFF0D5EAF),
       const Color(0xFF3199DD),
       const Color.fromARGB(255, 103, 187, 243),
       const Color.fromARGB(255, 39, 71, 100),
@@ -76,24 +77,24 @@ class AssetsStructureSection extends StatelessWidget {
       const Color(0xFF5BB7F0),
       const Color(0xFF0B2E47),
       const Color(0xFF90D5F7),
-      const Color(0xFFD3EEFF), 
+      const Color(0xFFD3EEFF),
     ];
-
 
     // Two separate indices: one for visible slices, one for hidden slices
     int visibleIdx = 0;
     int hiddenIdx = 0;
-    
+
     if (overallTotal > 0) {
       // Loop over "displayNameSums" and decide which slices are hidden vs visible
       accountSums.forEach((displayName, sum) {
         final percent = (sum / overallTotal) * 100;
-    
+
         if (percent < thresholdPercent) {
           // Get color from the back of the palette for hidden slices
-          final color = colorPalette[colorPalette.length - 1 - (hiddenIdx % colorPalette.length)];
+          final color = colorPalette[
+              colorPalette.length - 1 - (hiddenIdx % colorPalette.length)];
           hiddenIdx++;
-    
+
           hiddenSliceData.add(
             _AccountSlice(
               accountName: displayName,
@@ -105,7 +106,7 @@ class AssetsStructureSection extends StatelessWidget {
           // Get color from the front of the palette for visible slices
           final color = colorPalette[visibleIdx % colorPalette.length];
           visibleIdx++;
-    
+
           sections.add(
             PieChartSectionData(
               color: color,
@@ -137,9 +138,10 @@ class AssetsStructureSection extends StatelessWidget {
           Row(
             children: [
               const SizedBox(width: 5),
-              const Text(
-                  'Assets Structure',
-                  style: TextStyle(
+              Text(
+                AppContent.text(
+                    'text.components.assets_structure_section.assets_structure_53d0db'),
+                style: const TextStyle(
                   fontSize: 20,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -150,9 +152,9 @@ class AssetsStructureSection extends StatelessWidget {
               Row(
                 children: [
                   if (fundName.toLowerCase() == 'agq')
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10, top: 5),
-                      child: SvgPicture.asset(
+                    const Padding(
+                      padding: EdgeInsets.only(right: 10, top: 5),
+                      child: AppContentImage(
                         'assets/icons/agq_logo.svg',
                         color: Colors.white,
                         height: 25,
@@ -160,9 +162,9 @@ class AssetsStructureSection extends StatelessWidget {
                       ),
                     )
                   else
-                    Padding(
-                      padding: const EdgeInsets.only(right: 10, top: 5),
-                      child: SvgPicture.asset(
+                    const Padding(
+                      padding: EdgeInsets.only(right: 10, top: 5),
+                      child: AppContentImage(
                         'assets/icons/ak1_logo.svg',
                         color: Colors.white,
                         height: 25,
@@ -173,7 +175,7 @@ class AssetsStructureSection extends StatelessWidget {
               )
             ],
           ),
-          
+
           const SizedBox(height: 60),
 
           // Pie chart with a center label
@@ -196,9 +198,10 @@ class AssetsStructureSection extends StatelessWidget {
                   child: Column(
                     mainAxisAlignment: MainAxisAlignment.center,
                     children: [
-                      const Text(
-                        'Total',
-                        style: TextStyle(
+                      Text(
+                        AppContent.text(
+                            'text.components.assets_structure_section.total_b25928'),
+                        style: const TextStyle(
                           fontSize: 18,
                           color: Colors.white,
                           fontFamily: 'Titillium Web',
@@ -223,25 +226,27 @@ class AssetsStructureSection extends StatelessWidget {
 
           // If we have no data, show a “No data” message
           if (overallTotal == 0)
-            const Text(
-              'No data available for this fund',
-              style: TextStyle(color: Colors.white),
+            Text(
+              AppContent.text(
+                  'text.components.assets_structure_section.no_data_available_for_this_fund_4b86b9'),
+              style: const TextStyle(color: Colors.white),
             )
           else ...[
             // Otherwise, show the table of slices
-            const Row(
+            Row(
               children: [
-                SizedBox(width: 30),
+                const SizedBox(width: 30),
                 Text(
-                  'Account',
-                  style: TextStyle(
+                  AppContent.text(
+                      'text.components.assets_structure_section.account_85dfa3'),
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color.fromARGB(255, 216, 216, 216),
                     fontFamily: 'Titillium Web',
                   ),
                 ),
-                Spacer(),
-                Text(
+                const Spacer(),
+                const Text(
                   '%',
                   style: TextStyle(
                     fontSize: 16,
@@ -249,7 +254,7 @@ class AssetsStructureSection extends StatelessWidget {
                     fontFamily: 'Titillium Web',
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
               ],
             ),
             const SizedBox(height: 5),
@@ -300,19 +305,20 @@ class AssetsStructureSection extends StatelessWidget {
           ],
           if (hiddenSliceData.isNotEmpty) ...[
             const SizedBox(height: 20),
-            const Row(
+            Row(
               children: [
-                SizedBox(width: 30),
+                const SizedBox(width: 30),
                 Text(
-                  'Not Shown',
-                  style: TextStyle(
+                  AppContent.text(
+                      'text.components.assets_structure_section.not_shown_4a382a'),
+                  style: const TextStyle(
                     fontSize: 16,
                     color: Color.fromARGB(255, 216, 216, 216),
                     fontFamily: 'Titillium Web',
                   ),
                 ),
-                Spacer(),
-                Text(
+                const Spacer(),
+                const Text(
                   '%',
                   style: TextStyle(
                     fontSize: 16,
@@ -320,7 +326,7 @@ class AssetsStructureSection extends StatelessWidget {
                     fontFamily: 'Titillium Web',
                   ),
                 ),
-                SizedBox(width: 10),
+                const SizedBox(width: 10),
               ],
             ),
             const SizedBox(height: 5),
@@ -330,7 +336,6 @@ class AssetsStructureSection extends StatelessWidget {
               color: Color.fromARGB(255, 102, 102, 102),
             ),
             const SizedBox(height: 10),
-
             Column(
               children: hiddenSliceData.map((slice) {
                 final pctString = slice.percentage.toStringAsFixed(1);
@@ -370,7 +375,6 @@ class AssetsStructureSection extends StatelessWidget {
               }).toList(),
             ),
           ],
-
         ],
       ),
     );

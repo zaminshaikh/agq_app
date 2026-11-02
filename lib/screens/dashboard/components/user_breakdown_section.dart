@@ -1,5 +1,6 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:agq_app/database/models/assets_model.dart';
 import 'package:agq_app/database/models/client_model.dart';
 import 'package:agq_app/screens/dashboard/components/asset_tile.dart';
@@ -7,14 +8,15 @@ import 'package:agq_app/screens/utils/utilities.dart';
 
 // ignore: must_be_immutable
 class UserBreakdownSection extends StatelessWidget {
-
   final Client client;
   bool isConnectedUser;
-  
-  UserBreakdownSection({super.key, required this.client, this.isConnectedUser = false});
+
+  UserBreakdownSection(
+      {super.key, required this.client, this.isConnectedUser = false});
 
   @override
-  Widget build(BuildContext context)  {
+  Widget build(BuildContext context) {
+    AppContent.watch(context);
 
     // Initialize empty lists for the tiles
     List<AssetTile> assetTilesAGQ = [];
@@ -28,28 +30,28 @@ class UserBreakdownSection extends StatelessWidget {
 
         // NOTE: Uncomment the following line if you want to filter out assets with amount 0
         // if (asset.amount != 0) {
-          switch (fundName.toUpperCase()) {
-            case 'AGQ':
-              assetTilesAGQ.add(AssetTile(
-                  asset: fund.assets[key]!, fund: FundName.AGQ,
-                  companyName: client.companyName));
-              break;
-            case 'AK1':
-              assetTilesAK1.add(AssetTile(
-                  asset: fund.assets[key]!, fund: FundName.AK1,
-                  companyName: client.companyName));
-              break;
-            default:
-              break;
-          }
+        switch (fundName.toUpperCase()) {
+          case 'AGQ':
+            assetTilesAGQ.add(AssetTile(
+                asset: fund.assets[key]!,
+                fund: FundName.AGQ,
+                companyName: client.companyName));
+            break;
+          case 'AK1':
+            assetTilesAK1.add(AssetTile(
+                asset: fund.assets[key]!,
+                fund: FundName.AK1,
+                companyName: client.companyName));
+            break;
+          default:
+            break;
+        }
         // }
       }
     }
     // Sort tiles in order specified in _getAssetTileIndex
-    assetTilesAGQ.sort((a, b) => a.asset.index
-        .compareTo(b.asset.index));
-    assetTilesAK1.sort((a, b) => a.asset.index
-        .compareTo(b.asset.index));
+    assetTilesAGQ.sort((a, b) => a.asset.index.compareTo(b.asset.index));
+    assetTilesAK1.sort((a, b) => a.asset.index.compareTo(b.asset.index));
 
     // Helper function to get the display name
     String getDisplayName(String firstName, String lastName) {
@@ -64,7 +66,7 @@ class UserBreakdownSection extends StatelessWidget {
         return fullName;
       }
     }
-    
+
     return Theme(
       data: ThemeData(
         splashColor: Colors.transparent, // removes splash effect
@@ -84,7 +86,7 @@ class UserBreakdownSection extends StatelessWidget {
                 ),
               ),
               const SizedBox(width: 10),
-              SvgPicture.asset(
+              const AppContentImage(
                 'assets/icons/YTD.svg',
                 height: 13,
               ),
@@ -112,14 +114,22 @@ class UserBreakdownSection extends StatelessWidget {
           maintainState: true,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
-            side: isConnectedUser ? const BorderSide(color: Colors.white) : BorderSide.none,
+            side: isConnectedUser
+                ? const BorderSide(color: Colors.white)
+                : BorderSide.none,
           ),
           collapsedShape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
-            side: isConnectedUser ? const BorderSide(color: Colors.white) : BorderSide.none,
+            side: isConnectedUser
+                ? const BorderSide(color: Colors.white)
+                : BorderSide.none,
           ),
-          collapsedBackgroundColor: isConnectedUser ? Colors.transparent : const Color.fromARGB(255, 30, 41, 59),
-          backgroundColor: isConnectedUser ? Colors.transparent : const Color.fromARGB(255, 30, 41, 59),
+          collapsedBackgroundColor: isConnectedUser
+              ? Colors.transparent
+              : const Color.fromARGB(255, 30, 41, 59),
+          backgroundColor: isConnectedUser
+              ? Colors.transparent
+              : const Color.fromARGB(255, 30, 41, 59),
           iconColor: Colors.white,
           collapsedIconColor: Colors.white,
           children: <Widget>[
@@ -138,9 +148,5 @@ class UserBreakdownSection extends StatelessWidget {
         ),
       ),
     );
-    
-    
   }
-
-
 }

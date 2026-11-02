@@ -1,8 +1,9 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'dart:async';
 import 'dart:developer';
 import 'package:flutter/material.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:provider/provider.dart';
 import 'package:agq_app/components/alert_dialog.dart';
 import 'package:agq_app/components/progress_indicator.dart';
@@ -13,7 +14,8 @@ class EmailVerificationScreen extends StatefulWidget {
   const EmailVerificationScreen({super.key});
 
   @override
-  State<EmailVerificationScreen> createState() => _EmailVerificationScreenState();
+  State<EmailVerificationScreen> createState() =>
+      _EmailVerificationScreenState();
 }
 
 class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
@@ -55,31 +57,34 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       if (user != null) {
         await user.reload();
         final updatedUser = FirebaseAuth.instance.currentUser;
-        
+
         if (updatedUser != null && updatedUser.emailVerified) {
           _verificationCheckTimer?.cancel();
-          
+
           if (!mounted) return;
-          
+
           // Update authentication state
           final authState = Provider.of<AuthState>(context, listen: false);
           authState.setInitiallyAuthenticated(true);
-          
+
           // Update Firebase messaging token
           if (mounted) {
             await updateFirebaseMessagingToken(updatedUser, context);
           }
-          
+
           // Show success message
           await CustomAlertDialog.showAlertDialog(
             context,
-            'Email Verified!',
-            'Your email has been successfully verified.',
-            icon: const Icon(Icons.check_circle_outline_rounded, color: Colors.green),
+            AppContent.text(
+                'text.screens.authenticate.email_verification_screen.email_verified_174614'),
+            AppContent.text(
+                'text.screens.authenticate.email_verification_screen.your_email_has_been_successfully_verif_23f3d5'),
+            icon: const Icon(Icons.check_circle_outline_rounded,
+                color: Colors.green),
           );
-          
+
           if (!mounted) return;
-          
+
           // Navigate to dashboard
           await Navigator.pushNamedAndRemoveUntil(
             context,
@@ -110,14 +115,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       final user = FirebaseAuth.instance.currentUser;
       if (user != null && !user.emailVerified) {
         await user.sendEmailVerification();
-        
+
         if (!mounted) return;
-        
+
         // Start cooldown
         setState(() {
           _resendCooldown = 5; // 5 seconds cooldown
         });
-        
+
         _cooldownTimer = Timer.periodic(
           const Duration(seconds: 1),
           (timer) {
@@ -130,10 +135,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             }
           },
         );
-        
+
         ScaffoldMessenger.of(context).showSnackBar(
           SnackBar(
-            content: Text('Verification email sent to ${user.email}'),
+            content: Text(AppContent.text(
+                'text.screens.authenticate.email_verification_screen.verification_email_sent_to_value1_22ce48',
+                {'value1': user.email})),
             backgroundColor: Colors.green,
             duration: const Duration(seconds: 3),
           ),
@@ -142,23 +149,28 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
     } on FirebaseAuthException catch (e) {
       log('Error resending verification email: $e');
       if (mounted) {
-        String errorMessage = 'Failed to send verification email. Please try again later.';
-        
+        String errorMessage = AppContent.text(
+            'text.screens.authenticate.email_verification_screen.failed_to_send_verification_email_plea_884620');
+
         switch (e.code) {
           case 'too-many-requests':
-            errorMessage = 'Too many requests. Please wait before requesting another verification email.';
+            errorMessage = AppContent.text(
+                'text.screens.authenticate.email_verification_screen.too_many_requests_please_wait_before_r_db7c32');
             break;
           case 'invalid-email':
-            errorMessage = 'The email address is invalid.';
+            errorMessage = AppContent.text(
+                'text.screens.authenticate.email_verification_screen.the_email_address_is_invalid_f9871e');
             break;
           case 'user-not-found':
-            errorMessage = 'No user found. Please sign in again.';
+            errorMessage = AppContent.text(
+                'text.screens.authenticate.email_verification_screen.no_user_found_please_sign_in_again_257abd');
             break;
         }
-        
+
         await CustomAlertDialog.showAlertDialog(
           context,
-          'Error',
+          AppContent.text(
+              'text.screens.authenticate.email_verification_screen.error_7f2f6a'),
           errorMessage,
         );
       }
@@ -167,8 +179,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
       if (mounted) {
         await CustomAlertDialog.showAlertDialog(
           context,
-          'Error',
-          'An unexpected error occurred. Please try again.',
+          AppContent.text(
+              'text.screens.authenticate.email_verification_screen.error_7f2f6a'),
+          AppContent.text(
+              'text.screens.authenticate.email_verification_screen.an_unexpected_error_occurred_please_tr_d07ac0'),
         );
       }
     } finally {
@@ -196,8 +210,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
+    AppContent.watch(context);
     final user = FirebaseAuth.instance.currentUser;
-    
+
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 17, 24, 39),
       body: SafeArea(
@@ -207,18 +222,19 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
             mainAxisAlignment: MainAxisAlignment.center,
             children: [
               // Email verification icon
-              SvgPicture.asset(
+              const AppContentImage(
                 'assets/icons/verify_email_iconart.svg',
                 height: 200,
                 width: 200,
               ),
-              
+
               const SizedBox(height: 40),
-              
+
               // Title
-              const Text(
-                'Verify Your Email',
-                style: TextStyle(
+              Text(
+                AppContent.text(
+                    'text.screens.authenticate.email_verification_screen.verify_your_email_05fd7a'),
+                style: const TextStyle(
                   fontSize: 28,
                   fontWeight: FontWeight.bold,
                   color: Colors.white,
@@ -226,12 +242,14 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               // Description
               Text(
-                'We sent a verification email to:\n${user?.email ?? 'your email'}',
+                AppContent.text(
+                    'text.screens.authenticate.email_verification_screen.we_sent_a_verification_email_to_value1_d80f36',
+                    {'value1': user?.email ?? 'your email'}),
                 style: const TextStyle(
                   fontSize: 16,
                   color: Colors.grey,
@@ -239,27 +257,28 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                 ),
                 textAlign: TextAlign.center,
               ),
-              
+
               const SizedBox(height: 8),
-              
-              const Text(
-                'Please check your email and click the verification link to continue.',
-                style: TextStyle(
+
+              Text(
+                AppContent.text(
+                    'text.screens.authenticate.email_verification_screen.please_check_your_email_and_click_the__611181'),
+                style: const TextStyle(
                   fontSize: 14,
                   color: Colors.grey,
                   fontFamily: 'Titillium Web',
                 ),
                 textAlign: TextAlign.center,
               ),
-              
+
               const SizedBox(height: 40),
-              
+
               // Checking verification status indicator
               if (_isCheckingVerification)
-                const Row(
+                Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
-                    SizedBox(
+                    const SizedBox(
                       width: 16,
                       height: 16,
                       child: CircularProgressIndicator(
@@ -267,25 +286,28 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                         valueColor: AlwaysStoppedAnimation<Color>(Colors.blue),
                       ),
                     ),
-                    SizedBox(width: 12),
+                    const SizedBox(width: 12),
                     Text(
-                      'Checking verification status...',
-                      style: TextStyle(
+                      AppContent.text(
+                          'text.screens.authenticate.email_verification_screen.checking_verification_status_4b8267'),
+                      style: const TextStyle(
                         color: Colors.blue,
                         fontFamily: 'Titillium Web',
                       ),
                     ),
                   ],
                 ),
-              
+
               const SizedBox(height: 32),
-              
+
               // Resend verification email button
               SizedBox(
                 width: double.infinity,
                 height: 50,
                 child: ElevatedButton(
-                  onPressed: _resendCooldown > 0 || _isLoading ? null : _resendVerificationEmail,
+                  onPressed: _resendCooldown > 0 || _isLoading
+                      ? null
+                      : _resendVerificationEmail,
                   style: ElevatedButton.styleFrom(
                     backgroundColor: const Color.fromARGB(255, 30, 75, 137),
                     foregroundColor: Colors.white,
@@ -297,8 +319,13 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       ? const CustomProgressIndicator()
                       : Text(
                           _resendCooldown > 0
-                              ? 'Resend in ${_resendCooldown}s'
-                              : 'Resend Verification Email',
+                              ? AppContent.text(
+                                  'text.screens.authenticate.email_verification_screen.resend_in_value1_s_b4463a',
+                                  {
+                                      'value1': _resendCooldown
+                                    })
+                              : AppContent.text(
+                                  'text.screens.authenticate.email_verification_screen.resend_verification_email_072f96'),
                           style: const TextStyle(
                             fontSize: 16,
                             fontWeight: FontWeight.bold,
@@ -307,9 +334,9 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                         ),
                 ),
               ),
-              
+
               const SizedBox(height: 16),
-              
+
               // Sign out button
               SizedBox(
                 width: double.infinity,
@@ -322,9 +349,10 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
                       borderRadius: BorderRadius.circular(25),
                     ),
                   ),
-                  child: const Text(
-                    'Sign Out',
-                    style: TextStyle(
+                  child: Text(
+                    AppContent.text(
+                        'text.screens.authenticate.email_verification_screen.sign_out_61fd08'),
+                    style: const TextStyle(
                       fontSize: 16,
                       fontFamily: 'Titillium Web',
                     ),
