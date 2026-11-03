@@ -1,7 +1,7 @@
 // ignore_for_file: sized_box_for_whitespace, deprecated_member_use
 
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:intl/intl.dart';
 import 'package:agq_app/database/models/activity_model.dart';
 import 'package:agq_app/screens/activity/utils/activity_styles.dart';
@@ -29,7 +29,8 @@ class ActivityCardItem extends StatelessWidget {
         decoration: BoxDecoration(
           color: Colors.transparent,
           borderRadius: BorderRadius.circular(12.0),
-          border: Border.all(color: getActivityColor(activity.type), width: 2.0),
+          border:
+              Border.all(color: getActivityColor(activity.type), width: 2.0),
         ),
         child: Row(
           children: [
@@ -63,7 +64,7 @@ class ActivityCardItem extends StatelessWidget {
             ),
           ),
           const SizedBox(width: 2),
-          SvgPicture.asset(
+          const AppContentImage(
             'assets/icons/line.svg',
             color: Colors.white,
             height: 15,

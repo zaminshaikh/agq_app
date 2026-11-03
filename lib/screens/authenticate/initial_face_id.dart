@@ -1,5 +1,7 @@
 // ignore_for_file: library_private_types_in_public_api, empty_catches, use_build_context_synchronously
 
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:local_auth/local_auth.dart';
 import 'package:provider/provider.dart';
@@ -35,7 +37,8 @@ class _InitialFaceIdPageState extends State<InitialFaceIdPage>
 
     try {
       bool authenticated = await auth.authenticate(
-        localizedReason: 'Please authenticate to login',
+        localizedReason: AppContent.text(
+            'text.screens.authenticate.initial_face_id.please_authenticate_to_login_5faeb2'),
         options: const AuthenticationOptions(
           useErrorDialogs: true,
           stickyAuth: true,
@@ -54,7 +57,7 @@ class _InitialFaceIdPageState extends State<InitialFaceIdPage>
           context,
           PageRouteBuilder(
             pageBuilder: (context, animation, secondaryAnimation) =>
-                 const DashboardPage(fromFaceIdPage: true),
+                const DashboardPage(fromFaceIdPage: true),
             transitionsBuilder:
                 (context, animation, secondaryAnimation, child) => child,
           ),
@@ -66,82 +69,87 @@ class _InitialFaceIdPageState extends State<InitialFaceIdPage>
   }
 
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Padding(
-          padding: const EdgeInsets.all(20.0),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceBetween,
-            children: [
-              Align(
-                alignment: Alignment.topCenter,
-                child: Padding(
-                  padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
-                  child: Column(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      const SizedBox(height: 80.0),
-                      Image.asset(
-                        'assets/icons/agq_logo.png',
-                        height: 60,
-                      ),
-                      const SizedBox(height: 20.0),
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'AGQ App Locked',
-                          style: TextStyle(
-                            fontSize: 25,
-                            fontWeight: FontWeight.bold,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                      const SizedBox(height: 16.0),
-                      const Align(
-                        alignment: Alignment.center,
-                        child: Text(
-                          'Unlock with Face ID to continue',
-                          style: TextStyle(
-                            fontSize: 18,
-                          ),
-                          textAlign: TextAlign.center,
-                        ),
-                      ),
-                    ],
-                  ),
-                ),
-              ),
-              Align(
-                alignment: Alignment.bottomCenter,
-                child: Padding(
-                  padding: const EdgeInsets.only(bottom: 16.0),
-                  child: SizedBox(
-                    width: double.infinity,
-                    height: 45,
-                    child: ElevatedButton(
-                      onPressed: () async {
-                        await _initialAuthenticate(context);
-                      },
-                      style: ElevatedButton.styleFrom(
-                        backgroundColor: AppColors.defaultBlue500,
-                        shape: RoundedRectangleBorder(
-                          borderRadius: BorderRadius.circular(12.0),
-                        ),
-                      ),
-                      child: const Text(
-                        'Use Face ID',
-                        style: TextStyle(
-                          fontSize: 18,
-                          color: Colors.white,
+  Widget build(BuildContext context) {
+    return Scaffold(
+      body: Padding(
+        padding: const EdgeInsets.all(20.0),
+        child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            Align(
+              alignment: Alignment.topCenter,
+              child: Padding(
+                padding: const EdgeInsets.fromLTRB(20, 40, 20, 20),
+                child: Column(
+                  mainAxisAlignment: MainAxisAlignment.center,
+                  children: [
+                    const SizedBox(height: 80.0),
+                    const AppContentImage(
+                      'assets/icons/agq_logo.png',
+                      height: 60,
+                    ),
+                    const SizedBox(height: 20.0),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        AppContent.text(
+                            'text.screens.authenticate.initial_face_id.agq_app_locked_dda619'),
+                        style: const TextStyle(
+                          fontSize: 25,
                           fontWeight: FontWeight.bold,
                         ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                    const SizedBox(height: 16.0),
+                    Align(
+                      alignment: Alignment.center,
+                      child: Text(
+                        AppContent.text(
+                            'text.screens.authenticate.initial_face_id.unlock_with_face_id_to_continue_7814ef'),
+                        style: const TextStyle(
+                          fontSize: 18,
+                        ),
+                        textAlign: TextAlign.center,
+                      ),
+                    ),
+                  ],
+                ),
+              ),
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Padding(
+                padding: const EdgeInsets.only(bottom: 16.0),
+                child: SizedBox(
+                  width: double.infinity,
+                  height: 45,
+                  child: ElevatedButton(
+                    onPressed: () async {
+                      await _initialAuthenticate(context);
+                    },
+                    style: ElevatedButton.styleFrom(
+                      backgroundColor: AppColors.defaultBlue500,
+                      shape: RoundedRectangleBorder(
+                        borderRadius: BorderRadius.circular(12.0),
+                      ),
+                    ),
+                    child: Text(
+                      AppContent.text(
+                          'text.screens.authenticate.initial_face_id.use_face_id_f3ef71'),
+                      style: const TextStyle(
+                        fontSize: 18,
+                        color: Colors.white,
+                        fontWeight: FontWeight.bold,
                       ),
                     ),
                   ),
                 ),
               ),
-            ],
-          ),
+            ),
+          ],
         ),
-      );
+      ),
+    );
+  }
 }

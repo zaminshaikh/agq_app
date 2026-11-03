@@ -1,3 +1,5 @@
+import 'package:agq_app/content/app_content.dart';
+
 /// Calculate the x-coordinate value based on the date and selected time range.
 ///
 /// The function calculates the proportional position on the x-axis for a given date
@@ -40,7 +42,7 @@ double calculateXValue(DateTime dateTime, String dropdownValue) {
       totalPeriod = now.difference(startDate).inDays.toDouble();
       break;
     default:
-      return -1.0;  // Return -1.0 if the range is not recognized.
+      return -1.0; // Return -1.0 if the range is not recognized.
   }
 
   if (dateTime.isBefore(startDate) || dateTime.isAfter(now)) {
@@ -114,15 +116,15 @@ DateTime calculateDateTimeFromXValue(double xValue, String dropdownValue) {
 double maxX(String dropdownValue) {
   switch (dropdownValue) {
     case 'last-week':
-      return 6;  // 7 days (0 to 6)
+      return 6; // 7 days (0 to 6)
     case 'last-month':
-      return 29;  // 30 days (0 to 29)
+      return 29; // 30 days (0 to 29)
     case 'last-6-months':
-      return 5;  // 6 months (0 to 5)
+      return 5; // 6 months (0 to 5)
     case 'last-year':
-      return 11;  // 12 months (0 to 11)
+      return 11; // 12 months (0 to 11)
     default:
-      return 6;  // Default value if no match
+      return 6; // Default value if no match
   }
 }
 
@@ -137,9 +139,13 @@ double maxX(String dropdownValue) {
 ///   - A string representing the abbreviated form of the number.
 String abbreviateNumber(double value) {
   if (value >= 1e6) {
-    return '${(value / 1e6).toStringAsFixed(1)}M';
+    return AppContent.text(
+        'text.screens.analytics.utils.analytics_utilities.value1_m_79b41b',
+        {'value1': (value / 1e6).toStringAsFixed(1)});
   } else if (value >= 1e3) {
-    return '${(value / 1e3).toStringAsFixed(1)}K';
+    return AppContent.text(
+        'text.screens.analytics.utils.analytics_utilities.value1_k_ccd2fd',
+        {'value1': (value / 1e3).toStringAsFixed(1)});
   } else {
     return value.toStringAsFixed(0);
   }
@@ -202,9 +208,9 @@ double calculateDynamicMax(double maxAmount) {
 double getBottomTitleInterval(String dropdownValue) {
   switch (dropdownValue) {
     case 'last-week':
-      return maxX(dropdownValue) / 2;  // Label every other day
+      return maxX(dropdownValue) / 2; // Label every other day
     case 'last-month':
-      return maxX(dropdownValue) / 2;  // Start and end of the month
+      return maxX(dropdownValue) / 2; // Start and end of the month
     case 'last-6-months':
       return maxX(dropdownValue) / 2.5; // Approximately every two months
     case 'last-year':

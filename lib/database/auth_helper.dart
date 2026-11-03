@@ -1,3 +1,4 @@
+import 'package:agq_app/content/app_content.dart';
 import 'dart:developer';
 import 'package:firebase_auth/firebase_auth.dart';
 import 'package:firebase_messaging/firebase_messaging.dart';
@@ -24,22 +25,27 @@ Future<void> deleteUserInBuffer() async {
 /// Handles FirebaseAuthException and displays an error message.
 Future<void> handleFirebaseAuthException(
     BuildContext context, FirebaseAuthException e, String email) async {
-  String errorMessage = 'Failed to sign up. Please try again.';
+  String errorMessage = AppContent.text(
+      'text.database.auth_helper.failed_to_sign_up_please_try_again_2fb2a5');
   // String? temp = FirebaseAuth.instance.currentUser?.email;
   switch (e.code) {
     case 'email-already-in-use':
       if (FirebaseAuth.instance.currentUser?.email == email) {
         await deleteUserInBuffer();
-      } 
-      errorMessage =
-          'Email $email is already in use. Please use a different email.';
+      }
+      errorMessage = AppContent.text(
+          'text.database.auth_helper.email_email_is_already_in_use_please_u_d2abd2',
+          {'email': email});
       break;
     case 'invalid-email':
-      errorMessage = '"$email" is not a valid email format. Please try again.';
+      errorMessage = AppContent.text(
+          'text.database.auth_helper.email_is_not_a_valid_email_format_plea_39414c',
+          {'email': email});
       log('Invalid email format.');
       break;
     case 'weak-password':
-      errorMessage = 'The password provided is too weak.';
+      errorMessage = AppContent.text(
+          'text.database.auth_helper.the_password_provided_is_too_weak_ad073f');
       log('Weak password.');
       break;
     default:
@@ -48,12 +54,14 @@ Future<void> handleFirebaseAuthException(
   if (!context.mounted) {
     return;
   }
-  await CustomAlertDialog.showAlertDialog(context, 'Error', errorMessage,
+  await CustomAlertDialog.showAlertDialog(context,
+      AppContent.text('text.database.auth_helper.error_7f2f6a'), errorMessage,
       icon: const Icon(Icons.error, color: Colors.red));
 }
 
 /// Updates Firebase Messaging token.
-Future<void> updateFirebaseMessagingToken(User? user, BuildContext context) async {
+Future<void> updateFirebaseMessagingToken(
+    User? user, BuildContext context) async {
   if (user == null) {
     return;
   }
@@ -70,25 +78,25 @@ Future<void> updateFirebaseMessagingToken(User? user, BuildContext context) asyn
     DatabaseService? db = await DatabaseService.fetchCID(user.uid, context);
 
     if (db != null) {
-    try {
-      List<dynamic> tokens =
-          (await db.getField('tokens') ?? []);
+      try {
+        List<dynamic> tokens = (await db.getField('tokens') ?? []);
 
-      if (!tokens.contains(token)) {
-        tokens = [...tokens, token];
-        await db.updateField('tokens', tokens);
+        if (!tokens.contains(token)) {
+          tokens = [...tokens, token];
+          await db.updateField('tokens', tokens);
+        }
+      } catch (e) {
+        log('login.dart: Error fetching tokens: $e');
       }
-    } catch (e) {
-      log('login.dart: Error fetching tokens: $e');
     }
-  }
-  }// async gap widget mounting check
+  } // async gap widget mounting check
 }
 
 /// Deletes the Firebase Messaging token when the user signs out.
-Future<void> deleteFirebaseMessagingToken(User? user, BuildContext context) async {
+Future<void> deleteFirebaseMessagingToken(
+    User? user, BuildContext context) async {
   if (user == null) {
-    log('auth_helper.dart: User is null.'); 
+    log('auth_helper.dart: User is null.');
     return;
   }
   // Retrieve the current FCM token
@@ -133,8 +141,9 @@ Future<bool> resendEmailVerification(BuildContext context) async {
       if (context.mounted) {
         await CustomAlertDialog.showAlertDialog(
           context,
-          'Error',
-          'No user is currently signed in.',
+          AppContent.text('text.database.auth_helper.error_7f2f6a'),
+          AppContent.text(
+              'text.database.auth_helper.no_user_is_currently_signed_in_1c2c94'),
         );
       }
       return false;
@@ -144,64 +153,74 @@ Future<bool> resendEmailVerification(BuildContext context) async {
       if (context.mounted) {
         await CustomAlertDialog.showAlertDialog(
           context,
-          'Already Verified',
-          'Your email is already verified.',
-          icon: const Icon(Icons.check_circle_outline_rounded, color: Colors.green),
+          AppContent.text('text.database.auth_helper.already_verified_1c6aeb'),
+          AppContent.text(
+              'text.database.auth_helper.your_email_is_already_verified_a7a7b8'),
+          icon: const Icon(Icons.check_circle_outline_rounded,
+              color: Colors.green),
         );
       }
       return true;
     }
 
     await user.sendEmailVerification();
-    
+
     if (context.mounted) {
       await CustomAlertDialog.showAlertDialog(
         context,
-        'Verification Email Sent',
-        'A verification email has been sent to ${user.email}. Please check your email and click the verification link.',
+        AppContent.text(
+            'text.database.auth_helper.verification_email_sent_508d93'),
+        AppContent.text(
+            'text.database.auth_helper.a_verification_email_has_been_sent_to__fe463c',
+            {'value1': user.email}),
         icon: const Icon(Icons.email_outlined, color: Colors.blue),
       );
     }
-    
+
     return true;
   } on FirebaseAuthException catch (e) {
     log('Error resending verification email: $e');
-    String errorMessage = 'Failed to send verification email. Please try again.';
-    
+    String errorMessage = AppContent.text(
+        'text.database.auth_helper.failed_to_send_verification_email_plea_792d65');
+
     switch (e.code) {
       case 'too-many-requests':
-        errorMessage = 'Too many requests. Please wait before requesting another verification email.';
+        errorMessage = AppContent.text(
+            'text.database.auth_helper.too_many_requests_please_wait_before_r_db7c32');
         break;
       case 'invalid-email':
-        errorMessage = 'The email address is invalid.';
+        errorMessage = AppContent.text(
+            'text.database.auth_helper.the_email_address_is_invalid_f9871e');
         break;
       case 'user-not-found':
-        errorMessage = 'No user found. Please sign in again.';
+        errorMessage = AppContent.text(
+            'text.database.auth_helper.no_user_found_please_sign_in_again_257abd');
         break;
     }
-    
+
     if (context.mounted) {
       await CustomAlertDialog.showAlertDialog(
         context,
-        'Error',
+        AppContent.text('text.database.auth_helper.error_7f2f6a'),
         errorMessage,
         icon: const Icon(Icons.error, color: Colors.red),
       );
     }
-    
+
     return false;
   } catch (e) {
     log('Unexpected error resending verification email: $e');
-    
+
     if (context.mounted) {
       await CustomAlertDialog.showAlertDialog(
         context,
-        'Error',
-        'An unexpected error occurred. Please try again.',
+        AppContent.text('text.database.auth_helper.error_7f2f6a'),
+        AppContent.text(
+            'text.database.auth_helper.an_unexpected_error_occurred_please_tr_d07ac0'),
         icon: const Icon(Icons.error, color: Colors.red),
       );
     }
-    
+
     return false;
   }
 }

@@ -1,3 +1,5 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'dart:developer';
 import 'package:firebase_messaging/firebase_messaging.dart';
 import 'package:flutter/material.dart';
@@ -72,11 +74,11 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
         email: emailController.text,
         password: passwordController.text,
       );
-      
+
       // Check if email is verified
       await userCredential.user?.reload();
       final user = FirebaseAuth.instance.currentUser;
-      
+
       if (user != null && !user.emailVerified) {
         log('login.dart: User email not verified, showing verification screen');
         if (!context.mounted) return false;
@@ -87,7 +89,7 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
         );
         return false; // Don't proceed to dashboard
       }
-      
+
       if (!context.mounted) return false;
       await updateFirebaseMessagingToken(userCredential.user, context);
       log('login.dart: Signed in user ${userCredential.user!.uid}'); // Debugging output
@@ -103,17 +105,21 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
       log('login.dart: Caught FirebaseAuthException: $e'); // Debugging output
       String errorMessage = '';
       if (e.code == 'user-not-found') {
-        errorMessage =
-            'Email not found. Please check your email or sign up for a new account.';
+        errorMessage = AppContent.text(
+            'text.screens.authenticate.login.login.email_not_found_please_check_your_emai_87403f');
         log('login.dart: Error: $errorMessage'); // Debugging output
       } else {
-        errorMessage =
-            'Error signing in. Please check your email and password. $e';
+        errorMessage = AppContent.text(
+            'text.screens.authenticate.login.login.error_signing_in_please_check_your_ema_cefa55',
+            {'e': e});
         log('login.dart: Error: $errorMessage'); // Debugging output
       }
       log('login.dart: Showing error dialog...'); // Debugging output
       await CustomAlertDialog.showAlertDialog(
-          context, 'Error logging in', errorMessage);
+          context,
+          AppContent.text(
+              'text.screens.authenticate.login.login.error_logging_in_d88bcb'),
+          errorMessage);
       log('login.dart: Error dialog shown, returning false...'); // Debugging output
       return false;
     } catch (e) {
@@ -127,7 +133,8 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
 
     try {
       authenticated = await auth.authenticate(
-        localizedReason: 'Please authenticate to login',
+        localizedReason: AppContent.text(
+            'text.screens.authenticate.login.login.please_authenticate_to_login_5faeb2'),
         options: const AuthenticationOptions(
           useErrorDialogs: true,
           stickyAuth: true,
@@ -160,17 +167,19 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
     log('login.dart: Attempting to sign in with Apple...');
     try {
       setState(() => _isLoading = true);
-      
+
       // Check if Sign In with Apple is available first
       final isAvailable = await SignInWithApple.isAvailable();
       log('login.dart: Apple Sign In available: $isAvailable');
-      
+
       if (!isAvailable) {
         if (mounted) {
           await CustomAlertDialog.showAlertDialog(
             context,
-            'Not Available',
-            'Sign in with Apple is not available on this device or simulator.',
+            AppContent.text(
+                'text.screens.authenticate.login.login.not_available_4028c0'),
+            AppContent.text(
+                'text.screens.authenticate.login.login.sign_in_with_apple_is_not_available_on_f3c1de'),
           );
         }
         return;
@@ -180,27 +189,30 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
       final AppleAuthService appleAuthService = AppleAuthService();
       if (!mounted) return;
       final isSignedIn = await appleAuthService.signInWithApple(context);
-      
+
       if (isSignedIn) {
         log('login.dart: Apple Sign In successful');
         // Set initiallyAuthenticated to true
         if (!mounted) return;
         Provider.of<AuthState>(context, listen: false)
             .setInitiallyAuthenticated(true);
-        
+
         // Navigate to dashboard
         if (mounted) {
-          await Navigator.pushNamedAndRemoveUntil(context, '/dashboard', (route) => false);
+          await Navigator.pushNamedAndRemoveUntil(
+              context, '/dashboard', (route) => false);
         }
       }
     } catch (e) {
-      log('login.dart: Error signing in with Apple: $e', stackTrace: StackTrace.current);
+      log('login.dart: Error signing in with Apple: $e',
+          stackTrace: StackTrace.current);
       if (mounted) {
         await CustomAlertDialog.showAlertDialog(
-          context, 
-          'Sign In Failed', 
-          'There was an error signing in with Apple. Please try again or use another method.'
-        );
+            context,
+            AppContent.text(
+                'text.screens.authenticate.login.login.sign_in_failed_9c06fa'),
+            AppContent.text(
+                'text.screens.authenticate.login.login.there_was_an_error_signing_in_with_app_529e8a'));
       }
     } finally {
       if (mounted) {
@@ -211,13 +223,20 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
 
   // The build method for the login screen widget
   @override
-  Widget build(BuildContext context) => Scaffold(
-        body: Stack(
-          children: [
-            SingleChildScrollView(
-              child: Column(
-                mainAxisAlignment: MainAxisAlignment.center,
-                children: <Widget>[
+  Widget build(BuildContext context) {
+    AppContent.watch(context, keys: const {
+      'text.screens.authenticate.login.login.email_not_found_please_check_your_emai_87403f',
+      'text.screens.authenticate.login.login.error_signing_in_please_check_your_ema_cefa55',
+      'text.screens.authenticate.login.login.sign_in_with_apple_is_not_available_on_f3c1de',
+      'text.screens.authenticate.login.login.there_was_an_error_signing_in_with_app_529e8a',
+    });
+    return Scaffold(
+      body: Stack(
+        children: [
+          SingleChildScrollView(
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.center,
+              children: <Widget>[
                 // Logo and branding
                 Container(
                   decoration: const BoxDecoration(
@@ -230,13 +249,13 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
                       ],
                     ),
                   ),
-                  child: Stack(
+                  child: const Stack(
                     children: [
                       // PNG gradient overlay
                       Positioned.fill(
                         child: Opacity(
                           opacity: 0.3, // Adjust the opacity as needed
-                          child: Image.asset(
+                          child: AppContentImage(
                             'assets/icons/total_assets_gradient.png', // Path to your PNG gradient
                             fit: BoxFit.cover,
                           ),
@@ -244,24 +263,24 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
                       ),
                       Column(
                         children: [
-                          const SizedBox(height: 60.0),
+                          SizedBox(height: 60.0),
                           Padding(
-                            padding: const EdgeInsets.fromLTRB(20, 32, 20, 32),
+                            padding: EdgeInsets.fromLTRB(20, 32, 20, 32),
                             child: Align(
-                              alignment: const Alignment(-1.0, -1.0),
-                              child: Image.asset(
+                              alignment: Alignment(-1.0, -1.0),
+                              child: AppContentImage(
                                 'assets/icons/agq_logo.png',
                                 height: 50,
                               ),
                             ),
                           ),
-                          const SizedBox(height: 40.0),
+                          SizedBox(height: 40.0),
                         ],
                       ),
                     ],
                   ),
                 ),
-                
+
                 // Additional container with another gradient
                 Container(
                   decoration: const BoxDecoration(
@@ -274,435 +293,441 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
                       ],
                     ),
                   ),
-                  child: const Stack(
+                  child: Stack(
                     children: [
                       Column(
                         children: [
-                              Text(
-                                'Login to Your Account',
-                                style: TextStyle(
-                                  fontSize: 26,
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.bold,
-                                  fontFamily: 'Titillium Web',
-                                ),
-                              ),
-                          SizedBox(height: 20.0),
-                          Row(
-                            children: [
-                              Text(''),
-                              Spacer(),
-                              Text('')
-                            ],
+                          Text(
+                            AppContent.text(
+                                'text.screens.authenticate.login.login.login_to_your_account_95704e'),
+                            style: const TextStyle(
+                              fontSize: 26,
+                              color: Colors.white,
+                              fontWeight: FontWeight.bold,
+                              fontFamily: 'Titillium Web',
+                            ),
+                          ),
+                          const SizedBox(height: 20.0),
+                          const Row(
+                            children: [Text(''), Spacer(), Text('')],
                           ),
                         ],
                       ),
                     ],
                   ),
                 ),
-                
-            
-            
-            
-            
-                  Padding(
-                    padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
-                    child: Column(
-                      children: [
-            
-                        // Email input field
-                        Container(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              const Text(
-                                'Email',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontFamily: 'Titillium Web'),
-                              ),
-                              const SizedBox(height: 10.0),
-                              TextField(
-                                controller: emailController,
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontFamily: 'Titillium Web'),
-                                // Input field styling
-                                decoration: InputDecoration(
-                                  hintText: 'Enter your email',
-                                  hintStyle: const TextStyle(
-                                      color: Color.fromARGB(255, 122, 122, 122),
-                                      fontFamily: 'Titillium Web'),
-                                  // Border and focus styling
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 27, 123, 201)),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      vertical: 14, horizontal: 14),
-                                ),
-                                onChanged: (value) {
-                                  if (mounted) {
-                                    setState(() {
-                                      emailController.text = value;
-                                    });
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Spacing
-                        const SizedBox(height: 16.0),
-            
-                        // Password input field
-                        Container(
-                          padding: const EdgeInsets.all(4.0),
-                          child: Column(
-                            crossAxisAlignment: CrossAxisAlignment.stretch,
-                            children: [
-                              const Text(
-                                'Password',
-                                style: TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontFamily: 'Titillium Web'),
-                              ),
-                              const SizedBox(height: 10.0),
-                              TextField(
-                                controller: passwordController,
-                                style: const TextStyle(
-                                    fontSize: 16,
-                                    color: Colors.white,
-                                    fontFamily: 'Titillium Web'),
-                                // Input field styling with password visibility toggle
-                                decoration: InputDecoration(
-                                  hintText: 'Enter your password',
-                                  hintStyle: const TextStyle(
-                                      color: Color.fromARGB(255, 122, 122, 122),
-                                      fontFamily: 'Titillium Web'),
-                                  border: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                  ),
-                                  focusedBorder: OutlineInputBorder(
-                                    borderRadius: BorderRadius.circular(11),
-                                    borderSide: const BorderSide(
-                                        color: Color.fromARGB(255, 27, 123, 201)),
-                                  ),
-                                  contentPadding: const EdgeInsets.symmetric(
-                                      vertical: 14, horizontal: 14),
-                                  suffixIcon: GestureDetector(
-                                    onTap: () {
-                                      if (mounted) {
-                                        setState(() {
-                                          hidePassword = !hidePassword;
-                                        });
-                                      }
-                                    },
-                                    child: Padding(
-                                      padding: const EdgeInsets.all(0.0),
-                                      child: Icon(
-                                        hidePassword
-                                            ? Icons.remove_red_eye_outlined
-                                            : Icons.remove_red_eye_rounded,
-                                        size: 25,
-                                        color: const Color.fromARGB(
-                                            255, 154, 154, 154),
-                                      ),
-                                    ),
-                                  ),
-                                ),
-                                obscureText: hidePassword,
-                                onChanged: (value) {
-                                  if (mounted) {
-                                    setState(() {
-                                      passwordController.text = value;
-                                    });
-                                  }
-                                },
-                              ),
-                            ],
-                          ),
-                        ),
-                        // Spacing
-                        const SizedBox(height: 20.0),
-            
-                        // Remember Me and Forgot Password section
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
+
+                Padding(
+                  padding: const EdgeInsets.fromLTRB(16, 0, 16, 16),
+                  child: Column(
+                    children: [
+                      // Email input field
+                      Container(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
                           children: [
-                            // GestureDetector(
-                            //   onTap: () {
-                            //     setState(() {
-                            //       rememberMe = !rememberMe;
-                            //     });
-                            //   },
-                            //   child: Padding(
-                            //     padding: const EdgeInsets.all(6.0),
-                            //     child: Icon(
-                            //       rememberMe ? Icons.check_box_rounded : Icons.check_box_outline_blank_rounded,
-                            //       size: 24,
-                            //       color: Colors.white,
-                            //     ),
-                            //   ),
-                            // ),
-                            // const Text('Remember Me',
-                            //   style: TextStyle(
-                            //     fontSize: 16,
-                            //     color: Colors.white,
-                            //     fontFamily: 'Titillium Web'
-                            //   )
-                            // ),
-                            // const SizedBox(width: 100),
-            
-                            // Forgot Password link
-                            GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  MaterialPageRoute(
-                                      builder: (context) =>
-                                          const ForgotPasswordPage()), // Navigate to the Log In page
-                                );
-                              },
-                              child: const TextButton(
-                                onPressed: null,
-                                child: Text(
-                                  'Forgot Password?',
-                                  style: TextStyle(
-                                      fontSize: 16,
-                                      fontWeight: FontWeight.bold,
-                                      color: Colors.blue,
-                                      fontFamily: 'Titillium Web'),
+                            Text(
+                              AppContent.text(
+                                  'text.screens.authenticate.login.login.email_84add5'),
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontFamily: 'Titillium Web'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextField(
+                              controller: emailController,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontFamily: 'Titillium Web'),
+                              // Input field styling
+                              decoration: InputDecoration(
+                                hintText: AppContent.text(
+                                    'text.screens.authenticate.login.login.enter_your_email_8cdbba'),
+                                hintStyle: const TextStyle(
+                                    color: Color.fromARGB(255, 122, 122, 122),
+                                    fontFamily: 'Titillium Web'),
+                                // Border and focus styling
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(11),
                                 ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(11),
+                                  borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 27, 123, 201)),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 14, horizontal: 14),
                               ),
+                              onChanged: (value) {
+                                if (mounted) {
+                                  setState(() {
+                                    emailController.text = value;
+                                  });
+                                }
+                              },
                             ),
                           ],
                         ),
-                        // Spacing
-                        const SizedBox(height: 20.0),
-            
-                        // Login Button
-                        GestureDetector(
-                          onTap: () async {
-                            bool success = await signUserIn(context);
-                            if (success) {
-                              String? token;
-                              try {
-                                token = await FirebaseMessaging.instance.getToken();
-                              } catch (e) {
-                                log('Error fetching token: $e');
-                                token = await FirebaseMessaging.instance.getAPNSToken();
-                                log('APNS Token found: $token');
-                              }
-                              if (token != null) {
-                                User? user = FirebaseAuth.instance.currentUser;
-                                // If we do not have a user and the context is valid
-                                if (user == null && context.mounted) {
-                                  log('login.dart: User is not logged in');
-                                  await Navigator.pushReplacementNamed(
-                                      context, '/login');
-                                }
-                                if (!context.mounted) return;
-                                // Fetch CID using async constructor
-                                DatabaseService? db =
-                                    await DatabaseService.fetchCID(user!.uid, context);
-            
-                                if (db != null) {
-                                  try {
-                                    List<dynamic> tokens =
-                                        (await db.getField('tokens') ?? []);
-            
-                                    if (!tokens.contains(token)) {
-                                      tokens = [...tokens, token];
-                                      await db.updateField('tokens', tokens);
+                      ),
+                      // Spacing
+                      const SizedBox(height: 16.0),
+
+                      // Password input field
+                      Container(
+                        padding: const EdgeInsets.all(4.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          children: [
+                            Text(
+                              AppContent.text(
+                                  'text.screens.authenticate.login.login.password_8be3c9'),
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontFamily: 'Titillium Web'),
+                            ),
+                            const SizedBox(height: 10.0),
+                            TextField(
+                              controller: passwordController,
+                              style: const TextStyle(
+                                  fontSize: 16,
+                                  color: Colors.white,
+                                  fontFamily: 'Titillium Web'),
+                              // Input field styling with password visibility toggle
+                              decoration: InputDecoration(
+                                hintText: AppContent.text(
+                                    'text.screens.authenticate.login.login.enter_your_password_137816'),
+                                hintStyle: const TextStyle(
+                                    color: Color.fromARGB(255, 122, 122, 122),
+                                    fontFamily: 'Titillium Web'),
+                                border: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(11),
+                                ),
+                                focusedBorder: OutlineInputBorder(
+                                  borderRadius: BorderRadius.circular(11),
+                                  borderSide: const BorderSide(
+                                      color: Color.fromARGB(255, 27, 123, 201)),
+                                ),
+                                contentPadding: const EdgeInsets.symmetric(
+                                    vertical: 14, horizontal: 14),
+                                suffixIcon: GestureDetector(
+                                  onTap: () {
+                                    if (mounted) {
+                                      setState(() {
+                                        hidePassword = !hidePassword;
+                                      });
                                     }
-                                  } catch (e) {
-                                    log('login.dart: Error fetching tokens: $e');
-                                  }
+                                  },
+                                  child: Padding(
+                                    padding: const EdgeInsets.all(0.0),
+                                    child: Icon(
+                                      hidePassword
+                                          ? Icons.remove_red_eye_outlined
+                                          : Icons.remove_red_eye_rounded,
+                                      size: 25,
+                                      color: const Color.fromARGB(
+                                          255, 154, 154, 154),
+                                    ),
+                                  ),
+                                ),
+                              ),
+                              obscureText: hidePassword,
+                              onChanged: (value) {
+                                if (mounted) {
+                                  setState(() {
+                                    passwordController.text = value;
+                                  });
                                 }
+                              },
+                            ),
+                          ],
+                        ),
+                      ),
+                      // Spacing
+                      const SizedBox(height: 20.0),
+
+                      // Remember Me and Forgot Password section
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          // GestureDetector(
+                          //   onTap: () {
+                          //     setState(() {
+                          //       rememberMe = !rememberMe;
+                          //     });
+                          //   },
+                          //   child: Padding(
+                          //     padding: const EdgeInsets.all(6.0),
+                          //     child: Icon(
+                          //       rememberMe ? Icons.check_box_rounded : Icons.check_box_outline_blank_rounded,
+                          //       size: 24,
+                          //       color: Colors.white,
+                          //     ),
+                          //   ),
+                          // ),
+                          // const Text('Remember Me',
+                          //   style: TextStyle(
+                          //     fontSize: 16,
+                          //     color: Colors.white,
+                          //     fontFamily: 'Titillium Web'
+                          //   )
+                          // ),
+                          // const SizedBox(width: 100),
+
+                          // Forgot Password link
+                          GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                MaterialPageRoute(
+                                    builder: (context) =>
+                                        const ForgotPasswordPage()), // Navigate to the Log In page
+                              );
+                            },
+                            child: TextButton(
+                              onPressed: null,
+                              child: Text(
+                                AppContent.text(
+                                    'text.screens.authenticate.login.login.forgot_password_1cc8d1'),
+                                style: const TextStyle(
+                                    fontSize: 16,
+                                    fontWeight: FontWeight.bold,
+                                    color: Colors.blue,
+                                    fontFamily: 'Titillium Web'),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      // Spacing
+                      const SizedBox(height: 20.0),
+
+                      // Login Button
+                      GestureDetector(
+                        onTap: () async {
+                          bool success = await signUserIn(context);
+                          if (success) {
+                            String? token;
+                            try {
+                              token =
+                                  await FirebaseMessaging.instance.getToken();
+                            } catch (e) {
+                              log('Error fetching token: $e');
+                              token = await FirebaseMessaging.instance
+                                  .getAPNSToken();
+                              log('APNS Token found: $token');
+                            }
+                            if (token != null) {
+                              User? user = FirebaseAuth.instance.currentUser;
+                              // If we do not have a user and the context is valid
+                              if (user == null && context.mounted) {
+                                log('login.dart: User is not logged in');
+                                await Navigator.pushReplacementNamed(
+                                    context, '/login');
                               }
                               if (!context.mounted) return;
-                              await Navigator.pushReplacement(
-                                context,
-                                PageRouteBuilder(
-                                  pageBuilder: (context, animation1, animation2) =>
-                                      const DashboardPage(),
-                                  transitionDuration: Duration.zero,
-                                ),
-                              );
+                              // Fetch CID using async constructor
+                              DatabaseService? db =
+                                  await DatabaseService.fetchCID(
+                                      user!.uid, context);
+
+                              if (db != null) {
+                                try {
+                                  List<dynamic> tokens =
+                                      (await db.getField('tokens') ?? []);
+
+                                  if (!tokens.contains(token)) {
+                                    tokens = [...tokens, token];
+                                    await db.updateField('tokens', tokens);
+                                  }
+                                } catch (e) {
+                                  log('login.dart: Error fetching tokens: $e');
+                                }
+                              }
                             }
-                          },
-                          child: Container(
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: passwordController.text.isNotEmpty &&
-                                      emailController.text.isNotEmpty
-                                  ? const Color.fromARGB(255, 30, 75, 137)
-                                  : const Color.fromARGB(255, 85, 86, 87),
-                              borderRadius: BorderRadius.circular(25),
+                            if (!context.mounted) return;
+                            await Navigator.pushReplacement(
+                              context,
+                              PageRouteBuilder(
+                                pageBuilder:
+                                    (context, animation1, animation2) =>
+                                        const DashboardPage(),
+                                transitionDuration: Duration.zero,
+                              ),
+                            );
+                          }
+                        },
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: passwordController.text.isNotEmpty &&
+                                    emailController.text.isNotEmpty
+                                ? const Color.fromARGB(255, 30, 75, 137)
+                                : const Color.fromARGB(255, 85, 86, 87),
+                            borderRadius: BorderRadius.circular(25),
+                          ),
+                          child: Center(
+                            child: Text(
+                              AppContent.text(
+                                  'text.screens.authenticate.login.login.login_4e5a28'),
+                              style: const TextStyle(
+                                  fontSize: 18,
+                                  color: Colors.white,
+                                  fontWeight: FontWeight.bold,
+                                  fontFamily: 'Titillium Web'),
                             ),
-                            child: const Center(
-                              child: Text(
-                                'Login',
-                                style: TextStyle(
+                          ),
+                        ),
+                      ),
+                      // Spacing
+                      const SizedBox(height: 20.0),
+
+                      GestureDetector(
+                        onTap: () async {
+                          if (mounted) setState(() => _isLoading = true);
+                          try {
+                            await GoogleAuthService().signInWithGoogle(context);
+                            // Navigate to dashboard or home
+                            // e.g., Navigator.pushReplacementNamed(context, '/dashboard');
+                          } finally {
+                            if (mounted) setState(() => _isLoading = false);
+                          }
+                        },
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(
+                                color: const Color.fromARGB(255, 30, 75, 137),
+                                width: 4),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                FontAwesomeIcons.google,
+                                color: Colors.blue,
+                              ),
+                              const SizedBox(width: 15),
+                              Text(
+                                AppContent.text(
+                                    'text.screens.authenticate.login.login.sign_in_with_google_4a0b72'),
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Titillium Web'),
+                              ),
+                            ],
+                          ),
+                        ),
+                      ),
+
+                      // Add spacing before Apple Sign In button
+                      const SizedBox(height: 16.0),
+
+                      // Apple Sign In Button
+                      GestureDetector(
+                        onTap: _signInWithApple,
+                        child: Container(
+                          height: 55,
+                          decoration: BoxDecoration(
+                            color: Colors.transparent,
+                            borderRadius: BorderRadius.circular(25),
+                            border: Border.all(
+                              color: Colors.white.withOpacity(0.3),
+                              width: 4,
+                            ),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              const Icon(
+                                FontAwesomeIcons.apple,
+                                color: Colors.white,
+                              ),
+                              const SizedBox(width: 15),
+                              Text(
+                                AppContent.text(
+                                    'text.screens.authenticate.login.login.sign_in_with_apple_a5331c'),
+                                style: const TextStyle(
                                     fontSize: 18,
                                     color: Colors.white,
                                     fontWeight: FontWeight.bold,
                                     fontFamily: 'Titillium Web'),
                               ),
-                            ),
+                            ],
                           ),
                         ),
-                        // Spacing
-                        const SizedBox(height: 20.0),
-            
-                        GestureDetector(
-                          onTap: () async {
-                            if (mounted) setState(() => _isLoading = true);
-                            try {
-                              await GoogleAuthService().signInWithGoogle(context);
-                              // Navigate to dashboard or home
-                              // e.g., Navigator.pushReplacementNamed(context, '/dashboard');
-                            } finally {
-                              if (mounted) setState(() => _isLoading = false);
-                            }
-                          },
-                          child: Container(
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(25),
-                              border: Border.all(
-                                  color: const Color.fromARGB(255, 30, 75, 137),
-                                  width: 4),
-                            ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.google,
-                                  color: Colors.blue,
-                                ),
-                                SizedBox(width: 15),
-                                Text(
-                                  'Sign in with Google',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Titillium Web'),
-                                ),
-                              ],
-                            ),
+                      ),
+
+                      const SizedBox(height: 40.0),
+
+                      // Sign-Up Section
+                      Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        children: [
+                          Text(
+                            AppContent.text(
+                                'text.screens.authenticate.login.login.don_t_have_an_account_f838dc'),
+                            style: const TextStyle(
+                                fontSize: 18,
+                                color: Colors.white,
+                                fontFamily: 'Titillium Web'),
                           ),
-                        ),
-
-                        // Add spacing before Apple Sign In button
-                        const SizedBox(height: 16.0),
-
-                        // Apple Sign In Button
-                        GestureDetector(
-                          onTap: _signInWithApple,
-                          child: Container(
-                            height: 55,
-                            decoration: BoxDecoration(
-                              color: Colors.transparent,
-                              borderRadius: BorderRadius.circular(25),
-                              border: Border.all(
-                                color: Colors.white.withOpacity(0.3),
-                                width: 4,
+                          GestureDetector(
+                            behavior: HitTestBehavior.translucent,
+                            onTap: () {
+                              Navigator.push(
+                                context,
+                                PageRouteBuilder(
+                                  pageBuilder: (context, animation,
+                                          secondaryAnimation) =>
+                                      const CreateAccountPage(),
+                                  transitionsBuilder: (context, animation,
+                                          secondaryAnimation, child) =>
+                                      child,
+                                ),
+                              );
+                            },
+                            child: TextButton(
+                              onPressed: null,
+                              child: Text(
+                                AppContent.text(
+                                    'text.screens.authenticate.login.login.sign_up_2ba402'),
+                                style: const TextStyle(
+                                    fontSize: 18,
+                                    color: Colors.blue,
+                                    fontWeight: FontWeight.bold,
+                                    fontFamily: 'Titillium Web'),
                               ),
                             ),
-                            child: const Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Icon(
-                                  FontAwesomeIcons.apple,
-                                  color: Colors.white,
-                                ),
-                                SizedBox(width: 15),
-                                Text(
-                                  'Sign in with Apple',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.white,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Titillium Web'),
-                                ),
-                              ],
-                            ),
                           ),
-                        ),
-            
-                        const SizedBox(height: 40.0),
-            
-                        // Sign-Up Section
-                        Row(
-                          mainAxisAlignment: MainAxisAlignment.center,
-                          children: [
-                            const Text(
-                              'Don\'t have an account?',
-                              style: TextStyle(
-                                  fontSize: 18,
-                                  color: Colors.white,
-                                  fontFamily: 'Titillium Web'),
-                            ),
-                            GestureDetector(
-                              behavior: HitTestBehavior.translucent,
-                              onTap: () {
-                                Navigator.push(
-                                  context,
-                                  PageRouteBuilder(
-                                    pageBuilder:
-                                        (context, animation, secondaryAnimation) =>
-                                            const CreateAccountPage(),
-                                    transitionsBuilder: (context, animation,
-                                            secondaryAnimation, child) =>
-                                        child,
-                                  ),
-                                );
-                              },
-                              child: const TextButton(
-                                onPressed: null,
-                                child: Text(
-                                  'Sign Up',
-                                  style: TextStyle(
-                                      fontSize: 18,
-                                      color: Colors.blue,
-                                      fontWeight: FontWeight.bold,
-                                      fontFamily: 'Titillium Web'),
-                                ),
-                              ),
-                            ),
-                          ],
-                        ),
-                        // Spacing
-                        const SizedBox(height: 20.0),
-                      ],
-                    ),
+                        ],
+                      ),
+                      // Spacing
+                      const SizedBox(height: 20.0),
+                    ],
                   ),
-                ],
+                ),
+              ],
+            ),
+          ),
+          // A loading overlay that covers the screen when _isLoading is true
+          if (_isLoading)
+            Container(
+              color: Colors.black54,
+              child: const Center(
+                child: CircularProgressIndicator(color: Colors.white),
               ),
             ),
-            // A loading overlay that covers the screen when _isLoading is true
-            if (_isLoading)
-              Container(
-                color: Colors.black54,
-                child: const Center(
-                  child: CircularProgressIndicator(color: Colors.white),
-                ),
-              ),
-
-          ],
-        ),
-      );
+        ],
+      ),
+    );
+  }
 }

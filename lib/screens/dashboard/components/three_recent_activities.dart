@@ -1,3 +1,4 @@
+import 'package:agq_app/content/app_content.dart';
 import 'package:flutter/material.dart';
 import 'package:agq_app/database/models/activity_model.dart';
 import 'package:agq_app/screens/activity/activity.dart';
@@ -62,16 +63,19 @@ class ActivityTilesSectionState extends State<ActivityTilesSection> {
           ListView.builder(
             controller: _scrollController,
             scrollDirection: Axis.horizontal,
-            itemCount: widget.activities.length + 1, // Add one more item for the "View All" button
+            itemCount: widget.activities.length +
+                1, // Add one more item for the "View All" button
             itemBuilder: (context, index) {
               if (index < widget.activities.length) {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 8.0), // Add some spacing between cards
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 8.0), // Add some spacing between cards
                   child: ActivityCardItem(activity: widget.activities[index]),
                 );
               } else {
                 return Padding(
-                  padding: const EdgeInsets.symmetric(horizontal: 12.0), // Add some spacing for the button
+                  padding: const EdgeInsets.symmetric(
+                      horizontal: 12.0), // Add some spacing for the button
                   child: Row(
                     children: [
                       GestureDetector(
@@ -79,26 +83,33 @@ class ActivityTilesSectionState extends State<ActivityTilesSection> {
                           Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (context, animation, secondaryAnimation) => const ActivityPage(),
-                              transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      const ActivityPage(),
+                              transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) =>
+                                  child,
                             ),
                           );
                         },
                         child: Container(
                           color: Colors.transparent,
-                          padding: const EdgeInsets.symmetric(horizontal: 8.0, vertical: 4.0), // Add padding to the container
-                          child: const Row(
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 8.0,
+                              vertical: 4.0), // Add padding to the container
+                          child: Row(
                             children: [
                               Text(
-                                'View All',
-                                style: TextStyle(
+                                AppContent.text(
+                                    'text.screens.dashboard.components.three_recent_activities.view_all_efd835'),
+                                style: const TextStyle(
                                   fontWeight: FontWeight.bold,
                                   color: Colors.blue,
                                   fontSize: 16,
                                 ),
                               ),
-                              SizedBox(width: 2),
-                              Icon(
+                              const SizedBox(width: 2),
+                              const Icon(
                                 Icons.arrow_forward_ios,
                                 size: 15,
                                 color: Colors.blue,
@@ -117,7 +128,8 @@ class ActivityTilesSectionState extends State<ActivityTilesSection> {
             alignment: Alignment.centerRight,
             child: AnimatedOpacity(
               opacity: _gradientOpacity,
-              duration: const Duration(milliseconds: 300), // Adjust the duration as needed
+              duration: const Duration(
+                  milliseconds: 300), // Adjust the duration as needed
               child: Container(
                 width: 50, // Adjust the width of the gradient
                 decoration: const BoxDecoration(

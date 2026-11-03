@@ -1,7 +1,8 @@
 // ignore_for_file: deprecated_member_use
 
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:intl/intl.dart';
 import 'package:agq_app/database/models/activity_model.dart';
 import 'package:agq_app/screens/utils/resources.dart';
@@ -20,10 +21,11 @@ class ActivityDetailsModal extends StatelessWidget {
   ActivityDetailsModal({
     required this.activity,
     super.key,
-  })  : isFromAGQ = (activity.fund == 'AGQ');
+  }) : isFromAGQ = (activity.fund == 'AGQ');
 
   @override
-  Widget build(BuildContext context) => FractionallySizedBox(
+  Widget build(BuildContext context) {
+    return FractionallySizedBox(
       heightFactor: 0.67,
       child: ClipRRect(
         borderRadius: const BorderRadius.only(
@@ -43,6 +45,7 @@ class ActivityDetailsModal extends StatelessWidget {
         ),
       ),
     );
+  }
 
   Widget _buildModalHeader(BuildContext context, bool isFromAGQ) => Column(
         children: [
@@ -60,17 +63,18 @@ class ActivityDetailsModal extends StatelessWidget {
             ),
           ),
           if (isFromAGQ)
-            Padding(
-              padding: const EdgeInsets.only(bottom: 25.0),
-              child: SvgPicture.asset(
+            const Padding(
+              padding: EdgeInsets.only(bottom: 25.0),
+              child: AppContentImage(
                 'assets/icons/agq_logo.svg',
                 width: 40,
                 height: 40,
               ),
             ),
-          const Text(
-            'Activity Details',
-            style: TextStyle(
+          Text(
+            AppContent.text(
+                'text.screens.activity.components.activity_details_modal.activity_details_733a26'),
+            style: const TextStyle(
               fontSize: 25.0,
               fontWeight: FontWeight.bold,
               color: Colors.white,
@@ -127,31 +131,34 @@ class ActivityDetailsModal extends StatelessWidget {
         ),
         const SizedBox(height: 25),
         _buildModalDetailSection(
-          icon: SvgPicture.asset(
+          icon: AppContentImage(
             'assets/icons/activity_description.svg',
             color: getActivityColor(activity.type),
           ),
-          title: 'Description',
+          title: AppContent.text(
+              'text.screens.activity.components.activity_details_modal.description_55f8eb'),
           content: getActivityDescription(activity),
           underlayColor: getUnderlayColor(activity.type),
         ),
         const Divider(color: Colors.white, thickness: 0.2),
         _buildModalDetailSection(
-          icon: SvgPicture.asset(
+          icon: AppContentImage(
             'assets/icons/activity_date.svg',
             color: getActivityColor(activity.type),
           ),
-          title: 'Date',
+          title: AppContent.text(
+              'text.screens.activity.components.activity_details_modal.date_eb9a4b'),
           content: date,
           underlayColor: getUnderlayColor(activity.type),
         ),
         const Divider(color: Colors.white, thickness: 0.2),
         _buildModalDetailSection(
-          icon: SvgPicture.asset(
+          icon: AppContentImage(
             'assets/icons/activity_user.svg',
             color: getActivityColor(activity.type),
           ),
-          title: 'Recipient',
+          title: AppContent.text(
+              'text.screens.activity.components.activity_details_modal.recipient_903432'),
           content: activity.recipient,
           underlayColor: getUnderlayColor(activity.type),
         ),
@@ -242,5 +249,4 @@ class ActivityDetailsModal extends StatelessWidget {
   //     ),
   //   );
   // }
-
 }

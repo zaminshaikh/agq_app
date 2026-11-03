@@ -1,5 +1,6 @@
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:agq_app/screens/notifications/notifications.dart';
 import 'package:agq_app/database/models/client_model.dart';
 
@@ -19,11 +20,15 @@ class DashboardAppBar extends StatelessWidget {
       String shorterName = client.firstName.length <= client.lastName.length
           ? client.firstName
           : client.lastName;
-      welcomeMessage = 'Welcome, $shorterName!';
+      welcomeMessage = AppContent.text(
+          'text.screens.dashboard.components.dashboard_app_bar.welcome_shortername_4e6d4e',
+          {'shorterName': shorterName});
     } else {
-      welcomeMessage = 'Welcome, $fullName!';
+      welcomeMessage = AppContent.text(
+          'text.screens.dashboard.components.dashboard_app_bar.welcome_fullname_75f547',
+          {'fullName': fullName});
     }
-    
+
     return SliverAppBar(
       backgroundColor: const Color.fromARGB(255, 30, 41, 59),
       automaticallyImplyLeading: false,
@@ -52,7 +57,9 @@ class DashboardAppBar extends StatelessWidget {
                   ),
                   const SizedBox(height: 5),
                   Text(
-                    'Client ID: ${client.cid}',
+                    AppContent.text(
+                        'text.screens.dashboard.components.dashboard_app_bar.client_id_value1_7c72cb',
+                        {'value1': client.cid}),
                     style: const TextStyle(
                       fontSize: 15,
                       color: Colors.white,
@@ -94,10 +101,10 @@ class DashboardAppBar extends StatelessWidget {
                             ),
                             shape: BoxShape.rectangle,
                           ),
-                          child: Center(
-                            child: SvgPicture.asset(
+                          child: const Center(
+                            child: AppContentImage(
                               'assets/icons/bell.svg',
-                              colorFilter: const ColorFilter.mode(
+                              colorFilter: ColorFilter.mode(
                                   Colors.white, BlendMode.srcIn),
                               height: 32,
                             ),

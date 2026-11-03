@@ -1,6 +1,7 @@
 // notification_card.dart
+import 'package:agq_app/content/app_content.dart';
+import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/svg.dart';
 import 'package:agq_app/screens/profile/pages/documents.dart';
 import 'package:timeago/timeago.dart' as timeago;
 import 'package:agq_app/database/models/client_model.dart';
@@ -21,21 +22,26 @@ class NotificationCard extends StatelessWidget {
   });
 
   @override
-  Widget build(BuildContext context) => _buildNotification(context, notification);
+  Widget build(BuildContext context) {
+    return _buildNotification(context, notification);
+  }
 
   Widget _buildNotification(BuildContext context, Notif notification) {
     String title;
     switch (notification.type) {
       case 'activity':
-        title = 'New Activity';
+        title = AppContent.text(
+            'text.screens.notifications.components.notification_card.new_activity_f8bc95');
 // Replace with your actual Activity page widget
         break;
       case 'statement':
-        title = 'New Statement';
+        title = AppContent.text(
+            'text.screens.notifications.components.notification_card.new_statement_2daf44');
 // Replace with your actual Profile page widget
         break;
       default:
-        title = 'New Notification';
+        title = AppContent.text(
+            'text.screens.notifications.components.notification_card.new_notification_8fbc0f');
 // Replace with your actual Notification page widget
         break;
     }
@@ -60,7 +66,7 @@ class NotificationCard extends StatelessWidget {
                       BorderRadius.circular(15.0), // Set the border radius
                 ),
                 child: Padding(
-                  padding: const EdgeInsets.fromLTRB(0,0,0,0),
+                  padding: const EdgeInsets.fromLTRB(0, 0, 0, 0),
                   child: Column(
                     children: [
                       ListTile(
@@ -86,13 +92,13 @@ class NotificationCard extends StatelessWidget {
                                 ),
                                 const SizedBox(width: 12.0),
                                 if (containsAK1)
-                                  SvgPicture.asset(
+                                  const AppContentImage(
                                     'assets/icons/ak1_logo.svg',
                                     height: 16.0,
                                     width: 16.0,
                                   ),
                                 if (containsAGQ)
-                                  SvgPicture.asset(
+                                  const AppContentImage(
                                     'assets/icons/agq_logo.svg',
                                     height: 16.0,
                                     width: 16.0,
@@ -120,34 +126,39 @@ class NotificationCard extends StatelessWidget {
                             ),
                           ],
                         ),
-                        contentPadding: const EdgeInsets.symmetric(vertical: 8.0),
+                        contentPadding:
+                            const EdgeInsets.symmetric(vertical: 8.0),
                         dense: true,
-                        
-                        
+
                         // ...existing code...
                         onTap: () async {
                           final targetPage = (notification.type == 'activity')
                               ? const ActivityPage()
                               : const DocumentsPage();
-                        
+
                           await Navigator.pushReplacement(
                             context,
                             PageRouteBuilder(
-                              pageBuilder: (context, animation, secondaryAnimation) => targetPage,
+                              pageBuilder:
+                                  (context, animation, secondaryAnimation) =>
+                                      targetPage,
                               transitionDuration: Duration.zero,
                               reverseTransitionDuration: Duration.zero,
-                              transitionsBuilder: (context, animation, secondaryAnimation, child) => child,
+                              transitionsBuilder: (context, animation,
+                                      secondaryAnimation, child) =>
+                                  child,
                             ),
                           );
-                        
+
                           final notificationCID = notification.parentCID;
                           final myCID = client.cid;
-                        
+
                           DatabaseService db;
 
                           if (notificationCID == myCID) {
                             // The notification belongs to the main client
-                            db = DatabaseService.withCID(client.uid, client.cid);
+                            db =
+                                DatabaseService.withCID(client.uid, client.cid);
                           } else {
                             // Loop through connectedUsers to find a matching CID
                             Client? connectedUser;
@@ -160,10 +171,12 @@ class NotificationCard extends StatelessWidget {
 
                             if (connectedUser != null) {
                               // Found a matching connected user
-                              db = DatabaseService.withCID(connectedUser.uid, connectedUser.cid);
+                              db = DatabaseService.withCID(
+                                  connectedUser.uid, connectedUser.cid);
                             } else {
                               // If not found, fallback to current client
-                              db = DatabaseService.withCID(client.uid, client.cid);
+                              db = DatabaseService.withCID(
+                                  client.uid, client.cid);
                             }
                           }
 
@@ -177,7 +190,9 @@ class NotificationCard extends StatelessWidget {
             ],
           ),
         ),
-        const Divider(thickness: 0.5,),
+        const Divider(
+          thickness: 0.5,
+        ),
       ],
     );
   }
