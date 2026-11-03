@@ -224,7 +224,12 @@ class LoginPageState extends State<LoginPage> with WidgetsBindingObserver {
   // The build method for the login screen widget
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.authenticate.login.login.email_not_found_please_check_your_emai_87403f',
+      'text.screens.authenticate.login.login.error_signing_in_please_check_your_ema_cefa55',
+      'text.screens.authenticate.login.login.sign_in_with_apple_is_not_available_on_f3c1de',
+      'text.screens.authenticate.login.login.there_was_an_error_signing_in_with_app_529e8a',
+    });
     return Scaffold(
       body: Stack(
         children: [

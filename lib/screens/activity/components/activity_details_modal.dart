@@ -25,7 +25,6 @@ class ActivityDetailsModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return FractionallySizedBox(
       heightFactor: 0.67,
       child: ClipRRect(

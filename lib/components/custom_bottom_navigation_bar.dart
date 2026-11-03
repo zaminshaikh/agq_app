@@ -1,4 +1,3 @@
-import 'package:agq_app/content/app_content.dart';
 import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:agq_app/screens/activity/activity.dart';
@@ -49,7 +48,6 @@ class CustomBottomNavigationBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return Container(
       margin: const EdgeInsets.only(bottom: 30, right: 20, left: 20),
       height: 80,

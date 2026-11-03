@@ -58,7 +58,9 @@ class EmailVerificationDialogState extends State<EmailVerificationDialog> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.authenticate.create_account.components.email_verification_dialog.you_will_receive_an_email_with_a_link__184c60',
+    });
     return Dialog(
       backgroundColor: const Color.fromARGB(255, 37, 58, 86),
       shape: RoundedRectangleBorder(

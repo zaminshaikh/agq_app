@@ -1,4 +1,3 @@
-import 'package:agq_app/content/app_content.dart';
 import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:agq_app/database/models/assets_model.dart';
@@ -16,7 +15,6 @@ class UserBreakdownSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
 
     // Initialize empty lists for the tiles
     List<AssetTile> assetTilesAGQ = [];

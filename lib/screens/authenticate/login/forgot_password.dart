@@ -25,7 +25,10 @@ class _ForgotPasswordPageState extends State<ForgotPasswordPage> {
   @override
   // ignore: prefer_expression_function_bodies
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.authenticate.login.forgot_password.enter_your_email_we_will_email_instruc_cf8dab',
+      'text.screens.authenticate.login.forgot_password.failed_to_send_password_reset_email_pl_2c7785',
+    });
 
 // Making a Scaffold Widget containing the components of the Forgot Password page
     return Scaffold(

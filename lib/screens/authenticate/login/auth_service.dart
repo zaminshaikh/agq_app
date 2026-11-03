@@ -71,7 +71,6 @@ class _MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return const MaterialApp(
       home: DashboardPage(), // Your example page
     );

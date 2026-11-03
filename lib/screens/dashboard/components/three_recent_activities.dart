@@ -50,7 +50,6 @@ class ActivityTilesSectionState extends State<ActivityTilesSection> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     if (widget.activities.isEmpty) {
       return Container();
     }

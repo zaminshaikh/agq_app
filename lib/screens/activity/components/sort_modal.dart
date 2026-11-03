@@ -16,7 +16,6 @@ class ActivitySortModal extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return SingleChildScrollView(
       child: ClipRRect(
         borderRadius: const BorderRadius.only(

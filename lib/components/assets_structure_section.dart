@@ -21,7 +21,6 @@ class AssetsStructureSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     // 1) Gather all the account amounts across this client and any connected users
     double overallTotal = 0;
 

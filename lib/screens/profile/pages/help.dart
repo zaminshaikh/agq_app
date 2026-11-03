@@ -18,7 +18,18 @@ class HelpPage extends StatefulWidget {
 class _HelpPageState extends State<HelpPage> {
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'contact.email_subject',
+      'contact.kash_email_message',
+      'contact.kash_phone_message',
+      'contact.sonny_email_message',
+      'contact.sonny_phone_message',
+      'text.screens.profile.pages.help.absolutely_the_agq_app_employs_cutting_54d0ec',
+      'text.screens.profile.pages.help.go_to_the_documents_section_click_the__869bb2',
+      'text.screens.profile.pages.help.if_your_phone_is_lost_or_stolen_contac_ec6456',
+      'text.screens.profile.pages.help.log_in_to_your_account_go_to_profile_s_8470f8',
+      'text.screens.profile.pages.help.you_can_contact_us_via_email_at_manage_155913',
+    });
     return Scaffold(
       body: Stack(
         children: [

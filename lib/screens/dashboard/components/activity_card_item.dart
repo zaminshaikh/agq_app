@@ -1,6 +1,5 @@
 // ignore_for_file: sized_box_for_whitespace, deprecated_member_use
 
-import 'package:agq_app/content/app_content.dart';
 import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +17,6 @@ class ActivityCardItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     final DateFormat timeFormat = DateFormat('h:mm a');
     final DateFormat dateFormat = DateFormat('MMM d, yyyy');
     String time = timeFormat.format(activity.time);

@@ -119,7 +119,9 @@ class NoInternetScreenState extends State<NoInternetScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.components.no_connection.please_check_your_internet_connection__10cd84',
+    });
     return Scaffold(
       backgroundColor: const Color.fromARGB(255, 17, 24, 39),
       body: Center(

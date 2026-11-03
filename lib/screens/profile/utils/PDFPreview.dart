@@ -12,7 +12,6 @@ class PDFScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return Scaffold(
       appBar: AppBar(
         backgroundColor: AppColors.defaultBlueGray700,

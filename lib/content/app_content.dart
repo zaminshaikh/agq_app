@@ -13,11 +13,52 @@ class AppContent extends ChangeNotifier {
   static const _cacheKey = 'agq.appContent.v1';
   Map<String, String> _texts = {};
   Map<String, Map<String, String>> _images = {};
-  StreamSubscription<DocumentSnapshot<Map<String, dynamic>>>? _subscription;
+  StreamSubscription<Map<String, dynamic>?>? _contentSubscription;
   int _version = -1;
+  Future<void>? _initialization;
+  bool _disposed = false;
+  Future<void> _cacheWrites = Future<void>.value();
+  final Future<String?> Function() _readCache;
+  final Future<void> Function(String) _writeCache;
+  final Stream<Map<String, dynamic>?> Function() _documents;
+  static final _tokenPattern = RegExp(r'\{([A-Za-z][A-Za-z0-9_]*)\}');
+  static final _requiredTokens = <String, Set<String>>{};
 
-  static void watch(BuildContext context) {
-    context.dependOnInheritedWidgetOfExactType<AppContentScope>();
+  AppContent({
+    Future<String?> Function()? readCache,
+    Future<void> Function(String)? writeCache,
+    Stream<Map<String, dynamic>?> Function()? documents,
+  })  : _readCache = readCache ?? _readPreferences,
+        _writeCache = writeCache ?? _writePreferences,
+        _documents = documents ?? _publishedDocuments;
+
+  static Future<String?> _readPreferences() async =>
+      (await SharedPreferences.getInstance()).getString(_cacheKey);
+  static Future<void> _writePreferences(String value) async {
+    await (await SharedPreferences.getInstance()).setString(_cacheKey, value);
+  }
+
+  static Stream<Map<String, dynamic>?> _publishedDocuments() =>
+      FirebaseFirestore.instance
+          .doc('appContent/published')
+          .snapshots()
+          .map((snapshot) => snapshot.data());
+
+  static void watch(BuildContext context, {Set<String>? keys}) {
+    if (keys == null) {
+      InheritedModel.inheritFrom<_ContentModel>(context);
+    } else {
+      for (final key in keys) {
+        InheritedModel.inheritFrom<_ContentModel>(context, aspect: key);
+      }
+    }
+  }
+
+  static void watchImage(BuildContext context, String asset) {
+    final key = defaultAppImages[asset];
+    if (key != null) {
+      InheritedModel.inheritFrom<_ContentModel>(context, aspect: key);
+    }
   }
 
   static String text(String key, [Map<String, Object?> values = const {}]) =>
@@ -25,9 +66,10 @@ class AppContent extends ChangeNotifier {
 
   String resolveText(String key, [Map<String, Object?> values = const {}]) {
     final template = _texts[key] ?? defaultAppText[key] ?? key;
+    if (values.isEmpty || !template.contains('{')) return template;
     // Single pass prevents a user's data from being interpreted as another token.
     return template.replaceAllMapped(
-        RegExp(r'\{([A-Za-z][A-Za-z0-9_]*)\}'),
+        _tokenPattern,
         (match) => values.containsKey(match[1])
             ? '${values[match[1]] ?? ''}'
             : match[0]!);
@@ -57,37 +99,34 @@ class AppContent extends ChangeNotifier {
   Map<String, String>? imageFor(String asset) =>
       _images[defaultAppImages[asset]];
 
-  Future<void> initialize() async {
+  Future<void> initialize() => _initialization ??= _initialize();
+
+  Future<void> _initialize() async {
     try {
-      final prefs = await SharedPreferences.getInstance();
-      final cached = prefs.getString(_cacheKey);
+      final cached = await _readCache();
+      if (_disposed) return;
       if (cached != null) applyDocument(jsonDecode(cached));
     } catch (_) {
-      /* Bundled defaults work even if the local cache is unavailable. */
+      // Bundled defaults remain available without waiting for disk or network.
     }
-    _subscription = FirebaseFirestore.instance
-        .doc('appContent/published')
-        .snapshots()
-        .listen(
-      (snapshot) {
-        final data = snapshot.data();
-        if (data != null && applyDocument(data)) {
-          // Cache only JSON content, never Firestore audit timestamps.
-          unawaited(_cache(
-              {'version': _version, 'texts': _texts, 'images': _images}));
-        }
-      },
-      onError: (Object error) {
-        debugPrint('App content unavailable; using cached content.');
-      },
-    );
-  }
-
-  Future<void> _cache(Map<String, dynamic> data) async {
+    if (_disposed) return;
     try {
-      await (await SharedPreferences.getInstance())
-          .setString(_cacheKey, jsonEncode(data));
-    } catch (_) {/* Caching is best effort. */}
+      _contentSubscription = _documents().listen((data) {
+        if (_disposed || data == null || !applyDocument(data)) return;
+        final cached = jsonEncode(
+            {'version': _version, 'texts': _texts, 'images': _images});
+        // Serialize writes so an older snapshot cannot overwrite a newer cache.
+        _cacheWrites = _cacheWrites.then((_) async {
+          try {
+            await _writeCache(cached);
+          } catch (_) {/* Best effort. */}
+        });
+      }, onError: (Object error) {
+        debugPrint('App content unavailable; using cached content.');
+      });
+    } catch (_) {
+      debugPrint('App content unavailable; using cached content.');
+    }
   }
 
   /// Reject malformed values individually so a bad config cannot blank the app.
@@ -129,16 +168,19 @@ class AppContent extends ChangeNotifier {
             value.length > 12000) {
           continue;
         }
-        final pattern = RegExp(r'\{[A-Za-z][A-Za-z0-9_]*\}');
-        final required = pattern.allMatches(fallback).map((m) => m[0]).toSet();
-        final actual = pattern.allMatches(value).map((m) => m[0]).toSet();
+        final required = _requiredTokens.putIfAbsent(entry.key as String,
+            () => _tokenPattern.allMatches(fallback).map((m) => m[0]!).toSet());
+        final actual =
+            _tokenPattern.allMatches(value).map((m) => m[0]!).toSet();
         final key = entry.key as String;
         if ((key.endsWith('_email_message') ||
                 key.endsWith('_phone_message')) &&
             _contactValue(key, value) == null) {
           continue;
         }
-        if (setEquals(required, actual)) texts[key] = value;
+        if (setEquals(required, actual) && value != fallback) {
+          texts[key] = value;
+        }
       }
     }
     final images = <String, Map<String, String>>{};
@@ -164,21 +206,69 @@ class AppContent extends ChangeNotifier {
         }
       }
     }
+    final changed = !mapEquals(_texts, texts) ||
+        _images.length != images.length ||
+        images.entries
+            .any((entry) => !mapEquals(_images[entry.key], entry.value));
+    final newer = data['version'] != _version;
     _version = data['version'];
-    _texts = texts;
-    _images = images;
-    notifyListeners();
-    return true;
+    if (changed) {
+      _texts = texts;
+      _images = images;
+      notifyListeners();
+    }
+    return changed || newer;
   }
 
   @override
   void dispose() {
-    _subscription?.cancel();
+    _disposed = true;
+    _contentSubscription?.cancel();
     super.dispose();
   }
 }
 
-class AppContentScope extends InheritedNotifier<AppContent> {
-  AppContentScope({super.key, required super.child})
-      : super(notifier: AppContent.instance);
+class AppContentScope extends StatefulWidget {
+  final Widget child;
+  const AppContentScope({super.key, required this.child});
+  @override
+  State<AppContentScope> createState() => _AppContentScopeState();
+}
+
+class _AppContentScopeState extends State<AppContentScope> {
+  @override
+  void initState() {
+    super.initState();
+    AppContent.instance.addListener(_changed);
+  }
+
+  void _changed() => setState(() {});
+  @override
+  void dispose() {
+    AppContent.instance.removeListener(_changed);
+    super.dispose();
+  }
+
+  @override
+  Widget build(BuildContext context) => _ContentModel(
+      texts: AppContent.instance._texts,
+      images: AppContent.instance._images,
+      child: widget.child);
+}
+
+class _ContentModel extends InheritedModel<String> {
+  final Map<String, String> texts;
+  final Map<String, Map<String, String>> images;
+  const _ContentModel(
+      {required this.texts, required this.images, required super.child});
+  @override
+  bool updateShouldNotify(_ContentModel oldWidget) =>
+      !identical(texts, oldWidget.texts) ||
+      !identical(images, oldWidget.images);
+  @override
+  bool updateShouldNotifyDependent(
+          _ContentModel oldWidget, Set<String> dependencies) =>
+      dependencies.any((key) =>
+          texts[key] != oldWidget.texts[key] ||
+          !mapEquals(images[key], oldWidget.images[key]));
 }

@@ -9,7 +9,6 @@ class PasswordValidation extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return Column(
       children: [
         _buildValidationRow(

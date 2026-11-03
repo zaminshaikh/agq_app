@@ -12,7 +12,9 @@ class CustomProgressIndicator extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.components.progress_indicator.the_connection_is_taking_longer_than_e_f8e4ef',
+    });
     return const CircularProgressIndicator(
       valueColor: AlwaysStoppedAnimation<Color>(Colors.white),
       strokeWidth: 6.0,
@@ -138,7 +140,9 @@ class CustomProgressIndicatorPageState
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.components.progress_indicator.the_connection_is_taking_longer_than_e_f8e4ef',
+    });
     return const Center(child: CustomProgressIndicator());
   }
 }

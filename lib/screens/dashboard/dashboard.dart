@@ -138,7 +138,6 @@ class DashboardPageState extends State<DashboardPage>
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     final List<Widget> fundCharts = [];
     final funds = client?.assets?.funds ?? {};
 

@@ -79,7 +79,6 @@ class ActivityPageState extends State<ActivityPage> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }

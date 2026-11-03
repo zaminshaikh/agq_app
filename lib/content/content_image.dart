@@ -44,7 +44,7 @@ class AppContentImage extends StatelessWidget {
             color: color,
             semanticLabel: semanticsLabel);
     if (!ProfilePhotoCache.assets.contains(asset)) return fallback();
-    AppContent.watch(context);
+    AppContent.watchImage(context, asset);
     final url = AppContent.instance.imageFor(asset)?['url'];
     if (url == null) return fallback();
     return _CachedPortrait(
@@ -105,7 +105,11 @@ class _CachedPortraitState extends State<_CachedPortrait> {
               height: widget.height,
               fit: widget.fit,
               alignment: widget.alignment,
-              cacheWidth: 512,
+              cacheWidth: widget.width == null
+                  ? 512
+                  : (widget.width! * MediaQuery.devicePixelRatioOf(context))
+                      .ceil()
+                      .clamp(1, 512),
               gaplessPlayback: true,
               semanticLabel: widget.semanticsLabel,
               errorBuilder: (_, __, ___) => widget.fallback())

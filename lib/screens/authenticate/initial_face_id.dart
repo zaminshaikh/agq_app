@@ -70,7 +70,6 @@ class _InitialFaceIdPageState extends State<InitialFaceIdPage>
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),

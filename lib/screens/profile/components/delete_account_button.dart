@@ -38,7 +38,10 @@ class DeleteAccountButtonState extends State<DeleteAccountButton> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.profile.components.delete_account_button.are_you_sure_you_want_to_permanently_d_12ba10',
+      'text.screens.profile.components.delete_account_button.cid_does_not_match_please_enter_the_co_a731d7',
+    });
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Column(

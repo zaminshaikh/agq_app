@@ -174,7 +174,11 @@ class SettingsPageState extends State<SettingsPage> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.profile.pages.settings.let_me_know_about_new_activities_and_s_569b76',
+      'text.screens.profile.pages.settings.please_check_your_email_for_a_verifica_d6c220',
+      'text.screens.profile.pages.settings.please_enable_notifications_in_your_de_9ac069',
+    });
     return buildSettingsPage();
   }
 

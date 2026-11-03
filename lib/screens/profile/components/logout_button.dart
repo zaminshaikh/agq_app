@@ -22,7 +22,9 @@ class LogoutButton extends StatefulWidget {
 class LogoutButtonState extends State<LogoutButton> {
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.profile.components.logout_button.are_you_sure_you_want_to_log_out_97c2c6',
+    });
     return Padding(
       padding: const EdgeInsets.fromLTRB(20, 10, 20, 10),
       child: Column(

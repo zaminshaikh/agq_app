@@ -47,7 +47,9 @@ class _AuthenticationPageState extends State<AuthenticationPage> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.profile.pages.authentication.when_enabled_a_passcode_or_biometric_a_4ea681',
+    });
     return FutureBuilder(
         future: _initializeWidgetFuture,
         builder: (context, snapshot) => buildAuthenticationPage(context));

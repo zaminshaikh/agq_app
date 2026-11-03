@@ -29,7 +29,6 @@ class ActivityAppBar extends StatefulWidget implements PreferredSizeWidget {
 class ActivityAppBarState extends State<ActivityAppBar> {
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return SliverAppBar(
       backgroundColor: const Color.fromARGB(255, 30, 41, 59),
       automaticallyImplyLeading: false,

@@ -146,7 +146,6 @@ class LineChartSectionState extends State<LineChartSection> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return Padding(
       padding: const EdgeInsets.only(bottom: 25),
       child: Column(

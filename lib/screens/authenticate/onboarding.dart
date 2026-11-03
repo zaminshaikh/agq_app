@@ -65,7 +65,9 @@ class _OnboardingPageState extends State<OnboardingPage>
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.authenticate.onboarding.please_log_in_or_create_a_new_account__111f2e',
+    });
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.only(left: 40, right: 40),

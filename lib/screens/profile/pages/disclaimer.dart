@@ -21,7 +21,9 @@ class PdfFileWithCid {
 class _DisclaimerPageState extends State<DisclaimerPage> {
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.profile.pages.disclaimer.agq_consulting_llc_is_a_florida_limite_bf4710',
+    });
     return Scaffold(
       body: Stack(
         children: [

@@ -142,7 +142,6 @@ class _FaceIdPageState extends State<FaceIdPage> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return Scaffold(
       body: Padding(
         padding: const EdgeInsets.all(20.0),

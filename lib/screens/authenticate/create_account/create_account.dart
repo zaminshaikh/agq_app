@@ -279,7 +279,17 @@ class CreateAccountPageState extends State<CreateAccountPage> {
   /// Builds the create account screen widget.
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'signup.cid_help',
+      'text.screens.authenticate.create_account.create_account.email_not_verified_please_check_your_i_e2adbf',
+      'text.screens.authenticate.create_account.create_account.invalid_authentication_please_try_agai_bb127a',
+      'text.screens.authenticate.create_account.create_account.sign_in_with_apple_is_not_available_on_f881d6',
+      'text.screens.authenticate.create_account.create_account.there_is_no_record_of_the_client_id_va_96674c',
+      'text.screens.authenticate.create_account.create_account.there_was_a_problem_signing_in_with_ap_e31638',
+      'text.screens.authenticate.create_account.create_account.user_already_exists_for_given_client_i_e4c8b5',
+      'text.screens.authenticate.create_account.create_account.we_need_your_cid_to_authenticate_with__59fafa',
+      'text.screens.authenticate.create_account.create_account.we_need_your_cid_to_authenticate_with__88fd95',
+    });
     return Scaffold(
       body: Stack(
         children: [

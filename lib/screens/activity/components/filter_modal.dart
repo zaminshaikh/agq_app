@@ -65,7 +65,6 @@ class ActivityFilterModalState extends State<ActivityFilterModal> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return GestureDetector(
       onTap: () => Navigator.of(context).pop(),
       child: Container(

@@ -182,7 +182,7 @@ void main() {
   testWidgets('an open screen updates copy without resetting widget state',
       (tester) async {
     await tester.pumpWidget(
-        AppContentScope(child: const MaterialApp(home: _CopyScreen())));
+        const AppContentScope(child: MaterialApp(home: _CopyScreen())));
     expect(find.text(defaultAppText['signup.cid_help']!), findsOneWidget);
     await tester.tap(find.byType(ElevatedButton));
     await tester.pump();
@@ -198,8 +198,8 @@ void main() {
   });
   testWidgets('bundled portrait renders without remote configuration',
       (tester) async {
-    await tester.pumpWidget(AppContentScope(
-        child: const MaterialApp(
+    await tester.pumpWidget(const AppContentScope(
+        child: MaterialApp(
             home: AppContentImage('assets/icons/sonny_headshot.png'))));
     await tester.pumpAndSettle();
     expect(find.byType(Image), findsOneWidget);

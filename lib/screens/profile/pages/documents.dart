@@ -50,7 +50,6 @@ class _DocumentsPageState extends State<DocumentsPage> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }

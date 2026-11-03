@@ -14,7 +14,6 @@ class AnalyticsAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return SliverAppBar(
       backgroundColor: const Color.fromARGB(255, 30, 41, 59),
       automaticallyImplyLeading: false,

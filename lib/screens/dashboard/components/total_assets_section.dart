@@ -14,7 +14,10 @@ class TotalAssetsSection extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.dashboard.components.total_assets_section.total_assets_are_the_sum_of_all_assets_98d27d',
+      'text.screens.dashboard.components.total_assets_section.ytd_stands_for_year_to_date_it_is_a_fi_61a2da',
+    });
     double totalAssets = client.assets?.totalAssets ?? 0;
 
     // Check if connectedUsers is not null before iterating

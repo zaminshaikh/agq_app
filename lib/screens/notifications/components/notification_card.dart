@@ -23,7 +23,6 @@ class NotificationCard extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return _buildNotification(context, notification);
   }
 

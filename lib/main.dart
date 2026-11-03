@@ -52,6 +52,10 @@ void main() async {
     DeviceOrientation.portraitDown,
   ]);
 
+  // Content is optional: first paint must never wait for its cache or network.
+  WidgetsBinding.instance.addPostFrameCallback((_) {
+    unawaited(AppContent.instance.initialize());
+  });
   runApp(
     ChangeNotifierProvider(
       create: (context) => AuthState(),
@@ -78,7 +82,6 @@ Future<void> _initializeServices() async {
 
   // Reset Firestore settings to ensure a clean state
   await _resetFirestore();
-  await AppContent.instance.initialize();
 }
 
 /// Reset Firestore settings to ensure a clean state
@@ -255,7 +258,6 @@ class MyAppState extends State<MyApp> with WidgetsBindingObserver {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return StreamBuilder<ConnectivityResult>(
       stream: Connectivity().onConnectivityChanged.expand((results) => results),
       builder: (context, snapshot) {
@@ -441,7 +443,6 @@ class _AuthCheckState extends State<AuthCheck> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     return StreamBuilder<User?>(
       stream: FirebaseAuth.instance.userChanges(),
       builder: (context, snapshot) {

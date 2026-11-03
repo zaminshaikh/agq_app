@@ -36,7 +36,9 @@ class _ProfilePageState extends State<ProfilePage> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.profile.profile.investment_products_and_services_are_o_e86030',
+    });
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }

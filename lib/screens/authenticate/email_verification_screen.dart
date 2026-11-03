@@ -210,7 +210,12 @@ class _EmailVerificationScreenState extends State<EmailVerificationScreen> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
+    AppContent.watch(context, keys: const {
+      'text.screens.authenticate.email_verification_screen.an_unexpected_error_occurred_please_tr_d07ac0',
+      'text.screens.authenticate.email_verification_screen.failed_to_send_verification_email_plea_884620',
+      'text.screens.authenticate.email_verification_screen.please_check_your_email_and_click_the__611181',
+      'text.screens.authenticate.email_verification_screen.too_many_requests_please_wait_before_r_db7c32',
+    });
     final user = FirebaseAuth.instance.currentUser;
 
     return Scaffold(

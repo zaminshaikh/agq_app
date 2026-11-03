@@ -14,7 +14,6 @@ class DashboardAppBar extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     String welcomeMessage;
     String fullName = '${client.firstName} ${client.lastName}';
     if (fullName.length > 20) {

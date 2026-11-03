@@ -24,7 +24,6 @@ class _ProfilesPageState extends State<ProfilesPage> {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     if (client == null) {
       return const CustomProgressIndicatorPage();
     }

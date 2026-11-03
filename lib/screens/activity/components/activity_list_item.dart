@@ -1,7 +1,6 @@
 // widgets/activity_list_item.dart
 // ignore_for_file: deprecated_member_use
 
-import 'package:agq_app/content/app_content.dart';
 import 'package:agq_app/content/content_image.dart';
 import 'package:flutter/material.dart';
 import 'package:intl/intl.dart';
@@ -18,7 +17,6 @@ class ActivityListItem extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    AppContent.watch(context);
     final DateFormat timeFormat = DateFormat('h:mm a');
     String time = timeFormat.format(activity.time);
 
